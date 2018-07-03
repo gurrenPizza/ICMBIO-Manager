@@ -11,34 +11,36 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class SaidaDAO {
     
-    public static void consultaSaidas(){
-        
-        //Isso aqui realmente tá só consultando o Banco de Dados, ainda não está pronto
-        
+    public static void consultaSaidas(JTable tabela){
+        //FALTA TERMINAR ESTE MÉTODO CONSERTANDO O BANCO DE DADOS
         try{
             Connection conexao = BancoDeDados.retornarConexao();
             
-            PreparedStatement consulta = conexao.prepareStatement("Select * from saida");
-            
+            PreparedStatement consulta = conexao.prepareStatement("Select * from saidas");
             
             ResultSet resultado = consulta.executeQuery();
+            
+            DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+            model.setNumRows(0);
+            while(resultado.next()){
+                model.addRow(new Object[] {resultado.getString("codigo_saida"),resultado.getString("codigo_solicitacao"),
+                                resultado.getString("numero_saidas"),resultado.getString("numero_visitantes"),resultado.getString("mes"),
+                                resultado.getString("ano")
+                                });
+            }
+            
             Boolean existe = resultado.next();
             
-            if(existe){
-                //retornar o resultado ou preencher uma tabela
-                //é melhor descobrir como retornar o resultado do select
-                //de modo que a gente use esse método na classe da tela
-            }
-            
             }catch (SQLException ex){
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,"Registro não encontrado!");
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
         
     }
     

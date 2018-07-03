@@ -20,12 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SolicitacaoDAO {
     
-    
     public static void consultaSolicitacoes(String n_proc,JTable tabela){
-        //PRECISAMOS DESCOBRIR COMO RETORNAR A PESQUISA DO BANCO DE DADOS
-        //..
-        //COMO ESSE MÉTODO SERÁ USADO EM OUTRAS TELAS, NÃO PODE DEPENDER
-        //DE UMA ÚNICA TELA
+        
         try{
             Connection conexao = BancoDeDados.retornarConexao();
             

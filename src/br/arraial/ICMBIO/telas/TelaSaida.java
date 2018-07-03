@@ -36,7 +36,7 @@ public class TelaSaida extends JInternalFrame {
     }
     
     public JTable getTable(){
-        return tbSaidas;
+        return tbSolicitacoes;
     }
     
 
@@ -55,8 +55,8 @@ public class TelaSaida extends JInternalFrame {
         txtPesquisa = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbSaidas = new javax.swing.JTable();
-        jbPesquisar = new javax.swing.JButton();
+        tbSolicitacoes = new javax.swing.JTable();
+        btPesquisar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lbNumSaida = new javax.swing.JLabel();
@@ -74,6 +74,12 @@ public class TelaSaida extends JInternalFrame {
         lbNumProcesso = new javax.swing.JLabel();
         lbNumProc = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        pnBonitinho1 = new javax.swing.JPanel();
+        txtPesquisaS = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbSaidas = new javax.swing.JTable();
+        btConsultaS = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,7 +91,7 @@ public class TelaSaida extends JInternalFrame {
 
         jLabel3.setText("Digite o número do processo:");
 
-        tbSaidas.setModel(new javax.swing.table.DefaultTableModel(
+        tbSolicitacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -101,17 +107,17 @@ public class TelaSaida extends JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbSaidas.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbSaidasMouseClicked(evt);
+                tbSolicitacoesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbSaidas);
+        jScrollPane1.setViewportView(tbSolicitacoes);
 
-        jbPesquisar.setText("Pesquisar");
-        jbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setText("Pesquisar");
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPesquisarActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
 
@@ -128,7 +134,7 @@ public class TelaSaida extends JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbPesquisar)))
+                        .addComponent(btPesquisar)))
                 .addGap(29, 29, 29))
         );
         pnBonitinhoLayout.setVerticalGroup(
@@ -138,7 +144,7 @@ public class TelaSaida extends JInternalFrame {
                 .addGroup(pnBonitinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPesquisar))
+                    .addComponent(btPesquisar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -157,7 +163,7 @@ public class TelaSaida extends JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 235, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +171,7 @@ public class TelaSaida extends JInternalFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        pnGuiasSaida.addTab("Consultar", jPanel2);
+        pnGuiasSaida.addTab("Consultar Solicitações", jPanel2);
 
         lbNumSaida.setText("Número de Saídas:");
 
@@ -283,25 +289,100 @@ public class TelaSaida extends JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnGuiasSaida.addTab("Cadastrar", jPanel3);
 
+        txtPesquisaS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaSActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Digite o número do processo:");
+
+        tbSaidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod. Saída", "Nº de Saídas", "Nº de Visitantes", "Mês", "Ano", "Cod. Solicitação"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbSaidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbSaidasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbSaidas);
+
+        btConsultaS.setText("Pesquisar");
+        btConsultaS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultaSActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnBonitinho1Layout = new javax.swing.GroupLayout(pnBonitinho1);
+        pnBonitinho1.setLayout(pnBonitinho1Layout);
+        pnBonitinho1Layout.setHorizontalGroup(
+            pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnBonitinho1Layout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesquisaS, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btConsultaS)
+                .addGap(48, 48, 48))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        pnBonitinho1Layout.setVerticalGroup(
+            pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBonitinho1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPesquisaS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btConsultaS))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 451, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnBonitinho1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 235, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addContainerGap(21, Short.MAX_VALUE)
+                    .addComponent(pnBonitinho1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
 
-        pnGuiasSaida.addTab("Excluir", jPanel4);
+        pnGuiasSaida.addTab("Consultar Saídas", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -349,21 +430,52 @@ public class TelaSaida extends JInternalFrame {
        txtAno.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
-    private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         //REVISAR CODIGO (PARTE FOI COPIADO DE LOGIN)
         //OK, OBRIGADO! REVISADO COM SUCESSO. - 25/06
         
         Solicitacao sol = new Solicitacao(txtPesquisa.getText());
-        SolicitacaoDAO.consultaSolicitacoes(sol.getNum_processo(),tbSaidas);
+        SolicitacaoDAO.consultaSolicitacoes(sol.getNum_processo(),tbSolicitacoes);
         
         
-    }//GEN-LAST:event_jbPesquisarActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
-    private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
-        JOptionPane.showMessageDialog(null,"Você clicou na tabela!");
+    private void tbSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacoesMouseClicked
+        
+        
         lbNumProc.setText(lbNumProc.getText() + txtPesquisa.getText());
         pnGuiasSaida.setSelectedIndex(1);
+    }//GEN-LAST:event_tbSolicitacoesMouseClicked
+
+    private void txtPesquisaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaSActionPerformed
+
+    private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
+        //aqui, os resultados do banco de dados foram exibidos,
+        //o usuário clica no registro que ele quiser e os valores são jogados
+        //nos campos da guia de cadastro/alteração/exclusão
+        txtNumSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),1).toString());
+        txtNumVisitantes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),1).toString());
+        
+        pnGuiasSaida.setSelectedIndex(1);
     }//GEN-LAST:event_tbSaidasMouseClicked
+
+    private void btConsultaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultaSActionPerformed
+        
+        
+        SaidaDAO.consultaSaidas(tbSaidas);
+        
+        
+        /*
+        joga nos campos da aba de cadastro/alteração os valores da tabela
+        
+        txtAlgumaCoisa.setText(tbSaidas.getSelectedRow(0));
+        
+        */
+        
+        
+    }//GEN-LAST:event_btConsultaSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,16 +517,19 @@ public class TelaSaida extends JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
+    private javax.swing.JButton btConsultaS;
     private javax.swing.JButton btEnviar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbPesquisar;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbAno;
     private javax.swing.JLabel lbMes;
     private javax.swing.JLabel lbNumProc;
@@ -422,12 +537,15 @@ public class TelaSaida extends JInternalFrame {
     private javax.swing.JLabel lbNumSaida;
     private javax.swing.JLabel lbNumVisitantes;
     private javax.swing.JPanel pnBonitinho;
+    private javax.swing.JPanel pnBonitinho1;
     private javax.swing.JTabbedPane pnGuiasSaida;
     private javax.swing.JTable tbSaidas;
+    private javax.swing.JTable tbSolicitacoes;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNumSaida;
     private javax.swing.JTextField txtNumVisitantes;
     private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtPesquisaS;
     // End of variables declaration//GEN-END:variables
 }
