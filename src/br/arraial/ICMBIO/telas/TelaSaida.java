@@ -17,10 +17,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @version 4.0 - 26/06
+ * @version 4.5 - 04/07
  * @author Turma INF161
- *               Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
- *                             Laura Fidalgo e Phillipe Loriot de Rouvray
+ *         Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
+ *         Laura Fidalgo e Phillipe Loriot de Rouvray
  */
 public class TelaSaida extends JInternalFrame {
 
@@ -73,13 +73,16 @@ public class TelaSaida extends JInternalFrame {
         btAlterar = new javax.swing.JButton();
         lbNumProcesso = new javax.swing.JLabel();
         lbNumProc = new javax.swing.JLabel();
+        lbCodSaida = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         pnBonitinho1 = new javax.swing.JPanel();
-        txtPesquisaS = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        txtPesquisaMes = new javax.swing.JTextField();
+        lbPesquisaMes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSaidas = new javax.swing.JTable();
         btConsultaS = new javax.swing.JButton();
+        lbPesquisaAno = new javax.swing.JLabel();
+        txtPesquisaAno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -208,8 +211,18 @@ public class TelaSaida extends JInternalFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         btAlterar.setText("Alterar");
+        btAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarActionPerformed(evt);
+            }
+        });
 
         lbNumProcesso.setText("Número do processo:");
 
@@ -282,27 +295,34 @@ public class TelaSaida extends JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(lbCodSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lbCodSaida, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnGuiasSaida.addTab("Cadastrar", jPanel3);
 
-        txtPesquisaS.addActionListener(new java.awt.event.ActionListener() {
+        txtPesquisaMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisaSActionPerformed(evt);
+                txtPesquisaMesActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Digite o número do processo:");
+        lbPesquisaMes.setText("Digite o mês:");
 
         tbSaidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -334,28 +354,44 @@ public class TelaSaida extends JInternalFrame {
             }
         });
 
+        lbPesquisaAno.setText("Digite o ano:");
+
+        txtPesquisaAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaAnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnBonitinho1Layout = new javax.swing.GroupLayout(pnBonitinho1);
         pnBonitinho1.setLayout(pnBonitinho1Layout);
         pnBonitinho1Layout.setHorizontalGroup(
             pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnBonitinho1Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addGap(29, 29, 29)
+                .addComponent(lbPesquisaMes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisaS, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbPesquisaAno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesquisaAno, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btConsultaS)
                 .addGap(48, 48, 48))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
         );
         pnBonitinho1Layout.setVerticalGroup(
             pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnBonitinho1Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtPesquisaS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btConsultaS))
+                .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbPesquisaAno)
+                        .addComponent(txtPesquisaAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbPesquisaMes)
+                        .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btConsultaS)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -428,6 +464,7 @@ public class TelaSaida extends JInternalFrame {
        txtNumVisitantes.setText("");
        txtMes.setText("");
        txtAno.setText("");
+       lbNumProc.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
@@ -441,30 +478,32 @@ public class TelaSaida extends JInternalFrame {
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void tbSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacoesMouseClicked
-        
-        
+                
         lbNumProc.setText(lbNumProc.getText() + txtPesquisa.getText());
         pnGuiasSaida.setSelectedIndex(1);
+        
     }//GEN-LAST:event_tbSolicitacoesMouseClicked
 
-    private void txtPesquisaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaSActionPerformed
+    private void txtPesquisaMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaMesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisaSActionPerformed
+    }//GEN-LAST:event_txtPesquisaMesActionPerformed
 
     private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
         //aqui, os resultados do banco de dados foram exibidos,
         //o usuário clica no registro que ele quiser e os valores são jogados
         //nos campos da guia de cadastro/alteração/exclusão
+        lbCodSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),0).toString());
         txtNumSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),1).toString());
-        txtNumVisitantes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),1).toString());
-        
+        txtNumVisitantes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),2).toString());
+        txtMes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),3).toString());
+        txtAno.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),4).toString());
         pnGuiasSaida.setSelectedIndex(1);
     }//GEN-LAST:event_tbSaidasMouseClicked
 
     private void btConsultaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultaSActionPerformed
         
-        
-        SaidaDAO.consultaSaidas(tbSaidas);
+        Saida sai = new Saida(txtMes.getText(),txtAno.getText());
+        SaidaDAO.consultaSaidas(sai.getMes(),sai.getAno(),tbSaidas);
         
         
         /*
@@ -476,6 +515,33 @@ public class TelaSaida extends JInternalFrame {
         
         
     }//GEN-LAST:event_btConsultaSActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // FALTA
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void txtPesquisaAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaAnoActionPerformed
+
+    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
+        Saida sai = new Saida(Integer.parseInt(txtNumSaida.getText()), 
+                              Integer.parseInt(txtNumVisitantes.getText()),
+                              txtMes.getText(),
+                              txtAno.getText(),
+                              Integer.parseInt(lbCodSaida.getText())
+                              );
+        
+        SaidaDAO.alteraSaida(sai.getNum_saidas(), 
+                             sai.getNum_visitantes(), 
+                             sai.getMes(), 
+                             sai.getAno(), 
+                             sai.getCodigo_saida());
+        
+        
+        
+        
+    }//GEN-LAST:event_btAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,6 +572,10 @@ public class TelaSaida extends JInternalFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -523,7 +593,6 @@ public class TelaSaida extends JInternalFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -531,11 +600,14 @@ public class TelaSaida extends JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbAno;
+    private javax.swing.JLabel lbCodSaida;
     private javax.swing.JLabel lbMes;
     private javax.swing.JLabel lbNumProc;
     private javax.swing.JLabel lbNumProcesso;
     private javax.swing.JLabel lbNumSaida;
     private javax.swing.JLabel lbNumVisitantes;
+    private javax.swing.JLabel lbPesquisaAno;
+    private javax.swing.JLabel lbPesquisaMes;
     private javax.swing.JPanel pnBonitinho;
     private javax.swing.JPanel pnBonitinho1;
     private javax.swing.JTabbedPane pnGuiasSaida;
@@ -546,6 +618,7 @@ public class TelaSaida extends JInternalFrame {
     private javax.swing.JTextField txtNumSaida;
     private javax.swing.JTextField txtNumVisitantes;
     private javax.swing.JTextField txtPesquisa;
-    private javax.swing.JTextField txtPesquisaS;
+    private javax.swing.JTextField txtPesquisaAno;
+    private javax.swing.JTextField txtPesquisaMes;
     // End of variables declaration//GEN-END:variables
 }
