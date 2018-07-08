@@ -8,8 +8,8 @@ This program will be developed in collaboration by an IFRJ's 6th period technich
 Teacher: Carlos Augusto Fernandes Filho, Master in computing
 
 Collaborators:
-@gurrenPizza - Alberto Dinis Lira Figuerêdo, 
-@Tetr4k - Gabriel Ribeiro, 
+Alberto Dinis Lira Figuerêdo (@gurrenPizza), 
+Gabriel Ribeiro (@Tetr4k), 
 Philippe Loriot de Rouvray, 
 Felipe Viana Falcão, 
 Ariane Sales, 
