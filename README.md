@@ -7,7 +7,28 @@ This program will be developed in collaboration by an IFRJ's 6th period technich
 
 Teacher: Carlos Augusto Fernandes Filho, Master in computing
 
-Collaborators: @gurrenPizza - Alberto Dinis Lira Figuerêdo, @Tetr4k - Gabriel Ribeiro, Philippe Loriot de Rouvray, Felipe Viana Falcão, Gabriel Carvalho da Silva Boalento.. more
+Collaborators:
+@gurrenPizza - Alberto Dinis Lira Figuerêdo, 
+@Tetr4k - Gabriel Ribeiro, 
+Philippe Loriot de Rouvray, 
+Felipe Viana Falcão, 
+Ariane Sales, 
+Laura Fidalgo, 
+Gabriel Carvalho da Silva Boalento, 
+Anna Carolina Nicoli, 
+Patrick Carmona, 
+Gabrielli Ribeiro, 
+Matheus Hiroshi Azuma Chavez, 
+Emilly Rodrigues, 
+Marcelo Coelho, 
+Louise Lisboa, 
+Abner Guedes, 
+Maria Eduarda Soares, 
+Bheatriz Syria, 
+Euller Felipe gfsdgas, 
+Gabriella Caetano, 
+Arthur Moreira,
+Raquel Moraes.
 
 //PT-BR
 
