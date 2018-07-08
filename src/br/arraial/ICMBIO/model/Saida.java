@@ -6,7 +6,7 @@ public class Saida {
     
     /**
     * 
-    * @version 4.0 - 26/06
+    * @version 4.5 - 04/07
     * @author Turma INF161
     *               Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
     *                             Laura Fidalgo e Phillipe Loriot de Rouvray
@@ -22,6 +22,21 @@ public class Saida {
     
     public Saida(){
         
+    }
+
+    public Saida(String mes, String ano) {
+        this.mes = mes;
+        this.ano = ano;
+    }
+    
+    
+    
+    public Saida(Integer num_saidas, Integer num_visitantes, String mes, String ano, Integer cod_saida) {
+        this.num_saidas = num_saidas;
+        this.num_visitantes = num_visitantes;
+        this.mes = mes;
+        this.ano = ano;
+        codigo_saida = cod_saida;
     }
     
     public Saida(Integer num_saidas, Integer num_visitantes, String mes, String ano) {

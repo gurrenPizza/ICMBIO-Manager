@@ -17,12 +17,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class SaidaDAO {
     
-    public static void consultaSaidas(JTable tabela){
+    public static void consultaSaidas(String mes, String ano,JTable tabela){
         //FALTA TERMINAR ESTE MÉTODO CONSERTANDO O BANCO DE DADOS
         try{
             Connection conexao = BancoDeDados.retornarConexao();
             
-            PreparedStatement consulta = conexao.prepareStatement("Select * from saidas");
+            PreparedStatement consulta = conexao.prepareStatement("Select * from saidas where mes='?' and ano='?' ");
+            consulta.setString(1, mes);
+            consulta.setString(2, ano);
             
             ResultSet resultado = consulta.executeQuery();
             
@@ -57,6 +59,24 @@ public class SaidaDAO {
             
             
         } catch (SQLException ex) {
+            Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void alteraSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida){
+        
+        try{
+            
+            PreparedStatement alterar = retornarConexao().prepareStatement("update saida set num_saida='?', num_visitantes='?', mes='?', ano='?' where codigo_saida='?' ");
+            alterar.setInt(1,numSaida);
+            alterar.setInt(2,numVisitantes);
+            alterar.setString(3,mes);
+            alterar.setString(4,ano);
+            alterar.setInt(5,cod_saida);
+            alterar.execute();
+            
+        } catch(SQLException ex){
             Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
         }
         
