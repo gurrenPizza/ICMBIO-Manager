@@ -38,17 +38,9 @@ public class SolicitacaoDAO {
                                 });
             }
             
-            Boolean existe = resultado.next();
-            
-            if(existe){
-                
-            }
-            else{
-               JOptionPane.showMessageDialog(null,"Registro não encontrado!");
-            }
-            
             }catch (SQLException ex){
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Registro não encontrado!");
             }
         
     }
