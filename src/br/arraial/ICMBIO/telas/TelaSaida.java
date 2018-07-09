@@ -300,6 +300,8 @@ public class TelaSaida extends JInternalFrame {
                 .addGap(18, 18, 18))
         );
 
+        lbCodSaida.setVisible(false);
+
         javax.swing.GroupLayout pnCadastroLayout = new javax.swing.GroupLayout(pnCadastro);
         pnCadastro.setLayout(pnCadastroLayout);
         pnCadastroLayout.setHorizontalGroup(
@@ -400,13 +402,14 @@ public class TelaSaida extends JInternalFrame {
             pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnBonitinho1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPesquisaMes)
-                    .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbPesquisaAno)
                         .addComponent(txtPesquisaAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btConsultaS)))
+                        .addComponent(btConsultaS))
+                    .addGroup(pnBonitinho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbPesquisaMes)
+                        .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -494,7 +497,7 @@ public class TelaSaida extends JInternalFrame {
 
     private void tbSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacoesMouseClicked
         
-        lbNumProc.setText(lbNumProc.getText() + txtPesquisa.getText());
+        lbNumProc.setText(txtPesquisa.getText());
         btExcluir.setEnabled(false);
         btAlterar.setEnabled(false);
         
@@ -511,10 +514,10 @@ public class TelaSaida extends JInternalFrame {
         //o usuário clica no registro que ele quiser e os valores são jogados
         //nos campos da guia de cadastro/alteração/exclusão
         lbCodSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),0).toString());
-        txtNumSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),1).toString());
-        txtNumVisitantes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),2).toString());
-        txtMes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),3).toString());
-        txtAno.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),4).toString());
+        txtNumSaida.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),2).toString());
+        txtNumVisitantes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),3).toString());
+        txtMes.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),4).toString());
+        txtAno.setText(tbSaidas.getValueAt(tbSaidas.getSelectedRow(),5).toString());
         btCadastrar.setEnabled(false);
         btExcluir.setEnabled(true);
         btAlterar.setEnabled(true);
@@ -531,7 +534,7 @@ public class TelaSaida extends JInternalFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         
-        SaidaDAO.excluiSaida(Integer.parseInt(lbNumProc.getText()));
+        SaidaDAO.excluiSaida(Integer.parseInt(lbCodSaida.getText()));
         
     }//GEN-LAST:event_btExcluirActionPerformed
 

@@ -382,6 +382,9 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="lbCodSaida">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="lbCodSaida.setVisible(false);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -449,13 +452,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbPesquisaMes" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtPesquisaMes" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="lbPesquisaAno" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtPesquisaAno" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btConsultaS" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbPesquisaMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPesquisaMes" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
