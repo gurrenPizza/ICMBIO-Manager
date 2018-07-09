@@ -14,15 +14,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @version 5.0 - 08/07
+ * @author Turma INF161
+ *         Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
+ *         Laura Fidalgo e Phillipe Loriot de Rouvray
+ */
 
 public class SaidaDAO {
     
     public static void consultaSaidas(String mes, String ano,JTable tabela){
-        //FALTA TERMINAR ESTE MÉTODO CONSERTANDO O BANCO DE DADOS
+        //Tem alguma coisa dando errado na hora de pesquisar
         try{
             Connection conexao = BancoDeDados.retornarConexao();
             
-            PreparedStatement consulta = conexao.prepareStatement("Select * from saidas where mes='?' and ano='?' ");
+            PreparedStatement consulta = conexao.prepareStatement("Select * from saida where (mes=?) and (ano=?)");
             consulta.setString(1, mes);
             consulta.setString(2, ano);
             
@@ -31,24 +37,23 @@ public class SaidaDAO {
             DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             model.setNumRows(0);
             while(resultado.next()){
-                model.addRow(new Object[] {resultado.getString("codigo_saida"),resultado.getString("codigo_solicitacao"),
-                                resultado.getString("numero_saidas"),resultado.getString("numero_visitantes"),resultado.getString("mes"),
-                                resultado.getString("ano")
-                                });
+                model.addRow(new Object[] {resultado.getInt("codigo_saida"),resultado.getInt("codigo_solicitacao"),
+                                resultado.getInt("numero_saidas"),resultado.getInt("numero_visitantes"),resultado.getString("mes"),
+                                resultado.getString("ano")});
             }
-            
-            Boolean existe = resultado.next();
             
             }catch (SQLException ex){
                 JOptionPane.showMessageDialog(null,"Registro não encontrado!");
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+            
     }
     
     public static void insereSaida(Integer numSaida, Integer numVisitantes, String mes, String ano){
         
         try {
+            
+            
             PreparedStatement inserir = retornarConexao().prepareStatement("insert into saida(numero_saidas,numero_visitantes,mes,ano,codigo_solicitacao) values(?,?,?,?,?)");
             inserir.setInt(1,numSaida);
             inserir.setInt(2,numVisitantes);
@@ -56,7 +61,6 @@ public class SaidaDAO {
             inserir.setString(4,ano);
             inserir.setInt(5,1);
             inserir.execute();
-            
             
         } catch (SQLException ex) {
             Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,6 +82,21 @@ public class SaidaDAO {
             
         } catch(SQLException ex){
             Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void excluiSaida(Integer cod_saida){
+        
+        try{
+        
+            PreparedStatement excluir = retornarConexao().prepareStatement("delete from saida where codigo_saida='?' ");
+            excluir.setInt(1, cod_saida);
+            excluir.execute();
+        
+        } catch(SQLException ex){
+            Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Erro!");
         }
         
     }
