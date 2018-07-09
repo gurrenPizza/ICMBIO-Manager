@@ -4,7 +4,7 @@ package br.arraial.ICMBIO.telas;
 
 
 /**
- * @version 4.5 - 03/07
+ * @version 4.0 - 26/06
  * @author Turma INF161:
  * Grupo Embarcações - Matheus Hiroshi, Emilly Rodrigues, Marcelo Coelho,
  * Gabrielli Ramos
@@ -179,6 +179,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void imSaiConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiConsultaActionPerformed
         TelaSaida saida = new TelaSaida();
         pnAreaDeTrabalho.add(saida);
+        saida.getPnSaida().setSelectedIndex(2);
         saida.setVisible(true);
     }//GEN-LAST:event_imSaiConsultaActionPerformed
 
