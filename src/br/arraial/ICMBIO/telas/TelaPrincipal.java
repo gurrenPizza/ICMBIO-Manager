@@ -233,7 +233,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
 
     private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
-        TelaModalidade telamodalidade = new TelaModalidade();
+        CadModalidade telamodalidade = new CadModalidade();
         pnCentral.add(telamodalidade);
         telamodalidade.show();
     }//GEN-LAST:event_imCadModalidadeActionPerformed
@@ -245,7 +245,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
 
     private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
-        TelaUsuario telausuario = new TelaUsuario();
+        CadUsuario telausuario = new CadUsuario();
         pnCentral.add(telausuario);
         telausuario.show();
     }//GEN-LAST:event_imCadUsuarioActionPerformed
@@ -257,7 +257,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
     private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
-        TelaCadastroSolicitacao telacadsol = new TelaCadastroSolicitacao();
+        TelaSolicitacao telacadsol = new TelaSolicitacao();
         pnCentral.add(telacadsol);
         telacadsol.show();
     }//GEN-LAST:event_imSoliCadastroActionPerformed
