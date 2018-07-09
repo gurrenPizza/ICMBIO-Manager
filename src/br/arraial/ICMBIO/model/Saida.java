@@ -6,7 +6,7 @@ public class Saida {
     
     /**
     * 
-    * @version 4.5 - 04/07
+    * @version 5.0 - 08/07
     * @author Turma INF161
     *               Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
     *                             Laura Fidalgo e Phillipe Loriot de Rouvray
