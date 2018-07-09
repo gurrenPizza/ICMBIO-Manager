@@ -67,6 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
+        imSolAlterar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
@@ -100,9 +101,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cadastro");
 
         imCadModalidade.setText("Modalidade");
+        imCadModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadModalidadeActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadModalidade);
 
         imCadEmbarcacao.setText("Embarcação");
+        imCadEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadEmbarcacaoActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadEmbarcacao);
 
         imCadSolicitante.setText("Solicitante");
@@ -114,6 +125,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(imCadSolicitante);
 
         imCadUsuario.setText("Usuário");
+        imCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadUsuarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadUsuario);
 
         jMenuBar1.add(jMenu1);
@@ -142,16 +158,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Solicitação");
 
         imSoliCadastro.setText("Cadastro");
+        imSoliCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSoliCadastroActionPerformed(evt);
+            }
+        });
         jMenu3.add(imSoliCadastro);
 
         imSoliConsulta.setText("Consulta");
+        imSoliConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSoliConsultaActionPerformed(evt);
+            }
+        });
         jMenu3.add(imSoliConsulta);
+
+        imSolAlterar.setText("Alterar");
+        imSolAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSolAlterarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(imSolAlterar);
 
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Saida");
 
         imSaiCadastro.setText("Cadastro");
+        imSaiCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSaiCadastroActionPerformed(evt);
+            }
+        });
         jMenu5.add(imSaiCadastro);
 
         imSaiConsulta.setText("Consulta");
@@ -188,12 +227,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imConEmbarcacaoActionPerformed
 
     private void imCadSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSolicitanteActionPerformed
-
         TelaSolicitante telasolicitante = new TelaSolicitante();
         pnCentral.add(telasolicitante);
         telasolicitante.show();
-        
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
+
+    private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
+        TelaModalidade telamodalidade = new TelaModalidade();
+        pnCentral.add(telamodalidade);
+        telamodalidade.show();
+    }//GEN-LAST:event_imCadModalidadeActionPerformed
+
+    private void imCadEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadEmbarcacaoActionPerformed
+        TelaEmbarcacao telaembarcacao = new TelaEmbarcacao();
+        pnCentral.add(telaembarcacao);
+        telaembarcacao.show();
+    }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
+
+    private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
+        TelaUsuario telausuario = new TelaUsuario();
+        pnCentral.add(telausuario);
+        telausuario.show();
+    }//GEN-LAST:event_imCadUsuarioActionPerformed
+
+    private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
+        TelaSaida telasaida = new TelaSaida();
+        pnCentral.add(telasaida);
+        telasaida.show();
+    }//GEN-LAST:event_imSaiCadastroActionPerformed
+
+    private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
+        TelaCadastroSolicitacao telacadsol = new TelaCadastroSolicitacao();
+        pnCentral.add(telacadsol);
+        telacadsol.show();
+    }//GEN-LAST:event_imSoliCadastroActionPerformed
+
+    private void imSoliConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliConsultaActionPerformed
+        TelaConsultaSolicitacao telaconsol = new TelaConsultaSolicitacao();
+        pnCentral.add(telaconsol);
+        telaconsol.show();
+    }//GEN-LAST:event_imSoliConsultaActionPerformed
+
+    private void imSolAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSolAlterarActionPerformed
+        TelaAlterarSolicitacao telaaltsol = new TelaAlterarSolicitacao();
+        pnCentral.add(telaaltsol);
+        telaaltsol.show();
+    }//GEN-LAST:event_imSolAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConUsuario;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;
+    private javax.swing.JMenuItem imSolAlterar;
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
     private javax.swing.JMenu jMenu1;
