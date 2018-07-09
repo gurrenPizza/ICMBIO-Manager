@@ -5,7 +5,7 @@ The program's objective is to control ICMBIO's watercraft traffic database with 
 
 This program will be developed in collaboration by an IFRJ's 6th period technichal IT high school class as a final avaliation method for Programming Languages III subject. Although this description was wrote in english, all commits and other comments will be written in portuguese in order to improve our communication, since it's our mother language and not all of us speak english.
 
-Teacher: Carlos Augusto Fernandes Filho, Master in computing
+Teacher: Carlos Augusto Fernandes Filho, Master in computing (@andecarlosfernandesifrj)
 
 Collaborators:
 Alberto Dinis Lira Figuerêdo (@gurrenPizza), 
@@ -18,14 +18,14 @@ Gabriel Carvalho da Silva Boalento,
 Anna Carolina Nicoli, 
 Patrick Carmona, 
 Gabrielli Ribeiro, 
-Matheus Hiroshi Azuma Chavez, 
+Matheus Hiroshi Azuma Chavez (XHiroshiX), 
 Emilly Rodrigues, 
 Marcelo Coelho, 
 Louise Lisboa, 
-Abner Guedes, 
+Abner Guedes (@abnerguedes), 
 Maria Eduarda Soares, 
 Bheatriz Syria, 
-Euller Felipe gfsdgas, 
+Euller Felipe Costa (@eullerfelipe), 
 Gabriella Caetano, 
 Arthur Moreira,
 Raquel Moraes.
