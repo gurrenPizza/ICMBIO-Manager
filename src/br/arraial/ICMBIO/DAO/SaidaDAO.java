@@ -43,8 +43,9 @@ public class SaidaDAO {
             }
             
             }catch (SQLException ex){
-                JOptionPane.showMessageDialog(null,"Registro não encontrado!");
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Registro não encontrado!");
+                
             }
             
     }
@@ -72,26 +73,29 @@ public class SaidaDAO {
         
         try{
             
-            PreparedStatement alterar = retornarConexao().prepareStatement("update saida set num_saida='?', num_visitantes='?', mes='?', ano='?' where codigo_saida='?' ");
+            
+            PreparedStatement alterar = BancoDeDados.retornarConexao().prepareStatement("update saida set numero_saidas=?, numero_visitantes=?, mes=?, ano=? where codigo_saida=" + cod_saida);
             alterar.setInt(1,numSaida);
             alterar.setInt(2,numVisitantes);
             alterar.setString(3,mes);
             alterar.setString(4,ano);
-            alterar.setInt(5,cod_saida);
             alterar.execute();
             
         } catch(SQLException ex){
+            
             Logger.getLogger(TelaSaida.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Erro!");
+            
         }
+        
         
     }
     
     public static void excluiSaida(Integer cod_saida){
-        
+    
         try{
         
-            PreparedStatement excluir = retornarConexao().prepareStatement("delete from saida where codigo_saida='?' ");
-            excluir.setInt(1, cod_saida);
+            PreparedStatement excluir = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
             excluir.execute();
         
         } catch(SQLException ex){
