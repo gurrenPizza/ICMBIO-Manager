@@ -51,73 +51,107 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNumerodoProcesso" min="-2" pref="132" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtSequenciaAnual" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblCodigoSolicitante" min="-2" pref="101" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbCodigoEmbarcacao" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                              <Component id="btTrocaTelaSol" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
-                              <Component id="btTrocaTelaEmb" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtMotivo" min="-2" pref="571" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="btLimparSolicitacao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="btVoltarSolicitacao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtMotivo" min="-2" pref="571" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtCodSolicitaçãoAlt" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btBuscarCodigoSolicitacao" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jBoxAlterar" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtNumerodoProcesso" min="-2" pref="132" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lbCodigoEmbarcacao" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="179" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="btTrocaTelaSol" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lblCodigoSolicitante" min="-2" pref="101" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtSequenciaAnual" min="-2" pref="95" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btTrocaTelaEmb" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNumerodoProcesso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumerodoProcesso" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCodSolicitaçãoAlt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btBuscarCodigoSolicitacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtSequenciaAnual" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBoxAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -126,7 +160,7 @@
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbCodigoEmbarcacao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btTrocaTelaSol" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btTrocaTelaEmb" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -143,11 +177,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btLimparSolicitacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btVoltarSolicitacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="90" max="32767" attributes="0"/>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -169,13 +204,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSequenciaAnual">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSequenciaAnualActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Status:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="jBoxAlterar">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -186,6 +224,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoxAlterarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -193,9 +234,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCodigoSolicitante">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel7"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -203,9 +241,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbCodigoEmbarcacao">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel8"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btTrocaTelaSol">
               <Properties>
@@ -225,20 +260,20 @@
                 <Property name="text" type="java.lang.String" value="jTextField1"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btLimparSolicitacao">
+            <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimparSolicitacaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btVoltarSolicitacao">
+            <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Menu Principal"/>
+                <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVoltarSolicitacaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
@@ -255,6 +290,32 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btTrocaTelaEmbActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCodSolicita&#xe7;&#xe3;oAlt">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodSolicita&#xe7;&#xe3;oAltActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btBuscarCodigoSolicitacao">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarCodigoSolicitacaoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alterar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -441,7 +502,7 @@
                               <Component id="jScrollPane3" min="-2" pref="460" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="219" max="32767" attributes="0"/>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -528,6 +589,102 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="C&#xf3;digos">
+                <Property name="tabTitle" type="java.lang.String" value="C&#xf3;digos"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="684" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtNomeSolicitanteAlt" min="-2" pref="373" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btBuscarNomeAlt" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="53" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btAlterarCod" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNomeSolicitanteAlt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btBuscarNomeAlt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="342" max="-2" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <Component id="btAlterarCod" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nome do Solicitante:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNomeSolicitanteAlt">
+            </Component>
+            <Component class="javax.swing.JButton" name="btBuscarNomeAlt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarNomeAltActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tbAlterarConsulta">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="3" rowCount="4">
+                        <Column editable="false" title="C&#xf3;digo da solicita&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="false" title="Nome" type="java.lang.Object"/>
+                        <Column editable="false" title="Motivo" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="btAlterarCod">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Preencher"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAlterarCodActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

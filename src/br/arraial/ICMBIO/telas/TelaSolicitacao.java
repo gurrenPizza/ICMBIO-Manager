@@ -8,6 +8,7 @@ package br.arraial.ICMBIO.telas;
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
 import br.arraial.ICMBIO.model.Embarcacao;
+import br.arraial.ICMBIO.model.Solicitacao;
 import br.arraial.ICMBIO.model.Solicitante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Aluno
  */
 public class TelaSolicitacao extends javax.swing.JInternalFrame {
-    private Object JoptionPane;
 
     /**
      * Creates new form Solicitacao1
@@ -31,6 +30,7 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
     public TelaSolicitacao() {
         initComponents();
     }
+    int aux_cod;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +48,7 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtSequenciaAnual = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jBoxAlterar = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         lblCodigoSolicitante = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -56,10 +56,14 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
         btTrocaTelaSol = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
-        btLimparSolicitacao = new javax.swing.JButton();
-        btVoltarSolicitacao = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btTrocaTelaEmb = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtCodSolicitaçãoAlt = new javax.swing.JTextField();
+        btBuscarCodigoSolicitacao = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         pnConsulta = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -75,6 +79,13 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tbEmbarcacao = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        txtNomeSolicitanteAlt = new javax.swing.JTextField();
+        btBuscarNomeAlt = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbAlterarConsulta = new javax.swing.JTable();
+        btAlterarCod = new javax.swing.JButton();
 
         tpEmbarcacao.setName("Embarcação"); // NOI18N
 
@@ -88,17 +99,24 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Sequência anual:");
 
+        txtSequenciaAnual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSequenciaAnualActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Status:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar\t", "Aprovado", "Reprovado\t", "Em Análise" }));
+        jBoxAlterar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar\t", "Aprovado", "Reprovado\t", "Em Análise" }));
+        jBoxAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBoxAlterarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Código do solicitante:");
 
-        lblCodigoSolicitante.setText("jLabel7");
-
         jLabel7.setText("Código da embaracação:");
-
-        lbCodigoEmbarcacao.setText("jLabel8");
 
         btTrocaTelaSol.setText("Buscar");
         btTrocaTelaSol.addActionListener(new java.awt.event.ActionListener() {
@@ -111,17 +129,17 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
 
         txtMotivo.setText("jTextField1");
 
-        btLimparSolicitacao.setText("Limpar");
-        btLimparSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Limpar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparSolicitacaoActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        btVoltarSolicitacao.setText("Menu Principal");
-        btVoltarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVoltarSolicitacaoActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -139,74 +157,118 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel9.setText("Código:");
+
+        txtCodSolicitaçãoAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodSolicitaçãoAltActionPerformed(evt);
+            }
+        });
+
+        btBuscarCodigoSolicitacao.setText("Buscar");
+        btBuscarCodigoSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarCodigoSolicitacaoActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Alterar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumerodoProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSequenciaAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCodigoSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbCodigoEmbarcacao))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(btTrocaTelaSol)
-                        .addGap(216, 216, 216)
-                        .addComponent(btTrocaTelaEmb)))
-                .addGap(215, 215, 215))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(btLimparSolicitacao)
+                .addComponent(jButton1)
                 .addGap(41, 41, 41)
-                .addComponent(btVoltarSolicitacao)
+                .addComponent(jButton2)
+                .addGap(54, 54, 54)
+                .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addGap(72, 72, 72))
+                .addGap(193, 193, 193))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodSolicitaçãoAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btBuscarCodigoSolicitacao)
+                                .addGap(87, 87, 87)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jBoxAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNumerodoProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbCodigoEmbarcacao)
+                                .addGap(152, 152, 152)))
+                        .addContainerGap(179, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(btTrocaTelaSol))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCodigoSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSequenciaAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btTrocaTelaEmb)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtNumerodoProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtNumerodoProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtCodSolicitaçãoAlt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btBuscarCodigoSolicitacao))
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtSequenciaAnual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBoxAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblCodigoSolicitante)
                     .addComponent(jLabel7)
                     .addComponent(lbCodigoEmbarcacao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btTrocaTelaSol)
                     .addComponent(btTrocaTelaEmb))
@@ -219,10 +281,11 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btLimparSolicitacao)
-                    .addComponent(btVoltarSolicitacao)
-                    .addComponent(jButton3))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton7))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         tpEmbarcacao.addTab("Solicitação", jPanel3);
@@ -381,7 +444,7 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton6)
@@ -402,6 +465,79 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
         );
 
         tpEmbarcacao.addTab("Embarcação", jPanel2);
+
+        jLabel10.setText("Nome do Solicitante:");
+
+        btBuscarNomeAlt.setText("Buscar");
+        btBuscarNomeAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarNomeAltActionPerformed(evt);
+            }
+        });
+
+        tbAlterarConsulta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Código da solicitação", "Nome", "Motivo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbAlterarConsulta);
+
+        btAlterarCod.setText("Preencher");
+        btAlterarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarCodActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNomeSolicitanteAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btBuscarNomeAlt)))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btAlterarCod)
+                .addGap(72, 72, 72))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtNomeSolicitanteAlt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscarNomeAlt))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btAlterarCod))
+        );
+
+        tpEmbarcacao.addTab("Códigos", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -504,45 +640,166 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
 
             inserir.setString(1,txtNumerodoProcesso.getText());
             inserir.setString(2,txtSequenciaAnual.getText() );
-            inserir.setString(3,String.valueOf(jComboBox1.getSelectedItem()));
+            inserir.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
             inserir.setString(4,txtMotivo.getText());
             inserir.setInt(5, Integer.parseInt(lblCodigoSolicitante.getText()));
             inserir.setInt(6, Integer.parseInt(lbCodigoEmbarcacao.getText()));
             inserir.execute();
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         JOptionPane.showMessageDialog(null,"Cadastrado com sucesso");
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btLimparSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparSolicitacaoActionPerformed
+    private void txtCodSolicitaçãoAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodSolicitaçãoAltActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodSolicitaçãoAltActionPerformed
 
-       txtNumerodoProcesso.setText(""); 
-       txtSequenciaAnual.setText(""); 
-       lblCodigoSolicitante.setText(""); 
-       lbCodigoEmbarcacao.setText(""); 
-       txtMotivo.setText(""); 
-      
-    }//GEN-LAST:event_btLimparSolicitacaoActionPerformed
+    private void btBuscarCodigoSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCodigoSolicitacaoActionPerformed
+         tpEmbarcacao.setSelectedIndex(3);        // TODO add your handling code here:
+    }//GEN-LAST:event_btBuscarCodigoSolicitacaoActionPerformed
 
-    private void btVoltarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarSolicitacaoActionPerformed
-        this.dispose();
+    private void btBuscarNomeAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarNomeAltActionPerformed
+        try {
+            Solicitante sol = new Solicitante(); // TODO add your handling code here:
+            Solicitacao soli = new Solicitacao();
+            Connection conexao = BancoDeDados.retornarConexao();
+            PreparedStatement consulta1 = conexao.prepareStatement("Select s.nome, l.codigo_solicitacao, l.motivo from solicitante as s, solicitacao as l where s.nome like ? and l.codigo_solicitante=s.codigo_solicitante ");
+            consulta1.setString(1,"%" +txtNomeSolicitanteAlt.getText() +"%");
+            ResultSet resultado1 = consulta1.executeQuery();
+            
+            System.out.println(resultado1.getRow());
+            DefaultTableModel model = (DefaultTableModel) tbAlterarConsulta.getModel();
+            model.setNumRows(0);
+            while(resultado1.next()){
+             model.addRow(new Object[] { resultado1.getInt("codigo_solicitacao"),resultado1.getString("s.nome"),resultado1.getString("l.motivo"),});
+            }
+            tbAlterarConsulta.setRowSelectionAllowed(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+            
+            /*aux_cod=resultado1.getInt("codigo_solicitante");
+            
+            
+            PreparedStatement consulta2 = conexao.prepareStatement("Select codigo_solicitacao, motivo from solicitacao where codigo_solicitante like ? ");
+            int auxcod2=aux_cod;
+            consulta2.setInt(1,auxcod2);
+            
+            ResultSet resultado2 = consulta2.executeQuery();
+            
+            System.out.println(resultado2.getRow());
+            DefaultTableModel model = (DefaultTableModel) tbAlterarConsulta.getModel();
+            model.setNumRows(0);
+            while(resultado2.next()){
+             model.addRow(new Object[] { resultado2.getInt("codigo_solicitante"),resultado2.getString("motivo"),});
+            }
+            tbAlterarConsulta.setRowSelectionAllowed(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+        }                // TODO add your handling code here:
+    }//GEN-LAST:event_btBuscarNomeAltActionPerformed
+*/
+    private void txtSequenciaAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSequenciaAnualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSequenciaAnualActionPerformed
 
-    }//GEN-LAST:event_btVoltarSolicitacaoActionPerformed
+    private void btAlterarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarCodActionPerformed
+         Object t = tbAlterarConsulta.getModel().getValueAt(tbAlterarConsulta.getSelectedRow(), 0);//pego o codigo do produto na posição 0 da tabela
+            txtCodSolicitaçãoAlt.setText(t.toString());
+            tpEmbarcacao.setSelectedIndex(0);        // TODO add your handling code here:
+            
+            try {
+            Solicitante sol = new Solicitante(); // TODO add your handling code here:
+            Connection conexao = BancoDeDados.retornarConexao();
+            PreparedStatement consulta1 = conexao.prepareStatement("Select * from solicitacao where codigo_solicitacao like ? ");
+            consulta1.setString(1,"%" +txtCodSolicitaçãoAlt.getText() +"%");
+            
+            //consulta1.setString(1,"%" + txtNomeDoSolicitante.getText() + "%");
+            ResultSet resultado = consulta1.executeQuery();
+            System.out.println(resultado.getRow());
+             while(resultado.next()){
+             txtNumerodoProcesso.setText(resultado.getString("numero_processo"));
+             txtSequenciaAnual.setText(resultado.getString("sequencia_anual"));
+             jBoxAlterar.setSelectedItem(resultado.getString("status"));
+             lblCodigoSolicitante.setText(resultado.getString("codigo_solicitacao"));
+             lbCodigoEmbarcacao.setText(resultado.getString("codigo_embarcacao"));
+             txtMotivo.setText(resultado.getString("motivo"));
+             
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btAlterarCodActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       txtCodSolicitaçãoAlt.setText("");   
+       txtNumerodoProcesso.setText("");
+       txtSequenciaAnual.setText("");
+       lblCodigoSolicitante.setText("");
+       lbCodigoEmbarcacao.setText("");
+       jBoxAlterar.setSelectedIndex(0);
+       txtMotivo.setText("");
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+         try {
+            Connection conexao = BancoDeDados.retornarConexao();
+            PreparedStatement alterar = retornarConexao().prepareStatement("update solicitacao set numero_processo=?, sequencia_anual=?, status=?, codigo_solicitacao=?, codigo_embarcacao=?, motivo=?  where codigo_solicitacao=?");
+            alterar.setString(1,txtNumerodoProcesso.getText());
+            alterar.setString(2,txtSequenciaAnual.getText() );
+            alterar.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
+            alterar.setString(4,lblCodigoSolicitante.getText());
+            alterar.setInt(5, Integer.parseInt(lbCodigoEmbarcacao.getText()));
+            alterar.setString(6,txtMotivo.getText());
+            alterar.setInt(7, Integer.parseInt(txtCodSolicitaçãoAlt.getText()));
+            alterar.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         try {
+            Connection conexao = BancoDeDados.retornarConexao();
+            PreparedStatement delete = retornarConexao().prepareStatement("delete from solicitacao where codigo_solicitacao=?");
+            /* delete.setString(1,txtNumerodoProcesso.getText());
+            delete.setString(2,txtSequenciaAnual.getText() );
+            delete.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
+            delete.setString(4,lblCodigoSolicitante.getText());
+            delete.setInt(5, Integer.parseInt(lbCodigoEmbarcacao.getText()));
+            delete.setString(6,txtMotivo.getText());*/
+            delete.setInt(1, Integer.parseInt(txtCodSolicitaçãoAlt.getText()));
+            delete.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jBoxAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBoxAlterarActionPerformed
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAlterarCod;
     private javax.swing.JButton btBuscaEmb;
-    private javax.swing.JButton btLimparSolicitacao;
+    private javax.swing.JButton btBuscarCodigoSolicitacao;
+    private javax.swing.JButton btBuscarNomeAlt;
     private javax.swing.JButton btTrocaTelaEmb;
     private javax.swing.JButton btTrocaTelaSol;
-    private javax.swing.JButton btVoltarSolicitacao;
+    private javax.swing.JComboBox jBoxAlterar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -550,20 +807,26 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbCodigoEmbarcacao;
     private javax.swing.JLabel lblCodigoSolicitante;
     private javax.swing.JPanel pnConsulta;
+    private javax.swing.JTable tbAlterarConsulta;
     private javax.swing.JTable tbEmbarcacao;
     private javax.swing.JTable tbSolicitante;
     private javax.swing.JTabbedPane tpEmbarcacao;
+    private javax.swing.JTextField txtCodSolicitaçãoAlt;
     private javax.swing.JTextField txtMotivo;
     private javax.swing.JTextField txtNomeDoSolicitante;
     private javax.swing.JTextField txtNomeEmbaracacao;
+    private javax.swing.JTextField txtNomeSolicitanteAlt;
     private javax.swing.JTextField txtNumerodoProcesso;
     private javax.swing.JTextField txtSequenciaAnual;
     // End of variables declaration//GEN-END:variables
