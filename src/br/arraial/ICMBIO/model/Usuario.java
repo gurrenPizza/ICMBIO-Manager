@@ -3,12 +3,28 @@ package br.arraial.ICMBIO.model;
 public class Usuario {
     private String login;
     private String senha;
-    
+    private String nome;
+
+    public Usuario(String login, String senha, String nome) {
+        this.login = login;
+        this.senha = senha;
+        this.nome = nome;
+    }
     
       public Usuario() {
           
       }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+      
+    
+    
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;

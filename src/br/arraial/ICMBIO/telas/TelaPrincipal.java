@@ -1,13 +1,20 @@
 package br.arraial.ICMBIO.telas;
 
+import br.arraial.ICMBIO.model.Solicitante;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.SwingUtilities;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 
 /**
- * @version 4.5 - 03/07
- * @author Turma INF161:
- * Grupo Embarcações - Matheus Hiroshi, Emilly Rodrigues, Marcelo Coelho,
- * Gabrielli Ramos
+ *
+ * @author Aluno
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -16,8 +23,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        SwingUtilities.invokeLater( new Runnable() {
+            public void run() {
+                new Thread( new AtualizadorHora() ).start();
+            }
+        });
     }
-
+    private class AtualizadorHora implements Runnable {
+        public void run() {
+            while ( true ) {
+                try {
+                    txtDate.setText( new SimpleDateFormat( "HH:mm dd/MM/yyyy" ).format( new Date() ) );
+                    Thread.sleep( 500 );
+                } catch ( InterruptedException exc ) {
+                    exc.printStackTrace();
+                }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +51,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        pnAreaDeTrabalho = new javax.swing.JDesktopPane();
+        pnCentral = new javax.swing.JDesktopPane();
+        txtDate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         imCadModalidade = new javax.swing.JMenuItem();
@@ -43,6 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
+        imSolAlterar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
@@ -52,19 +77,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
         setResizable(false);
 
-        pnAreaDeTrabalho.setBackground(new java.awt.Color(255, 255, 255));
-        pnAreaDeTrabalho.setForeground(new java.awt.Color(255, 255, 255));
+        pnCentral.setBackground(new java.awt.Color(255, 255, 255));
+        pnCentral.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pnAreaDeTrabalhoLayout = new javax.swing.GroupLayout(pnAreaDeTrabalho);
-        pnAreaDeTrabalho.setLayout(pnAreaDeTrabalhoLayout);
-        pnAreaDeTrabalhoLayout.setHorizontalGroup(
-            pnAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 666, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnCentralLayout = new javax.swing.GroupLayout(pnCentral);
+        pnCentral.setLayout(pnCentralLayout);
+        pnCentralLayout.setHorizontalGroup(
+            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 678, Short.MAX_VALUE)
         );
-        pnAreaDeTrabalhoLayout.setVerticalGroup(
-            pnAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+        pnCentralLayout.setVerticalGroup(
+            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 414, Short.MAX_VALUE)
         );
+
+        txtDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtDate.setText("    ");
+        txtDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,9 +101,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cadastro");
 
         imCadModalidade.setText("Modalidade");
+        imCadModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadModalidadeActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadModalidade);
 
         imCadEmbarcacao.setText("Embarcação");
+        imCadEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadEmbarcacaoActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadEmbarcacao);
 
         imCadSolicitante.setText("Solicitante");
@@ -86,6 +125,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(imCadSolicitante);
 
         imCadUsuario.setText("Usuário");
+        imCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadUsuarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(imCadUsuario);
 
         jMenuBar1.add(jMenu1);
@@ -114,10 +158,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Solicitação");
 
         imSoliCadastro.setText("Cadastro");
+        imSoliCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSoliCadastroActionPerformed(evt);
+            }
+        });
         jMenu3.add(imSoliCadastro);
 
         imSoliConsulta.setText("Consulta");
+        imSoliConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSoliConsultaActionPerformed(evt);
+            }
+        });
         jMenu3.add(imSoliConsulta);
+
+        imSolAlterar.setText("Alterar");
+        imSolAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSolAlterarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(imSolAlterar);
 
         jMenuBar1.add(jMenu3);
 
@@ -132,11 +194,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5.add(imSaiCadastro);
 
         imSaiConsulta.setText("Consulta");
-        imSaiConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imSaiConsultaActionPerformed(evt);
-            }
-        });
         jMenu5.add(imSaiConsulta);
 
         jMenuBar1.add(jMenu5);
@@ -150,11 +207,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnAreaDeTrabalho)
+            .addComponent(pnCentral)
+            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnAreaDeTrabalho)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnCentral)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDate))
         );
 
         pack();
@@ -166,21 +227,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imConEmbarcacaoActionPerformed
 
     private void imCadSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSolicitanteActionPerformed
-        // TODO add your handling code here:
+        TelaSolicitante telasolicitante = new TelaSolicitante();
+        pnCentral.add(telasolicitante);
+        telasolicitante.show();
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
 
+    private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
+        CadModalidade telamodalidade = new CadModalidade();
+        pnCentral.add(telamodalidade);
+        telamodalidade.show();
+    }//GEN-LAST:event_imCadModalidadeActionPerformed
+
+    private void imCadEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadEmbarcacaoActionPerformed
+        TelaEmbarcacao telaembarcacao = new TelaEmbarcacao();
+        pnCentral.add(telaembarcacao);
+        telaembarcacao.show();
+    }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
+
+    private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
+        CadUsuario telausuario = new CadUsuario();
+        pnCentral.add(telausuario);
+        telausuario.show();
+    }//GEN-LAST:event_imCadUsuarioActionPerformed
+
     private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
-        TelaSaida saida = new TelaSaida();
-        pnAreaDeTrabalho.add(saida);
-        saida.setVisible(true);
-      //saida.getPnSaida().setSelectedIndex(0);
+        TelaSaida telasaida = new TelaSaida();
+        pnCentral.add(telasaida);
+        telasaida.show();
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
-    private void imSaiConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiConsultaActionPerformed
-        TelaSaida saida = new TelaSaida();
-        pnAreaDeTrabalho.add(saida);
-        saida.setVisible(true);
-    }//GEN-LAST:event_imSaiConsultaActionPerformed
+    private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
+        TelaSolicitacao telacadsol = new TelaSolicitacao();
+        pnCentral.add(telacadsol);
+        telacadsol.show();
+    }//GEN-LAST:event_imSoliCadastroActionPerformed
+
+    private void imSoliConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliConsultaActionPerformed
+        TelaConsultaSolicitacao telaconsol = new TelaConsultaSolicitacao();
+        pnCentral.add(telaconsol);
+        telaconsol.show();
+    }//GEN-LAST:event_imSoliConsultaActionPerformed
+
+    private void imSolAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSolAlterarActionPerformed
+        TelaAlterarSolicitacao telaaltsol = new TelaAlterarSolicitacao();
+        pnCentral.add(telaaltsol);
+        telaaltsol.show();
+    }//GEN-LAST:event_imSolAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConUsuario;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;
+    private javax.swing.JMenuItem imSolAlterar;
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
     private javax.swing.JMenu jMenu1;
@@ -237,6 +330,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JDesktopPane pnAreaDeTrabalho;
+    private javax.swing.JDesktopPane pnCentral;
+    private javax.swing.JLabel txtDate;
     // End of variables declaration//GEN-END:variables
 }
