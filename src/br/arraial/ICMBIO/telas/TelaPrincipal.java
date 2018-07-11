@@ -58,23 +58,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtDate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnCadastro = new javax.swing.JMenu();
         imCadModalidade = new javax.swing.JMenuItem();
         imCadEmbarcacao = new javax.swing.JMenuItem();
         imCadSolicitante = new javax.swing.JMenuItem();
         imCadUsuario = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnConsulta = new javax.swing.JMenu();
         imConModalidade = new javax.swing.JMenuItem();
         imConEmbarcacao = new javax.swing.JMenuItem();
         imConSolicitante = new javax.swing.JMenuItem();
         imConUsuario = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnSolicitacao = new javax.swing.JMenu();
         imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mnSaida = new javax.swing.JMenu();
         imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mnAjuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
@@ -114,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setText("Cadastro");
+        mnCadastro.setText("Cadastro");
 
         imCadModalidade.setText("Modalidade");
         imCadModalidade.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imCadModalidadeActionPerformed(evt);
             }
         });
-        jMenu1.add(imCadModalidade);
+        mnCadastro.add(imCadModalidade);
 
         imCadEmbarcacao.setText("Embarcação");
         imCadEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imCadEmbarcacaoActionPerformed(evt);
             }
         });
-        jMenu1.add(imCadEmbarcacao);
+        mnCadastro.add(imCadEmbarcacao);
 
         imCadSolicitante.setText("Solicitante");
         imCadSolicitante.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +138,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imCadSolicitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(imCadSolicitante);
+        mnCadastro.add(imCadSolicitante);
 
         imCadUsuario.setText("Usuário");
         imCadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -146,14 +146,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imCadUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(imCadUsuario);
+        mnCadastro.add(imCadUsuario);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnCadastro);
 
-        jMenu2.setText("Consulta");
+        mnConsulta.setText("Consulta");
 
         imConModalidade.setText("Modalidade");
-        jMenu2.add(imConModalidade);
+        mnConsulta.add(imConModalidade);
 
         imConEmbarcacao.setText("Embarcação");
         imConEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
@@ -161,17 +161,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imConEmbarcacaoActionPerformed(evt);
             }
         });
-        jMenu2.add(imConEmbarcacao);
+        mnConsulta.add(imConEmbarcacao);
 
         imConSolicitante.setText("Solicitante");
-        jMenu2.add(imConSolicitante);
+        mnConsulta.add(imConSolicitante);
 
         imConUsuario.setText("Usuário");
-        jMenu2.add(imConUsuario);
+        mnConsulta.add(imConUsuario);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnConsulta);
 
-        jMenu3.setText("Solicitação");
+        mnSolicitacao.setText("Solicitação");
 
         imSoliCadastro.setText("Cadastro");
         imSoliCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +179,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imSoliCadastroActionPerformed(evt);
             }
         });
-        jMenu3.add(imSoliCadastro);
+        mnSolicitacao.add(imSoliCadastro);
 
         imSoliConsulta.setText("Consulta");
         imSoliConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -187,11 +187,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imSoliConsultaActionPerformed(evt);
             }
         });
-        jMenu3.add(imSoliConsulta);
+        mnSolicitacao.add(imSoliConsulta);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnSolicitacao);
 
-        jMenu5.setText("Saida");
+        mnSaida.setText("Saida");
 
         imSaiCadastro.setText("Cadastro");
         imSaiCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -199,15 +199,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 imSaiCadastroActionPerformed(evt);
             }
         });
-        jMenu5.add(imSaiCadastro);
+        mnSaida.add(imSaiCadastro);
 
         imSaiConsulta.setText("Consulta");
-        jMenu5.add(imSaiConsulta);
+        mnSaida.add(imSaiConsulta);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnSaida);
 
-        jMenu6.setText("Ajuda");
-        jMenuBar1.add(jMenu6);
+        mnAjuda.setText("Ajuda");
+        jMenuBar1.add(mnAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -321,13 +321,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JMenu mnAjuda;
+    private javax.swing.JMenu mnCadastro;
+    private javax.swing.JMenu mnConsulta;
+    private javax.swing.JMenu mnSaida;
+    private javax.swing.JMenu mnSolicitacao;
     private javax.swing.JDesktopPane pnCentral;
     private javax.swing.JLabel txtDate;
     // End of variables declaration//GEN-END:variables
