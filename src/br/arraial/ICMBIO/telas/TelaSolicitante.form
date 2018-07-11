@@ -10,6 +10,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de Solicitante"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -36,7 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TelaSolicitante" pref="384" max="32767" attributes="0"/>
+              <Component id="TelaSolicitante" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -65,11 +66,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="592" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtPesquisa" max="32767" attributes="0"/>
+                              <Component id="txtAtributo" min="-2" pref="168" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtPesquisa" min="-2" pref="301" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -81,24 +84,25 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="308" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="316" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel13">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Digite o nome do solicitante: "/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtPesquisa">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseEntered"/>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseReleased"/>
                 <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtPesquisaInputMethodTextChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisaActionPerformed"/>
@@ -116,14 +120,12 @@
                 <Component class="javax.swing.JTable" name="tbSolicitante">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="0">
-                        <Column editable="false" title="Codigo" type="java.lang.Object"/>
-                        <Column editable="false" title="Nome" type="java.lang.Object"/>
-                        <Column editable="false" title="CPF/CNPJ" type="java.lang.Object"/>
-                        <Column editable="false" title="Telefone" type="java.lang.Object"/>
-                        <Column editable="false" title="Endere&#xe7;o" type="java.lang.Object"/>
-                        <Column editable="false" title="Cidade" type="java.lang.Object"/>
-                        <Column editable="false" title="Responsavel" type="java.lang.Object"/>
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="false" title="Codigo" type="java.lang.String"/>
+                        <Column editable="false" title="Nome" type="java.lang.String"/>
+                        <Column editable="false" title="CPF/CNPJ" type="java.lang.String"/>
+                        <Column editable="false" title="Endere&#xe7;o" type="java.lang.String"/>
+                        <Column editable="false" title="Cidade" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -176,6 +178,28 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="cbAtributo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Nome"/>
+                    <StringItem index="1" value="Codigo solicitante"/>
+                    <StringItem index="2" value="CPF/CNPJ"/>
+                    <StringItem index="3" value="Endereco"/>
+                    <StringItem index="4" value="Cidade"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtributoItemStateChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="txtAtributo">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Digite o nome:"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pnCadastro">

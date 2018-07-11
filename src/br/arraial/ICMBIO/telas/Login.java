@@ -181,12 +181,12 @@ public class Login extends javax.swing.JFrame {
                 telaP.setIconImage(new ImageIcon("icone.jpg").getImage());
                 telaP.setVisible(true);
                 telaP.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "usuario ou senha incorreto!");
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbEntrarActionPerformed
 
