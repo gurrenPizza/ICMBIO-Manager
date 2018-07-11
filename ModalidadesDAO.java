@@ -5,6 +5,7 @@
  */
 package br.arraial.ICMBIO.DAO;
 
+import br.arraial.ICMBIO.telas.CadModalidade;
 import br.arraial.ICMBIO.telas.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,17 @@ import javax.swing.JOptionPane;
  * @author Euller Felipe
  */
 public class ModalidadesDAO {
+
+    public static void AlterarModalidade(String codigomodalidade, String modalidade) {
+try { 
+        Connection conexao = BancoDeDados.retornarConexao();
+        PreparedStatement alterar = conexao.prepareStatement("UPDATE modalidade SET nome_modalidade = ? where codigo_modalidade ="+codigomodalidade);
+            alterar.setString(1, modalidade);
+            alterar.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadModalidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private String modd;
     
