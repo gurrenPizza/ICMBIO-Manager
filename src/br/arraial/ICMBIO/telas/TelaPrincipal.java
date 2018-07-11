@@ -1,6 +1,5 @@
 package br.arraial.ICMBIO.telas;
 
-import br.arraial.ICMBIO.model.Solicitante;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.SwingUtilities;
@@ -10,8 +9,6 @@ import javax.swing.SwingUtilities;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author Aluno
@@ -23,24 +20,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        SwingUtilities.invokeLater( new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Thread( new AtualizadorHora() ).start();
+                new Thread(new AtualizadorHora()).start();
             }
         });
     }
+
     private class AtualizadorHora implements Runnable {
+
+        @Override
         public void run() {
-            while ( true ) {
+            while (true) {
                 try {
-                    txtDate.setText( new SimpleDateFormat( "HH:mm dd/MM/yyyy" ).format( new Date() ) );
-                    Thread.sleep( 500 );
-                } catch ( InterruptedException exc ) {
+                    txtDate.setText(new SimpleDateFormat("HH:mm dd/MM/yyyy").format(new Date()));
+                    Thread.sleep(500);
+                } catch (InterruptedException exc) {
                     exc.printStackTrace();
                 }
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         pnCentral = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         txtDate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -80,20 +82,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnCentral.setBackground(new java.awt.Color(255, 255, 255));
         pnCentral.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pnCentralLayout = new javax.swing.GroupLayout(pnCentral);
-        pnCentral.setLayout(pnCentralLayout);
-        pnCentralLayout.setHorizontalGroup(
-            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
-        );
-        pnCentralLayout.setVerticalGroup(
-            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/arraial/ICMBIO/img/icmbio.jpg"))); // NOI18N
 
         txtDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtDate.setText("    ");
         txtDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtDate.setOpaque(true);
+
+        javax.swing.GroupLayout pnCentralLayout = new javax.swing.GroupLayout(pnCentral);
+        pnCentral.setLayout(pnCentralLayout);
+        pnCentralLayout.setHorizontalGroup(
+            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCentralLayout.createSequentialGroup()
+                .addContainerGap(541, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+            .addComponent(txtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnCentralLayout.setVerticalGroup(
+            pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCentralLayout.createSequentialGroup()
+                .addContainerGap(265, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDate))
+        );
+        pnCentral.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnCentral.setLayer(txtDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,14 +223,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnCentral)
-            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnCentral)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDate))
+            .addComponent(pnCentral)
         );
 
         pack();
@@ -323,6 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imSolAlterar;
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
