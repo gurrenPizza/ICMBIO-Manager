@@ -30,7 +30,6 @@ public class SolicitanteDAO {
             inserir.setString(13, Operadora);
             inserir.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -54,27 +53,25 @@ public class SolicitanteDAO {
             inserir.setString(13, Operadora);
             inserir.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public static void SolicitantTabelaConsulta(String a, JTable b) {
+    public static void SolicitantTabelaConsulta(String a, JTable b, String atributo) {
         try {
             Connection con = BancoDeDados.retornarConexao();
-            PreparedStatement pesquisa = con.prepareStatement("select * from solicitante where nome like ?");
+            PreparedStatement pesquisa = con.prepareStatement("select * from solicitante where "+atributo+" like ? order by "+atributo);
             pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
             DefaultTableModel model;
             model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
-                model.addRow(new Object[]{resultado.getString("codigo_solicitante"), resultado.getString("nome"), resultado.getString("CPF_CNPJ"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("cidade"), resultado.getString("responsavel"),});
+                model.addRow(new Object[]{resultado.getString("codigo_solicitante"), resultado.getString("nome"), resultado.getString("CPF_CNPJ"), resultado.getString("endereco"), resultado.getString("cidade"),});
             }
             resultado.close();
             pesquisa.close();
         } catch (SQLException ex) {
-            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
