@@ -2,13 +2,9 @@ package br.arraial.ICMBIO.telas.cadastros;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.UsuarioDAO;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
@@ -24,103 +20,153 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jCheckBox1 = new javax.swing.JCheckBox();
-        pnCadUsuario = new javax.swing.JTabbedPane();
+        telaUsuario = new javax.swing.JTabbedPane();
         pnConsultar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsuarioConsulta = new javax.swing.JTable();
-        txtPesquisar = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
-        pnNovoCadastro = new javax.swing.JPanel();
-        lbNomeCadastrado = new javax.swing.JLabel();
-        lbNovoLogin = new javax.swing.JLabel();
-        lbNovaSenha = new javax.swing.JLabel();
+        tbUsuario = new javax.swing.JTable();
+        txtPesquisa = new javax.swing.JTextField();
+        cbAtributo = new javax.swing.JComboBox();
+        lblPesquisa = new javax.swing.JLabel();
+        pnCadastrar = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         txtLogin = new javax.swing.JTextField();
-        txtConfirmarSenha = new javax.swing.JPasswordField();
-        btExcluir = new javax.swing.JButton();
-        btLimpar = new javax.swing.JButton();
-        btSalvar = new javax.swing.JButton();
+        lblLogin = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
+        lblConfirmacao = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
+        txtConfirmacao = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
+        btLimpar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
-        tbUsuarioConsulta.setModel(new javax.swing.table.DefaultTableModel(
+        setClosable(true);
+
+        tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "login"
+                "Codigo", "Login", "Nome"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tbUsuarioConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbUsuarioConsultaMouseClicked(evt);
+                tbUsuarioMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbUsuarioConsulta);
-        if (tbUsuarioConsulta.getColumnModel().getColumnCount() > 0) {
-            tbUsuarioConsulta.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(tbUsuario);
+        if (tbUsuario.getColumnModel().getColumnCount() > 0) {
+            tbUsuario.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        txtPesquisa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarActionPerformed(evt);
+                txtPesquisaActionPerformed(evt);
             }
         });
 
-        btBuscar.setText("Buscar");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
-            }
-        });
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Login", "Nome" }));
+
+        lblPesquisa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPesquisa.setText("Digite o codigo:");
 
         javax.swing.GroupLayout pnConsultarLayout = new javax.swing.GroupLayout(pnConsultar);
         pnConsultar.setLayout(pnConsultarLayout);
         pnConsultarLayout.setHorizontalGroup(
             pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnConsultarLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnConsultarLayout.createSequentialGroup()
+                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addComponent(lblPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         pnConsultarLayout.setVerticalGroup(
             pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnConsultarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPesquisa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnCadUsuario.addTab("Consultar", pnConsultar);
-
-        lbNomeCadastrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbNomeCadastrado.setText("Login:");
-
-        lbNovoLogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbNovoLogin.setText("Senha:");
-
-        lbNovaSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbNovaSenha.setText("Confirmar:");
+        telaUsuario.addTab("Consultar", pnConsultar);
 
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoginActionPerformed(evt);
+            }
+        });
+
+        lblLogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblLogin.setText("Login:");
+
+        lblSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblSenha.setText("Senha:");
+
+        lblConfirmacao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblConfirmacao.setText("Confirmar:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblConfirmacao)
+                    .addComponent(lblSenha)
+                    .addComponent(lblLogin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtConfirmacao, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLogin)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSenha)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConfirmacao)
+                    .addComponent(txtConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
             }
         });
 
@@ -131,13 +177,6 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        btLimpar.setText("Limpar");
-        btLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparActionPerformed(evt);
-            }
-        });
-
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,66 +184,68 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout pnNovoCadastroLayout = new javax.swing.GroupLayout(pnNovoCadastro);
-        pnNovoCadastro.setLayout(pnNovoCadastroLayout);
-        pnNovoCadastroLayout.setHorizontalGroup(
-            pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnNovoCadastroLayout.createSequentialGroup()
-                .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnNovoCadastroLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbNovaSenha)
-                            .addComponent(lbNovoLogin)
-                            .addComponent(lbNomeCadastrado))
-                        .addGap(57, 57, 57)
-                        .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtLogin)
-                            .addComponent(txtConfirmarSenha)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
-                    .addGroup(pnNovoCadastroLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(btSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar)))
-                .addContainerGap(128, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btLimpar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnNovoCadastroLayout.setVerticalGroup(
-            pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnNovoCadastroLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNomeCadastrado)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNovoLogin)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNovaSenha)
-                    .addComponent(txtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(pnNovoCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
                     .addComponent(btExcluir)
-                    .addComponent(btLimpar)
-                    .addComponent(btSalvar))
-                .addGap(45, 45, 45))
+                    .addComponent(btLimpar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnCadUsuario.addTab("Cadastrar", pnNovoCadastro);
+        javax.swing.GroupLayout pnCadastrarLayout = new javax.swing.GroupLayout(pnCadastrar);
+        pnCadastrar.setLayout(pnCadastrarLayout);
+        pnCadastrarLayout.setHorizontalGroup(
+            pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCadastrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCadastrarLayout.createSequentialGroup()
+                        .addGap(0, 155, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnCadastrarLayout.setVerticalGroup(
+            pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCadastrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        telaUsuario.addTab("Cadastrar", pnCadastrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(telaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(telaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,34 +257,15 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             deletar.executeUpdate();
             txtLogin.setText("");
             txtSenha.setText("");
-            txtConfirmarSenha.setText("");
+            txtConfirmacao.setText("");
         } catch (SQLException ex) {
 
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
 
-    }//GEN-LAST:event_txtPesquisarActionPerformed
-
-    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        try {
-
-            Connection con = BancoDeDados.retornarConexao();
-            PreparedStatement pesquisa = con.prepareStatement("select * from usuario where login like ?");
-            pesquisa.setString(1, "%" + txtPesquisar.getText() + "%");
-            ResultSet resultado = pesquisa.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) tbUsuarioConsulta.getModel();
-            model.setNumRows(0);
-            while (resultado.next()) {
-                model.addRow(new Object[]{resultado.getString("codigo_usuario"), resultado.getString("login"),});
-            }
-            resultado.close();
-            pesquisa.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btBuscarActionPerformed
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         try {
@@ -256,8 +278,8 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         }
         txtLogin.setText("");
         txtSenha.setText("");
-        txtConfirmarSenha.setText("");
-        pnCadUsuario.setSelectedIndex(0);
+        txtConfirmacao.setText("");
+        telaUsuario.setSelectedIndex(0);
         this.codigousuario = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -265,7 +287,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         this.codigousuario = null;
         txtLogin.setText("");
         txtSenha.setText("");
-        txtConfirmarSenha.setText("");
+        txtConfirmacao.setText("");
 
     }//GEN-LAST:event_btLimparActionPerformed
 
@@ -273,9 +295,9 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginActionPerformed
 
-    private void tbUsuarioConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioConsultaMouseClicked
-        this.codigousuario = tbUsuarioConsulta.getValueAt(tbUsuarioConsulta.getSelectedRow(), 0).toString();
-        pnCadUsuario.setSelectedIndex(1);
+    private void tbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioMouseClicked
+        this.codigousuario = tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString();
+        telaUsuario.setSelectedIndex(1);
         try {
             PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from usuario where codigo_usuario=" + codigousuario);
             ResultSet resultado = pesquisa.executeQuery();
@@ -288,28 +310,31 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
         } catch (SQLException ex) {
         }
-        txtPesquisar.setText("");
-    }//GEN-LAST:event_tbUsuarioConsultaMouseClicked
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_tbUsuarioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBuscar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbAtributo;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lbNomeCadastrado;
-    private javax.swing.JLabel lbNovaSenha;
-    private javax.swing.JLabel lbNovoLogin;
-    private javax.swing.JTabbedPane pnCadUsuario;
+    private javax.swing.JLabel lblConfirmacao;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblPesquisa;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JPanel pnCadastrar;
     private javax.swing.JPanel pnConsultar;
-    private javax.swing.JPanel pnNovoCadastro;
-    private javax.swing.JTable tbUsuarioConsulta;
-    private javax.swing.JPasswordField txtConfirmarSenha;
+    private javax.swing.JTable tbUsuario;
+    private javax.swing.JTabbedPane telaUsuario;
+    private javax.swing.JPasswordField txtConfirmacao;
     private javax.swing.JTextField txtLogin;
-    private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 
