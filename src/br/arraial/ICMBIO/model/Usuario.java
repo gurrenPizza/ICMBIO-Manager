@@ -1,6 +1,7 @@
 package br.arraial.ICMBIO.model;
 
 public class Usuario {
+
     private String login;
     private String senha;
     private String nome;
@@ -10,10 +11,10 @@ public class Usuario {
         this.senha = senha;
         this.nome = nome;
     }
-    
-      public Usuario() {
-          
-      }
+
+    public Usuario() {
+
+    }
 
     public String getNome() {
         return nome;
@@ -22,9 +23,7 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
-      
-    
-    
+
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
@@ -45,8 +44,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-      
-   
-     
-    
+
 }

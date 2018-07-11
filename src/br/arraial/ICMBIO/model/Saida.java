@@ -1,91 +1,80 @@
-
 package br.arraial.ICMBIO.model;
 
-
 public class Saida {
-    
+
     /**
-    * 
-    * @version 5.0 - 08/07
-    * @author Turma INF161
-    *               Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe Viana,
-    *                             Laura Fidalgo e Phillipe Loriot de Rouvray
-    */
-    
-    private Integer num_saidas;
-    private Integer codigo_saida;
-    private Integer codigo_solicitacao;
-    private Integer num_visitantes;
+     *
+     * @version 5.0 - 08/07
+     * @author Turma INF161 Grupo Saída - Alberto Figuerêdo, Ariane Sales,
+     * Felipe Viana, Laura Fidalgo e Phillipe Loriot de Rouvray
+     */
+    private Integer numsaidas;
+    private Integer codigosaida;
+    private Integer codigosolicitacao;
+    private Integer numvisitantes;
     private String mes;
     private String ano;
-    
-    
-    public Saida(){
-        
+
+    public Saida() {
+
     }
 
     public Saida(String mes, String ano) {
         this.mes = mes;
         this.ano = ano;
     }
-    
-    
-    
+
     public Saida(Integer num_saidas, Integer num_visitantes, String mes, String ano, Integer cod_saida) {
-        this.num_saidas = num_saidas;
-        this.num_visitantes = num_visitantes;
+        this.numsaidas = num_saidas;
+        this.numvisitantes = num_visitantes;
         this.mes = mes;
         this.ano = ano;
-        codigo_saida = cod_saida;
+        codigosaida = cod_saida;
     }
-    
+
     public Saida(Integer num_saidas, Integer num_visitantes, String mes, String ano) {
-        this.num_saidas = num_saidas;
-        this.num_visitantes = num_visitantes;
+        this.numsaidas = num_saidas;
+        this.numvisitantes = num_visitantes;
         this.mes = mes;
         this.ano = ano;
     }
-    
-    
 
     public Saida(Integer codigo_solicitacao) {
-        this.codigo_solicitacao = codigo_solicitacao;
-        
+        this.codigosolicitacao = codigo_solicitacao;
+
     }
 
-    public Integer getNum_visitantes() {
-        return num_visitantes;
+    public Integer getNumvisitantes() {
+        return numvisitantes;
     }
 
-    public void setNum_visitantes(Integer num_visitantes) {
-        this.num_visitantes = num_visitantes;
-    }
-    
-    public Integer getNum_saidas() {
-        return num_saidas;
+    public void setNumvisitantes(Integer num_visitantes) {
+        this.numvisitantes = num_visitantes;
     }
 
-    public void setNum_saidas(Integer num_saidas) {
-        this.num_saidas = num_saidas;
+    public Integer getNumsaidas() {
+        return numsaidas;
     }
 
-    public Integer getCodigo_saida() {
-        return codigo_saida;
+    public void setNumsaidas(Integer num_saidas) {
+        this.numsaidas = num_saidas;
     }
 
-    public void setCodigo_saida(Integer codigo_saida) {
-        this.codigo_saida = codigo_saida;
+    public Integer getCodigosaida() {
+        return codigosaida;
     }
 
-    public Integer getCodigo_solicitacao() {
-        return codigo_solicitacao;
+    public void setCodigosaida(Integer codigo_saida) {
+        this.codigosaida = codigo_saida;
     }
 
-    public void setCodigo_solicitacao(Integer codigo_solicitacao) {
-        this.codigo_solicitacao = codigo_solicitacao;
+    public Integer getCodigosolicitacao() {
+        return codigosolicitacao;
     }
 
-    
+    public void setCodigosolicitacao(Integer codigo_solicitacao) {
+        this.codigosolicitacao = codigo_solicitacao;
+    }
 
     public String getMes() {
         return mes;
@@ -103,11 +92,4 @@ public class Saida {
         this.ano = ano;
     }
 
-    
-
-    
-    
-    
-    
-    
 }

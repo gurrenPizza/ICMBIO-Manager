@@ -1,35 +1,16 @@
 package br.arraial.ICMBIO.model;
 
-import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+public class Embarcacao {
 
-public class Embarcacao{
-private String nome_embarcacao;
-private Integer TIE;
-private String nome_proprietario;
-private Integer numero_passageiros;
-private Integer Tamanho_embarcacao;
-private Integer capacidade_passageiros;
-private String local;
-private String OBS;
-private Integer codigo_modalidade;
-
-
-/*public class Embarcacao 
-{
-    private PreparedStatement inserir;
-    public void inserir(String a,String b,String c,String d,String e,String f,String g, String h, String i, String j){
-        try {
-            inserir = retornarConexao().prepareStatement("insert into embarcacao(nome_embarcacao, TIE,nome_proprietario,numero_passageiros,Tamanho_embarcacao,capacidade_passageiros,local,OBS,codigo_modalidade) values("+a+","+b+","+c+","+d+","+e+","+f+","+g+","+h+","+i+","+j+")");
-        } catch (SQLException ex) {
-            Logger.getLogger(Embarcacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-}
-*/
+    private String nome_embarcacao;
+    private Integer TIE;
+    private String nome_proprietario;
+    private Integer numero_passageiros;
+    private Integer Tamanho_embarcacao;
+    private Integer capacidade_passageiros;
+    private String local;
+    private String OBS;
+    private Integer codigo_modalidade;
 
     public Embarcacao(String nome_embarcacao, Integer TIE, String nome_proprietario, Integer numero_passageiros, Integer Tamanho_embarcacao, Integer capacidade_passageiros, String local, String OBS, Integer codigo_modalidade) {
         this.nome_embarcacao = nome_embarcacao;
@@ -41,6 +22,10 @@ private Integer codigo_modalidade;
         this.local = local;
         this.OBS = OBS;
         this.codigo_modalidade = codigo_modalidade;
+    }
+
+    public Embarcacao() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNome_embarcacao() {
