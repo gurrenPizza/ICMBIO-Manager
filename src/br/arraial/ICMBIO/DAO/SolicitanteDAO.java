@@ -93,7 +93,8 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
         }
     }
-    public static void SolicitanteDadosCadastro(){
-        
+
+    public static void SolicitanteDadosCadastro() {
+
     }
 }
