@@ -480,6 +480,7 @@ public class TelaCadSaida extends JInternalFrame {
                                  sai.getAno());
             JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!");
         }
+        codigoSaida = null;
         
     }//GEN-LAST:event_btSalvarActionPerformed
 

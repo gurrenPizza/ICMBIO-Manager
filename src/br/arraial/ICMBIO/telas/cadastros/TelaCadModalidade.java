@@ -2,6 +2,7 @@ package br.arraial.ICMBIO.telas.cadastros;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.ModalidadesDAO;
+import br.arraial.ICMBIO.model.Modalidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -224,13 +225,13 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
            }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // Modalidade mod = new Modalidade(txtNovaModalidade.getText());
-        //ModalidadesDAO.CadastrarModalidade(mod.getMod());
+        Modalidade mod = new Modalidade(txtModalidade.getText());
+        ModalidadesDAO.CadastrarModalidade(mod.getMod());
         try {
             if (codigomodalidade == null) {
-                ModalidadesDAO.CadastrarModalidade(txtModalidade.getText());
+                ModalidadesDAO.CadastrarModalidade(mod.getMod());
             } else {
-                ModalidadesDAO.AlterarModalidade(codigomodalidade, txtModalidade.getText());
+                ModalidadesDAO.AlterarModalidade(codigomodalidade, mod.getMod());
             }
         } catch (Exception e) {
         }
