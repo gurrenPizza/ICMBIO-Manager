@@ -1,6 +1,7 @@
 
 package br.arraial.ICMBIO.DAO;
 
+import br.arraial.ICMBIO.telas.CadUsuario;
 import br.arraial.ICMBIO.telas.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,14 +42,26 @@ public class UsuarioDAO {
         this.senha = senha;
     }
     
+    public static void AlterarUsuario(String codigousuario,String login, String senha){
+      try { 
+        Connection conexao = BancoDeDados.retornarConexao();
+        PreparedStatement alterar = conexao.prepareStatement("UPDATE usuario SET login = ?, senha= ? where codigo_usuario ="+codigousuario);
+            alterar.setString(1, login);
+            alterar.setString(2, senha);
+            alterar.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-    public static void Cadastrar(String login, String senha, String nome){
+    public static void CadastrarUsuario(String login, String senha){
+        Connection con = BancoDeDados.retornarConexao();
         try{
-            Connection con = BancoDeDados.retornarConexao();
-            PreparedStatement inserir = con.prepareStatement("insert into usuario(login,senha,nome) values (?,?,?)");
+           
+            PreparedStatement inserir = con.prepareStatement("insert into usuario(login,senha) values (?,?)");
             inserir.setString(1,login);
             inserir.setString(2,senha);
-            inserir.setString(3,nome);
+
             
             inserir.execute();
             inserir.close();
