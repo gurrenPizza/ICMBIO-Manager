@@ -3,18 +3,10 @@ package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.DAO.*;
 import br.arraial.ICMBIO.model.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  * @version 5.0 - 08/07
@@ -470,8 +462,8 @@ public class TelaSaida extends JInternalFrame {
                               txtMes.getText(),
                               txtAno.getText());
         
-        SaidaDAO.insereSaida(sai.getNum_saidas(),
-                             sai.getNum_visitantes(),
+        SaidaDAO.insereSaida(sai.getNumsaidas(),
+                             sai.getNumvisitantes(),
                              sai.getMes(),
                              sai.getAno());
         JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!");
@@ -490,7 +482,7 @@ public class TelaSaida extends JInternalFrame {
         //OK, OBRIGADO! REVISADO COM SUCESSO. - 25/06
         
         Solicitacao sol = new Solicitacao(txtPesquisa.getText());
-        SolicitacaoDAO.consultaSolicitacoes(sol.getNum_processo(),tbSolicitacoes);
+        SolicitacaoDAO.consultaSolicitacoes(sol.getNumeroprocesso(),tbSolicitacoes);
         
         
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -550,11 +542,11 @@ public class TelaSaida extends JInternalFrame {
                               Integer.parseInt(lbCodSaida.getText())
                               );
         
-        SaidaDAO.alteraSaida(sai.getNum_saidas(), 
-                             sai.getNum_visitantes(), 
+        SaidaDAO.alteraSaida(sai.getNumsaidas(), 
+                             sai.getNumvisitantes(), 
                              sai.getMes(), 
                              sai.getAno(), 
-                             sai.getCodigo_saida());
+                             sai.getCodigosaida());
         
         
         

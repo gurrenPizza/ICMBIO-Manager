@@ -1,27 +1,23 @@
-
 package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.UsuarioDAO;
-import br.arraial.ICMBIO.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class CadUsuario extends javax.swing.JInternalFrame {
 
-  private String codigousuario=null;
+    private String codigousuario = null;
+
     public CadUsuario() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -215,63 +211,62 @@ public class CadUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-         try{
-            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM usuario WHERE codigo_USUARIO="+codigousuario);
+        try {
+            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM usuario WHERE codigo_USUARIO=" + codigousuario);
             deletar.executeUpdate();
-            txtLogin.setText("");           
+            txtLogin.setText("");
             txtSenha.setText("");
-            txtConfirmarSenha.setText("");       
-        }catch (SQLException ex) {
-           
+            txtConfirmarSenha.setText("");
+        } catch (SQLException ex) {
+
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
-        //usuario sol = new Solicitacao(txtPesquisar.getText());
-        //usuarioDAO.consultaSolicitacoes(sol.getNum_processo(),tbUsuario_Consulta);
+
     }//GEN-LAST:event_txtPesquisarActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-    try {
-                    
-                    Connection con = BancoDeDados.retornarConexao();
-                    PreparedStatement pesquisa = con.prepareStatement("select * from usuario where login like ?");
-                    pesquisa.setString(1, "%" + txtPesquisar.getText() + "%");
-                    ResultSet resultado = pesquisa.executeQuery();
-                    DefaultTableModel model = (DefaultTableModel) tbUsuarioConsulta.getModel();
-                    model.setNumRows(0);
-                    while (resultado.next()) {
-                        model.addRow(new Object[]{resultado.getString("codigo_usuario"), resultado.getString("login"),});
-                    }
-                    resultado.close();
-                    pesquisa.close();
-                } catch (SQLException ex) {
-           Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
-                }        
+        try {
+
+            Connection con = BancoDeDados.retornarConexao();
+            PreparedStatement pesquisa = con.prepareStatement("select * from usuario where login like ?");
+            pesquisa.setString(1, "%" + txtPesquisar.getText() + "%");
+            ResultSet resultado = pesquisa.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) tbUsuarioConsulta.getModel();
+            model.setNumRows(0);
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getString("codigo_usuario"), resultado.getString("login"),});
+            }
+            resultado.close();
+            pesquisa.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       try {
+        try {
             if (codigousuario == null) {
-                UsuarioDAO.CadastrarUsuario(txtLogin.getText(),txtSenha.getText());
+                UsuarioDAO.CadastrarUsuario(txtLogin.getText(), txtSenha.getText());
             } else {
-                UsuarioDAO.AlterarUsuario(codigousuario,txtLogin.getText(),txtSenha.getText());
+                UsuarioDAO.AlterarUsuario(codigousuario, txtLogin.getText(), txtSenha.getText());
             }
         } catch (Exception e) {
         }
-         txtLogin.setText("");
-         txtSenha.setText("");
-         txtConfirmarSenha.setText("");       
-         pnCadUsuario.setSelectedIndex(0);
-         this.codigousuario=null;
+        txtLogin.setText("");
+        txtSenha.setText("");
+        txtConfirmarSenha.setText("");
+        pnCadUsuario.setSelectedIndex(0);
+        this.codigousuario = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-         this.codigousuario=null;
-         txtLogin.setText("");
-         txtSenha.setText("");
-         txtConfirmarSenha.setText("");
-         
+        this.codigousuario = null;
+        txtLogin.setText("");
+        txtSenha.setText("");
+        txtConfirmarSenha.setText("");
+
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
@@ -279,21 +274,21 @@ public class CadUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void tbUsuarioConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioConsultaMouseClicked
-       this.codigousuario = tbUsuarioConsulta.getValueAt(tbUsuarioConsulta.getSelectedRow(), 0).toString();
-       pnCadUsuario.setSelectedIndex(1);
-       try {
-            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from usuario where codigo_usuario="+codigousuario);
+        this.codigousuario = tbUsuarioConsulta.getValueAt(tbUsuarioConsulta.getSelectedRow(), 0).toString();
+        pnCadUsuario.setSelectedIndex(1);
+        try {
+            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from usuario where codigo_usuario=" + codigousuario);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtLogin.setText(resultado.getString("login"));
                 txtSenha.setText(resultado.getString("senha"));
-               
+
             }
             pesquisa.close();
 
         } catch (SQLException ex) {
         }
-       txtPesquisar.setText("");
+        txtPesquisar.setText("");
     }//GEN-LAST:event_tbUsuarioConsultaMouseClicked
 
 
@@ -318,7 +313,4 @@ public class CadUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 
-    private void UpdateJTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.ModalidadesDAO;
-import br.arraial.ICMBIO.model.Modalidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Euller Felipe
  */
 public class CadModalidade extends javax.swing.JInternalFrame {
+
+    private String codigomodalidade = null;
 
     /**
      * Creates new form NewJInternalFrame
@@ -42,7 +37,6 @@ public class CadModalidade extends javax.swing.JInternalFrame {
         pnAbas = new javax.swing.JTabbedPane();
         pnConsultar = new javax.swing.JPanel();
         lbModalidade = new javax.swing.JLabel();
-        btAlterar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
@@ -54,13 +48,6 @@ public class CadModalidade extends javax.swing.JInternalFrame {
         btBuscar = new javax.swing.JButton();
 
         lbModalidade.setText("Modalidade:");
-
-        btAlterar.setText("Alterar");
-        btAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAlterarActionPerformed(evt);
-            }
-        });
 
         btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -90,20 +77,18 @@ public class CadModalidade extends javax.swing.JInternalFrame {
             .addGroup(pnConsultarLayout.createSequentialGroup()
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnConsultarLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btAlterar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar))
-                    .addGroup(pnConsultarLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(lbModalidade)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNovaModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btSalvar)
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(txtNovaModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnConsultarLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btLimpar)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         pnConsultarLayout.setVerticalGroup(
             pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +99,6 @@ public class CadModalidade extends javax.swing.JInternalFrame {
                     .addComponent(txtNovaModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAlterar)
                     .addComponent(btExcluir)
                     .addComponent(btLimpar)
                     .addComponent(btSalvar))
@@ -203,35 +187,30 @@ public class CadModalidade extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-             try { 
-        Connection conexao = BancoDeDados.retornarConexao();
-        PreparedStatement alterar = conexao.prepareStatement("update modalidade set nome_modalidade = ? where codigo_modalidade = ?");
-            alterar.setString(1, txtNovaModalidade.getText());
-            alterar.executeUpdate();
-            UpdateJTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadModalidade.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btAlterarActionPerformed
-
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-      try {
-        PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM modalidade WHERE codigo_modalidade= ?");
+        try {
+            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM modalidade WHERE codigo_modalidade=" + codigomodalidade);
             deletar.executeUpdate();
             txtNovaModalidade.setText("");
-            deletar.execute();
-            deletar.close();
         } catch (SQLException ex) {
-            System.out.println(ex);
-        }   
+
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Modalidade mod = new Modalidade(txtNovaModalidade.getText());
-        ModalidadesDAO.CadastrarModalidade(mod.getMod());
-        
+        // Modalidade mod = new Modalidade(txtNovaModalidade.getText());
+        //ModalidadesDAO.CadastrarModalidade(mod.getMod());
+        try {
+            if (codigomodalidade == null) {
+                ModalidadesDAO.CadastrarModalidade(txtNovaModalidade.getText());
+            } else {
+                ModalidadesDAO.AlterarModalidade(codigomodalidade, txtNovaModalidade.getText());
+            }
+        } catch (Exception e) {
+        }
+        txtNovaModalidade.setText("");
+        pnAbas.setSelectedIndex(0);
+        this.codigomodalidade = null;
 
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -240,22 +219,22 @@ public class CadModalidade extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisarActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-try {
-                    
-                    Connection con = BancoDeDados.retornarConexao();
-                    PreparedStatement pesquisa = con.prepareStatement("select * from modalidade where nome_modalidade like ?");
-                    pesquisa.setString(1, "%" + txtPesquisar.getText() + "%");
-                    ResultSet resultado = pesquisa.executeQuery();
-                    DefaultTableModel model = (DefaultTableModel) tbModalidade_Consulta.getModel();
-                    model.setNumRows(0);
-                    while (resultado.next()) {
-                        model.addRow(new Object[]{resultado.getString("codigo_modalidade"), resultado.getString("nome_modalidade"),});
-                    }
-                    resultado.close();
-                    pesquisa.close();
-                } catch (SQLException ex) {
-           Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
-                }    
+        try {
+
+            Connection con = BancoDeDados.retornarConexao();
+            PreparedStatement pesquisa = con.prepareStatement("select * from modalidade where nome_modalidade like ?");
+            pesquisa.setString(1, "%" + txtPesquisar.getText() + "%");
+            ResultSet resultado = pesquisa.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) tbModalidade_Consulta.getModel();
+            model.setNumRows(0);
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getString("codigo_modalidade"), resultado.getString("nome_modalidade"),});
+            }
+            resultado.close();
+            pesquisa.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
            }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -265,7 +244,6 @@ try {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAlterar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;

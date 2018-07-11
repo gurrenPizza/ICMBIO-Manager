@@ -2,11 +2,9 @@ package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.SolicitanteDAO;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
 
 public class TelaSolicitante extends javax.swing.JInternalFrame {
 
@@ -482,7 +480,7 @@ public class TelaSolicitante extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtEnderecoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -531,19 +529,19 @@ public class TelaSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCidadeActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void tbSolicitanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitanteMouseClicked
@@ -604,7 +602,7 @@ public class TelaSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseReleased
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtPesquisaMouseReleased
 
     private void txtPesquisaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtPesquisaInputMethodTextChanged
@@ -612,18 +610,13 @@ public class TelaSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaInputMethodTextChanged
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
-      
-        //busca=  busca + txtPesquisa.getText();
-        
         
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void tbSolicitanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbSolicitanteFocusGained
-       //SolicitanteDAO.SolicitantTabelaConsulta(txtPesquisa.getText(),tbSolicitante);
     }//GEN-LAST:event_tbSolicitanteFocusGained
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        // TODO add your handling code here:
         SolicitanteDAO.SolicitantTabelaConsulta(txtPesquisa.getText(),tbSolicitante);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.DAO.BancoDeDados;
@@ -556,204 +551,196 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeDoSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDoSolicitanteActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNomeDoSolicitanteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
-            Solicitante sol = new Solicitante(); // TODO add your handling code here:
+            Solicitante sol = new Solicitante();
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement consulta1 = conexao.prepareStatement("Select * from solicitante where nome like ? ");
-            consulta1.setString(1,"%" +txtNomeDoSolicitante.getText() +"%");
-            
-            //consulta1.setString(1,"%" + txtNomeDoSolicitante.getText() + "%");
+            consulta1.setString(1, "%" + txtNomeDoSolicitante.getText() + "%");
             ResultSet resultado = consulta1.executeQuery();
             System.out.println(resultado.getRow());
             DefaultTableModel model = (DefaultTableModel) tbSolicitante.getModel();
             model.setNumRows(0);
-            while(resultado.next()){
-             model.addRow(new Object[] { resultado.getInt("codigo_solicitante"),resultado.getString("nome"),resultado.getString("CPF/CNPJ"),});
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getInt("codigo_solicitante"), resultado.getString("nome"), resultado.getString("CPF/CNPJ"),});
             }
             tbSolicitante.setRowSelectionAllowed(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
-       
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-          Object x = tbSolicitante.getModel().getValueAt(tbSolicitante.getSelectedRow(), 0);//pego o codigo do produto na posição 0 da tabela
-            lblCodigoSolicitante.setText(x.toString());
-            tpEmbarcacao.setSelectedIndex(0);
+        Object x = tbSolicitante.getModel().getValueAt(tbSolicitante.getSelectedRow(), 0);
+        lblCodigoSolicitante.setText(x.toString());
+        tpEmbarcacao.setSelectedIndex(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btBuscaEmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaEmbActionPerformed
-       try {
-            Embarcacao emb = new Embarcacao(); // TODO add your handling code here:
+        try {
+            Embarcacao emb = new Embarcacao();
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement consulta1 = conexao.prepareStatement("Select * from embarcacao where nome_embarcacao like ? ");
-            consulta1.setString(1,"%" +txtNomeEmbaracacao.getText() +"%");
-            
-            //consulta1.setString(1,"%" + txtNomeDoSolicitante.getText() + "%");
+            consulta1.setString(1, "%" + txtNomeEmbaracacao.getText() + "%");
             ResultSet resultado = consulta1.executeQuery();
             System.out.println(resultado.getRow());
             DefaultTableModel model = (DefaultTableModel) tbEmbarcacao.getModel();
             model.setNumRows(0);
-            while(resultado.next()){
-             model.addRow(new Object[] { resultado.getString("codigo_embarcacao"),resultado.getString("nome_embarcacao"),});
+            while (resultado.next()) {
+                model.addRow(new Object[]{resultado.getString("codigo_embarcacao"), resultado.getString("nome_embarcacao"),});
             }
             tbEmbarcacao.setRowSelectionAllowed(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_btBuscaEmbActionPerformed
 
     private void txtNomeEmbaracacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeEmbaracacaoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNomeEmbaracacaoActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-     Object z = tbEmbarcacao.getModel().getValueAt(tbEmbarcacao.getSelectedRow(), 0);//pego o codigo do produto na posição 0 da tabela
-            lbCodigoEmbarcacao.setText(z.toString());
-            tpEmbarcacao.setSelectedIndex(0);
+        Object z = tbEmbarcacao.getModel().getValueAt(tbEmbarcacao.getSelectedRow(), 0);
+        lbCodigoEmbarcacao.setText(z.toString());
+        tpEmbarcacao.setSelectedIndex(0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtNumerodoProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumerodoProcessoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNumerodoProcessoActionPerformed
 
     private void btTrocaTelaSolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTrocaTelaSolActionPerformed
-        tpEmbarcacao.setSelectedIndex(1);          // TODO add your handling code here:
+        tpEmbarcacao.setSelectedIndex(1);
     }//GEN-LAST:event_btTrocaTelaSolActionPerformed
 
     private void btTrocaTelaEmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTrocaTelaEmbActionPerformed
-       tpEmbarcacao.setSelectedIndex(2);        // TODO add your handling code here:
+        tpEmbarcacao.setSelectedIndex(2);
     }//GEN-LAST:event_btTrocaTelaEmbActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         try {
+        try {
             PreparedStatement inserir = retornarConexao().prepareStatement("insert into solicitacao(numero_processo, sequencia_anual, status, motivo, codigo_solicitante, codigo_embarcacao) values(?,?,?,?,?,?)");
 
-            inserir.setString(1,txtNumerodoProcesso.getText());
-            inserir.setString(2,txtSequenciaAnual.getText() );
-            inserir.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
-            inserir.setString(4,txtMotivo.getText());
+            inserir.setString(1, txtNumerodoProcesso.getText());
+            inserir.setString(2, txtSequenciaAnual.getText());
+            inserir.setString(3, String.valueOf(jBoxAlterar.getSelectedItem()));
+            inserir.setString(4, txtMotivo.getText());
             inserir.setInt(5, Integer.parseInt(lblCodigoSolicitante.getText()));
             inserir.setInt(6, Integer.parseInt(lbCodigoEmbarcacao.getText()));
             inserir.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtCodSolicitaçãoAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodSolicitaçãoAltActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCodSolicitaçãoAltActionPerformed
 
     private void btBuscarCodigoSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCodigoSolicitacaoActionPerformed
-         tpEmbarcacao.setSelectedIndex(3);        // TODO add your handling code here:
+        tpEmbarcacao.setSelectedIndex(3);
     }//GEN-LAST:event_btBuscarCodigoSolicitacaoActionPerformed
 
     private void btBuscarNomeAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarNomeAltActionPerformed
         try {
-            Solicitante sol = new Solicitante(); // TODO add your handling code here:
+            Solicitante sol = new Solicitante();
             Solicitacao soli = new Solicitacao();
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement consulta1 = conexao.prepareStatement("Select s.nome, l.codigo_solicitacao, l.motivo from solicitante as s, solicitacao as l where s.nome like ? and l.codigo_solicitante=s.codigo_solicitante ");
-            consulta1.setString(1,"%" +txtNomeSolicitanteAlt.getText() +"%");
+            consulta1.setString(1, "%" + txtNomeSolicitanteAlt.getText() + "%");
             ResultSet resultado1 = consulta1.executeQuery();
-            
+
             System.out.println(resultado1.getRow());
             DefaultTableModel model = (DefaultTableModel) tbAlterarConsulta.getModel();
             model.setNumRows(0);
-            while(resultado1.next()){
-             model.addRow(new Object[] { resultado1.getInt("codigo_solicitacao"),resultado1.getString("s.nome"),resultado1.getString("l.motivo"),});
+            while (resultado1.next()) {
+                model.addRow(new Object[]{resultado1.getInt("codigo_solicitacao"), resultado1.getString("s.nome"), resultado1.getString("l.motivo"),});
             }
             tbAlterarConsulta.setRowSelectionAllowed(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
     }
+
+    /*aux_cod=resultado1.getInt("codigo_solicitante");
             
-            /*aux_cod=resultado1.getInt("codigo_solicitante");
             
+     PreparedStatement consulta2 = conexao.prepareStatement("Select codigo_solicitacao, motivo from solicitacao where codigo_solicitante like ? ");
+     int auxcod2=aux_cod;
+     consulta2.setInt(1,auxcod2);
             
-            PreparedStatement consulta2 = conexao.prepareStatement("Select codigo_solicitacao, motivo from solicitacao where codigo_solicitante like ? ");
-            int auxcod2=aux_cod;
-            consulta2.setInt(1,auxcod2);
+     ResultSet resultado2 = consulta2.executeQuery();
             
-            ResultSet resultado2 = consulta2.executeQuery();
-            
-            System.out.println(resultado2.getRow());
-            DefaultTableModel model = (DefaultTableModel) tbAlterarConsulta.getModel();
-            model.setNumRows(0);
-            while(resultado2.next()){
-             model.addRow(new Object[] { resultado2.getInt("codigo_solicitante"),resultado2.getString("motivo"),});
-            }
-            tbAlterarConsulta.setRowSelectionAllowed(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }                // TODO add your handling code here:
+     System.out.println(resultado2.getRow());
+     DefaultTableModel model = (DefaultTableModel) tbAlterarConsulta.getModel();
+     model.setNumRows(0);
+     while(resultado2.next()){
+     model.addRow(new Object[] { resultado2.getInt("codigo_solicitante"),resultado2.getString("motivo"),});
+     }
+     tbAlterarConsulta.setRowSelectionAllowed(true);
+     } catch (SQLException ex) {
+     Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+     }                // TODO add your handling code here:
     }//GEN-LAST:event_btBuscarNomeAltActionPerformed
 */
     private void txtSequenciaAnualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSequenciaAnualActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSequenciaAnualActionPerformed
 
     private void btAlterarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarCodActionPerformed
-         Object t = tbAlterarConsulta.getModel().getValueAt(tbAlterarConsulta.getSelectedRow(), 0);//pego o codigo do produto na posição 0 da tabela
-            txtCodSolicitaçãoAlt.setText(t.toString());
-            tpEmbarcacao.setSelectedIndex(0);        // TODO add your handling code here:
-            
-            try {
-            Solicitante sol = new Solicitante(); // TODO add your handling code here:
+        Object t = tbAlterarConsulta.getModel().getValueAt(tbAlterarConsulta.getSelectedRow(), 0);
+        txtCodSolicitaçãoAlt.setText(t.toString());
+        tpEmbarcacao.setSelectedIndex(0);
+
+        try {
+            Solicitante sol = new Solicitante();
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement consulta1 = conexao.prepareStatement("Select * from solicitacao where codigo_solicitacao like ? ");
-            consulta1.setString(1,"%" +txtCodSolicitaçãoAlt.getText() +"%");
-            
-            //consulta1.setString(1,"%" + txtNomeDoSolicitante.getText() + "%");
+            consulta1.setString(1, "%" + txtCodSolicitaçãoAlt.getText() + "%");
             ResultSet resultado = consulta1.executeQuery();
             System.out.println(resultado.getRow());
-             while(resultado.next()){
-             txtNumerodoProcesso.setText(resultado.getString("numero_processo"));
-             txtSequenciaAnual.setText(resultado.getString("sequencia_anual"));
-             jBoxAlterar.setSelectedItem(resultado.getString("status"));
-             lblCodigoSolicitante.setText(resultado.getString("codigo_solicitacao"));
-             lbCodigoEmbarcacao.setText(resultado.getString("codigo_embarcacao"));
-             txtMotivo.setText(resultado.getString("motivo"));
-             
+            while (resultado.next()) {
+                txtNumerodoProcesso.setText(resultado.getString("numero_processo"));
+                txtSequenciaAnual.setText(resultado.getString("sequencia_anual"));
+                jBoxAlterar.setSelectedItem(resultado.getString("status"));
+                lblCodigoSolicitante.setText(resultado.getString("codigo_solicitacao"));
+                lbCodigoEmbarcacao.setText(resultado.getString("codigo_embarcacao"));
+                txtMotivo.setText(resultado.getString("motivo"));
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btAlterarCodActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       txtCodSolicitaçãoAlt.setText("");   
-       txtNumerodoProcesso.setText("");
-       txtSequenciaAnual.setText("");
-       lblCodigoSolicitante.setText("");
-       lbCodigoEmbarcacao.setText("");
-       jBoxAlterar.setSelectedIndex(0);
-       txtMotivo.setText("");
-       
+        txtCodSolicitaçãoAlt.setText("");
+        txtNumerodoProcesso.setText("");
+        txtSequenciaAnual.setText("");
+        lblCodigoSolicitante.setText("");
+        lbCodigoEmbarcacao.setText("");
+        jBoxAlterar.setSelectedIndex(0);
+        txtMotivo.setText("");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         try {
+        try {
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement alterar = retornarConexao().prepareStatement("update solicitacao set numero_processo=?, sequencia_anual=?, status=?, codigo_solicitacao=?, codigo_embarcacao=?, motivo=?  where codigo_solicitacao=?");
-            alterar.setString(1,txtNumerodoProcesso.getText());
-            alterar.setString(2,txtSequenciaAnual.getText() );
-            alterar.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
-            alterar.setString(4,lblCodigoSolicitante.getText());
+            alterar.setString(1, txtNumerodoProcesso.getText());
+            alterar.setString(2, txtSequenciaAnual.getText());
+            alterar.setString(3, String.valueOf(jBoxAlterar.getSelectedItem()));
+            alterar.setString(4, lblCodigoSolicitante.getText());
             alterar.setInt(5, Integer.parseInt(lbCodigoEmbarcacao.getText()));
-            alterar.setString(6,txtMotivo.getText());
+            alterar.setString(6, txtMotivo.getText());
             alterar.setInt(7, Integer.parseInt(txtCodSolicitaçãoAlt.getText()));
             alterar.execute();
         } catch (SQLException ex) {
@@ -762,26 +749,20 @@ public class TelaSolicitacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         try {
+        try {
             Connection conexao = BancoDeDados.retornarConexao();
             PreparedStatement delete = retornarConexao().prepareStatement("delete from solicitacao where codigo_solicitacao=?");
-            /* delete.setString(1,txtNumerodoProcesso.getText());
-            delete.setString(2,txtSequenciaAnual.getText() );
-            delete.setString(3,String.valueOf(jBoxAlterar.getSelectedItem()));
-            delete.setString(4,lblCodigoSolicitante.getText());
-            delete.setInt(5, Integer.parseInt(lbCodigoEmbarcacao.getText()));
-            delete.setString(6,txtMotivo.getText());*/
             delete.setInt(1, Integer.parseInt(txtCodSolicitaçãoAlt.getText()));
             delete.execute();
         } catch (SQLException ex) {
             Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }          // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jBoxAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxAlterarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jBoxAlterarActionPerformed
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterarCod;
