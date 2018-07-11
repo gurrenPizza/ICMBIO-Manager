@@ -1,5 +1,7 @@
 package br.arraial.ICMBIO.telas;
 
+import br.arraial.ICMBIO.telas.consultas.*;
+import br.arraial.ICMBIO.telas.cadastros.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.SwingUtilities;
@@ -69,7 +71,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
-        imSolAlterar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
@@ -188,14 +189,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(imSoliConsulta);
 
-        imSolAlterar.setText("Alterar");
-        imSolAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imSolAlterarActionPerformed(evt);
-            }
-        });
-        jMenu3.add(imSolAlterar);
-
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Saida");
@@ -238,52 +231,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imConEmbarcacaoActionPerformed
 
     private void imCadSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSolicitanteActionPerformed
-        TelaSolicitante telasolicitante = new TelaSolicitante();
+        TelaCadSolicitante telasolicitante = new TelaCadSolicitante();
         pnCentral.add(telasolicitante);
         telasolicitante.show();
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
 
     private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
-        CadModalidade telamodalidade = new CadModalidade();
+        TelaCadModalidade telamodalidade = new TelaCadModalidade();
         pnCentral.add(telamodalidade);
         telamodalidade.show();
     }//GEN-LAST:event_imCadModalidadeActionPerformed
 
     private void imCadEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadEmbarcacaoActionPerformed
-        TelaEmbarcacao telaembarcacao = new TelaEmbarcacao();
+        TelaCadEmbarcacao telaembarcacao = new TelaCadEmbarcacao();
         pnCentral.add(telaembarcacao);
         telaembarcacao.show();
     }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
 
     private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
-        CadUsuario telausuario = new CadUsuario();
+        TelaCadUsuario telausuario = new TelaCadUsuario();
         pnCentral.add(telausuario);
         telausuario.show();
     }//GEN-LAST:event_imCadUsuarioActionPerformed
 
     private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
-        TelaSaida telasaida = new TelaSaida();
+        TelaCadSaida telasaida = new TelaCadSaida();
         pnCentral.add(telasaida);
         telasaida.show();
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
     private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
-        TelaSolicitacao telacadsol = new TelaSolicitacao();
+        TelaCadSolicitacao telacadsol = new TelaCadSolicitacao();
         pnCentral.add(telacadsol);
         telacadsol.show();
     }//GEN-LAST:event_imSoliCadastroActionPerformed
 
     private void imSoliConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliConsultaActionPerformed
-        TelaConsultaSolicitacao telaconsol = new TelaConsultaSolicitacao();
+        TelaConSolicitacao telaconsol = new TelaConSolicitacao();
         pnCentral.add(telaconsol);
         telaconsol.show();
     }//GEN-LAST:event_imSoliConsultaActionPerformed
-
-    private void imSolAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSolAlterarActionPerformed
-        TelaAlterarSolicitacao telaaltsol = new TelaAlterarSolicitacao();
-        pnCentral.add(telaaltsol);
-        telaaltsol.show();
-    }//GEN-LAST:event_imSolAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,7 +318,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConUsuario;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;
-    private javax.swing.JMenuItem imSolAlterar;
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
     private javax.swing.JLabel jLabel1;
