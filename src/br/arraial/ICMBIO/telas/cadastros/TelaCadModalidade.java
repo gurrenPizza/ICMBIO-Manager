@@ -35,88 +35,32 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         pnAbas = new javax.swing.JTabbedPane();
-        pnConsultar = new javax.swing.JPanel();
-        lbModalidade = new javax.swing.JLabel();
-        btExcluir = new javax.swing.JButton();
-        btLimpar = new javax.swing.JButton();
-        btSalvar = new javax.swing.JButton();
-        txtNovaModalidade = new javax.swing.JTextField();
-        pnCadastrar = new javax.swing.JPanel();
+        pnConsulta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbModalidade_Consulta = new javax.swing.JTable();
         txtPesquisar = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
+        cbAtributo = new javax.swing.JComboBox();
+        txtModalidade = new javax.swing.JTextField();
+        lbModalidade1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btSalvar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        lbModalidade.setText("Modalidade:");
-
-        btExcluir.setText("Excluir");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
-        btLimpar.setText("Limpar");
-        btLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparActionPerformed(evt);
-            }
-        });
-
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnConsultarLayout = new javax.swing.GroupLayout(pnConsultar);
-        pnConsultar.setLayout(pnConsultarLayout);
-        pnConsultarLayout.setHorizontalGroup(
-            pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnConsultarLayout.createSequentialGroup()
-                .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnConsultarLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lbModalidade)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNovaModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnConsultarLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(btSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar)))
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
-        pnConsultarLayout.setVerticalGroup(
-            pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnConsultarLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbModalidade)
-                    .addComponent(txtNovaModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
-                .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btExcluir)
-                    .addComponent(btLimpar)
-                    .addComponent(btSalvar))
-                .addGap(33, 33, 33))
-        );
-
-        pnAbas.addTab("Cadastrar", pnConsultar);
+        setClosable(true);
 
         tbModalidade_Consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Modalidades"
+                "Código", "Modalidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -138,81 +82,123 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout pnCadastrarLayout = new javax.swing.GroupLayout(pnCadastrar);
-        pnCadastrar.setLayout(pnCadastrarLayout);
-        pnCadastrarLayout.setHorizontalGroup(
-            pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCadastrarLayout.createSequentialGroup()
-                .addGroup(pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnCadastrarLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(btBuscar))
-                    .addGroup(pnCadastrarLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modalidade", "Cod. Modalidade" }));
+        cbAtributo.setSelectedIndex(-1);
+        cbAtributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAtributoActionPerformed(evt);
+            }
+        });
+
+        lbModalidade1.setText("Modalidade:");
+
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btLimpar)
+                .addContainerGap())
         );
-        pnCadastrarLayout.setVerticalGroup(
-            pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCadastrarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(pnCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btExcluir)
+                    .addComponent(btLimpar))
+                .addContainerGap())
         );
 
-        pnAbas.addTab("Consultar", pnCadastrar);
+        jLabel1.setText("Digite a modalidade:");
+
+        javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
+        pnConsulta.setLayout(pnConsultaLayout);
+        pnConsultaLayout.setHorizontalGroup(
+            pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnConsultaLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnConsultaLayout.createSequentialGroup()
+                        .addComponent(lbModalidade1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtModalidade))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnConsultaLayout.createSequentialGroup()
+                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btBuscar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        pnConsultaLayout.setVerticalGroup(
+            pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnConsultaLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar)
+                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbModalidade1)
+                    .addComponent(txtModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnAbas.addTab("Consultar", pnConsulta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnAbas, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(pnAbas)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnAbas, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        try {
-            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM modalidade WHERE codigo_modalidade=" + codigomodalidade);
-            deletar.executeUpdate();
-            txtNovaModalidade.setText("");
-        } catch (SQLException ex) {
-
-        }
-    }//GEN-LAST:event_btExcluirActionPerformed
-
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // Modalidade mod = new Modalidade(txtNovaModalidade.getText());
-        //ModalidadesDAO.CadastrarModalidade(mod.getMod());
-        try {
-            if (codigomodalidade == null) {
-                ModalidadesDAO.CadastrarModalidade(txtNovaModalidade.getText());
-            } else {
-                ModalidadesDAO.AlterarModalidade(codigomodalidade, txtNovaModalidade.getText());
-            }
-        } catch (Exception e) {
-        }
-        txtNovaModalidade.setText("");
-        pnAbas.setSelectedIndex(0);
-        this.codigomodalidade = null;
-
-    }//GEN-LAST:event_btSalvarActionPerformed
 
     private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
         // TODO add your handling code here:
@@ -237,10 +223,39 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         }
            }//GEN-LAST:event_btBuscarActionPerformed
 
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        txtNovaModalidade.setText("");
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // Modalidade mod = new Modalidade(txtNovaModalidade.getText());
+        //ModalidadesDAO.CadastrarModalidade(mod.getMod());
+        try {
+            if (codigomodalidade == null) {
+                ModalidadesDAO.CadastrarModalidade(txtModalidade.getText());
+            } else {
+                ModalidadesDAO.AlterarModalidade(codigomodalidade, txtModalidade.getText());
+            }
+        } catch (Exception e) {
+        }
+        txtModalidade.setText("");
+        pnAbas.setSelectedIndex(0);
+        this.codigomodalidade = null;
+    }//GEN-LAST:event_btSalvarActionPerformed
 
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        try {
+            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM modalidade WHERE codigo_modalidade=" + codigomodalidade);
+            deletar.executeUpdate();
+            txtModalidade.setText("");
+        } catch (SQLException ex) {
+            
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        txtModalidade.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void cbAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAtributoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAtributoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -248,13 +263,15 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbAtributo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbModalidade;
+    private javax.swing.JLabel lbModalidade1;
     private javax.swing.JTabbedPane pnAbas;
-    private javax.swing.JPanel pnCadastrar;
-    private javax.swing.JPanel pnConsultar;
+    private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbModalidade_Consulta;
-    private javax.swing.JTextField txtNovaModalidade;
+    private javax.swing.JTextField txtModalidade;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
 
