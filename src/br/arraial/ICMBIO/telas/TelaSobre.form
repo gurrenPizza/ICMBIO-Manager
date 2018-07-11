@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" pref="573" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="446" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea1">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Este &#xe9; um programa de gerenciamento que foi desenvolvido em Java para o &#xa;ICMBIO, uma institui&#xe7;&#xe3;o do governo brasileiro que gere e preserva a biodiversidade da &#xa;fauna e flora brasileira, e em especial, controla o tr&#xe1;fego de embarca&#xe7;&#xf5;es na costa da &#xa;Regi&#xe3;o dos Lagos, principalmente em Arraial do Cabo, Rio de Janeiro, Brasil, para onde &#xa;iremos desenvolver o programa.&#xa;&#xa;O objetivo do programa &#xe9; controlar o banco de dados de tr&#xe1;fego de embarca&#xe7;&#xf5;es do &#xa;ICMBIO com suporte a inser&#xe7;&#xe3;o, altera&#xe7;&#xe3;o e remo&#xe7;&#xe3;o de informa&#xe7;&#xf5;es. Al&#xe9;m disso, o &#xa;programa possui uma interface gr&#xe1;fica amig&#xe1;vel desenvolvida com alguns recursos &#xa;da linguagem Java por conta do nosso p&#xfa;blico alvo, que s&#xe3;o pessoas n&#xe3;o necessaria-&#xa;mente ligadas &#xe0; computa&#xe7;&#xe3;o e tecnologia.&#xa;&#xa;Esse programa ser&#xe1; desenvolvido em colabora&#xe7;&#xe3;o por uma turma do 6&#xba; per&#xed;odo do &#xa;Ensino M&#xe9;dio T&#xe9;cnico em inform&#xe1;tica do IFRJ como forma de avalia&#xe7;&#xe3;o final do per&#xed;odo &#xa;para a disciplina Linguagens de Programa&#xe7;&#xe3;o III. Apesar de parte dessa descri&#xe7;&#xe3;o ter &#xa;sido escrita em ingl&#xea;s, todos os commits e outros coment&#xe1;rios ser&#xe3;o escritos em &#xa;portugu&#xea;s de modo a facilitar nossa comunica&#xe7;&#xe3;o, j&#xe1; que &#xe9; nossa l&#xed;ngua materna e &#xa;nem todos n&#xf3;s falamos ingl&#xea;s.&#xa;&#xa;Professor: Carlos Augusto Fernandes, Mestre em Computa&#xe7;&#xe3;o.&#xa;&#xa;Integrantes da turma: &#xa;&#xa;Alberto Dinis Lira Figuer&#xea;do, Gabriel Ribeiro, Philippe Loriot de Rouvray, Felipe Viana &#xa;Falc&#xe3;o, Ariane Sales, Laura Fidalgo, Gabriel Carvalho da Silva Boalento, Anna &#xa;Carolina Nicoli, Patrick Carmona, Gabrielli Ribeiro, Matheus Hiroshi Azuma Chavez , &#xa;Emilly Rodrigues, Marcelo Coelho, Louise Lisboa, Abner Guedes, Maria Eduarda &#xa;Soares, Bheatriz Syria, Euller Felipe Costa, Gabriella Caetano, Arthur Moreira, Raquel &#xa;Moraes."/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/arraial/ICMBIO/img/ifrj.png"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

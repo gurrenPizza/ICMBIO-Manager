@@ -6,11 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.SwingUtilities;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Aluno
@@ -75,6 +70,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
         mnAjuda = new javax.swing.JMenu();
+        imAjuda = new javax.swing.JMenuItem();
+        imRelatar = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        imSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
@@ -207,6 +206,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mnSaida);
 
         mnAjuda.setText("Ajuda");
+
+        imAjuda.setText("Conteudo da ajuda");
+        imAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imAjudaActionPerformed(evt);
+            }
+        });
+        mnAjuda.add(imAjuda);
+
+        imRelatar.setText("Relatar erro");
+        imRelatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imRelatarActionPerformed(evt);
+            }
+        });
+        mnAjuda.add(imRelatar);
+        mnAjuda.add(jSeparator1);
+
+        imSobre.setText("Sobre");
+        imSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSobreActionPerformed(evt);
+            }
+        });
+        mnAjuda.add(imSobre);
+
         jMenuBar1.add(mnAjuda);
 
         setJMenuBar(jMenuBar1);
@@ -272,6 +297,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaconsol.show();
     }//GEN-LAST:event_imSoliConsultaActionPerformed
 
+    private void imAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAjudaActionPerformed
+        TelaAjuda telajuda = new TelaAjuda();
+        pnCentral.add(telajuda);
+        telajuda.show();
+    }//GEN-LAST:event_imAjudaActionPerformed
+
+    private void imSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSobreActionPerformed
+        TelaSobre telasobre = new TelaSobre();
+        pnCentral.add(telasobre);
+        telasobre.show();
+    }//GEN-LAST:event_imSobreActionPerformed
+
+    private void imRelatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatarActionPerformed
+        TelaRelatarProblema telaproblema = new TelaRelatarProblema();
+        pnCentral.add(telaproblema);
+        telaproblema.show();
+    }//GEN-LAST:event_imRelatarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +351,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem imAjuda;
     private javax.swing.JMenuItem imCadEmbarcacao;
     private javax.swing.JMenuItem imCadModalidade;
     private javax.swing.JMenuItem imCadSolicitante;
@@ -316,12 +360,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConModalidade;
     private javax.swing.JMenuItem imConSolicitante;
     private javax.swing.JMenuItem imConUsuario;
+    private javax.swing.JMenuItem imRelatar;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;
+    private javax.swing.JMenuItem imSobre;
     private javax.swing.JMenuItem imSoliCadastro;
     private javax.swing.JMenuItem imSoliConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JMenu mnAjuda;
     private javax.swing.JMenu mnCadastro;
