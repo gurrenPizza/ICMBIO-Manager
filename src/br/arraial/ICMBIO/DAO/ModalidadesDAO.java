@@ -1,6 +1,6 @@
 package br.arraial.ICMBIO.DAO;
 
-import br.arraial.ICMBIO.telas.CadModalidade;
+import br.arraial.ICMBIO.telas.cadastros.TelaCadModalidade;
 import br.arraial.ICMBIO.telas.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class ModalidadesDAO {
             alterar.setString(1, modalidade);
             alterar.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CadModalidade.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 

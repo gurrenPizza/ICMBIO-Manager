@@ -1,12 +1,10 @@
 package br.arraial.ICMBIO.DAO;
 
-import br.arraial.ICMBIO.telas.CadUsuario;
+import br.arraial.ICMBIO.telas.cadastros.TelaCadUsuario;
 import br.arraial.ICMBIO.telas.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -50,7 +48,7 @@ public class UsuarioDAO {
             alterar.setString(2, senha);
             alterar.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CadUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 
@@ -65,7 +63,7 @@ public class UsuarioDAO {
             inserir.execute();
             inserir.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 
