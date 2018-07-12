@@ -53,6 +53,8 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         lblNome2 = new javax.swing.JLabel();
         txtNomeEmbarcacao = new javax.swing.JTextField();
 
+        setClosable(true);
+
         cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Numero do Processo", "Solicitante", "Embarcação" }));
 
         tbSolicitacao.setModel(new javax.swing.table.DefaultTableModel(
@@ -90,10 +92,11 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
             pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPesquisa)
-                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                 .addContainerGap())
@@ -282,7 +285,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         );
 
         pack();
-    }// </editor-fold>                        *///GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbAtributo;

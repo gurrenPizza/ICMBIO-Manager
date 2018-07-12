@@ -1,10 +1,6 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
-import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.SolicitanteDAO;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class TelaCadSolicitante extends javax.swing.JInternalFrame {
 
@@ -12,9 +8,9 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
      * Creates new form TelaSolicitante
      */
     private String codigo = null;
-    private String busca = "";
     private String atributo = null;
-    private String codAtr = null;
+    private String codAtr = "nome";
+
     public TelaCadSolicitante() {
         initComponents();
 
@@ -78,12 +74,17 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Cadastro de Solicitante");
 
+        TelaSolicitante.setBackground(new java.awt.Color(255, 255, 255));
+        TelaSolicitante.setOpaque(true);
         TelaSolicitante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TelaSolicitanteMouseClicked(evt);
             }
         });
 
+        pnConsulta.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtPesquisa.setBackground(null);
         txtPesquisa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,6 +118,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             }
         });
 
+        tbSolicitante.setBackground(null);
         tbSolicitante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -152,6 +154,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbSolicitante);
 
+        cbAtributo.setBackground(null);
         cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Codigo", "CPF/CNPJ", "Endereco", "Cidade" }));
         cbAtributo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -159,6 +162,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             }
         });
 
+        txtAtributo.setBackground(null);
         txtAtributo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtAtributo.setText("Digite o nome:");
 
@@ -187,11 +191,15 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                     .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAtributo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         TelaSolicitante.addTab("Consulta", pnConsulta);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Nome:");
 
@@ -271,6 +279,8 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel7.setText("Cidade:");
 
         jLabel8.setText("Cep:");
@@ -345,6 +355,8 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel9.setText("Razão Social:");
 
         jLabel10.setText("Nome Fantasia:");
@@ -360,17 +372,14 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(txtNomeFantasia)
-                            .addComponent(txtOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtResponsavel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel11)
+                    .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel10)
+                    .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -384,7 +393,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10)
                 .addGap(6, 6, 6)
                 .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,8 +401,10 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -423,9 +434,9 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -447,33 +458,29 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout pnCadastroLayout = new javax.swing.GroupLayout(pnCadastro);
@@ -501,7 +508,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaSolicitante)
+            .addComponent(TelaSolicitante, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
         );
 
         pack();
@@ -514,9 +521,34 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         try {
             if (codigo == null) {
-                SolicitanteDAO.SolicitanteCadastrar(txtNome.getText(), txtBeneficiario.getText(), txtCpfCnpj.getText(), fmTelefone.getText(), txtEndereco.getText(), txtBairro.getText(), txtCidade.getText(), fmCep.getText(), txtEmail.getText(), txtRazaoSocial.getText(), txtNomeFantasia.getText(), txtResponsavel.getText(), txtOperadora.getText());
+                SolicitanteDAO.SolicitanteCadastrar(txtNome.getText(),
+                        txtBeneficiario.getText(), 
+                        txtCpfCnpj.getText(), 
+                        fmTelefone.getText(), 
+                        txtEndereco.getText(), 
+                        txtBairro.getText(), 
+                        txtCidade.getText(), 
+                        fmCep.getText(), 
+                        txtEmail.getText(), 
+                        txtRazaoSocial.getText(), 
+                        txtNomeFantasia.getText(), 
+                        txtResponsavel.getText(), 
+                        txtOperadora.getText());
             } else {
-                SolicitanteDAO.SolicitanteAlterar(codigo, txtNome.getText(), txtBeneficiario.getText(), txtCpfCnpj.getText(), fmTelefone.getText(), txtEndereco.getText(), txtBairro.getText(), txtCidade.getText(), fmCep.getText(), txtEmail.getText(), txtRazaoSocial.getText(), txtNomeFantasia.getText(), txtResponsavel.getText(), txtOperadora.getText());
+                SolicitanteDAO.SolicitanteAlterar(codigo,
+                        txtNome.getText(),
+                        txtBeneficiario.getText(),
+                        txtCpfCnpj.getText(), 
+                        fmTelefone.getText(),
+                        txtEndereco.getText(), 
+                        txtBairro.getText(), 
+                        txtCidade.getText(), 
+                        fmCep.getText(), 
+                        txtEmail.getText(),
+                        txtRazaoSocial.getText(), 
+                        txtNomeFantasia.getText(),
+                        txtResponsavel.getText(),
+                        txtOperadora.getText());
 
             }
         } catch (Exception e) {
@@ -576,28 +608,34 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtPesquisa.setText("");
         TelaSolicitante.setSelectedIndex(1);
         this.codigo = tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString();
-        try {
-            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
-            if (resultado != null && resultado.next()) {
-                txtBeneficiario.setText(resultado.getString("beneficiario"));
-                txtBairro.setText(resultado.getString("bairro"));
-                txtCidade.setText(resultado.getString("cidade"));
-                txtCpfCnpj.setText(resultado.getString("cpf_cnpj"));
-                txtEmail.setText(resultado.getString("email"));
-                txtEndereco.setText(resultado.getString("endereco"));
-                txtNome.setText(resultado.getString("nome"));
-                txtNomeFantasia.setText(resultado.getString("nome_fantasia"));
-                txtOperadora.setText(resultado.getString("operadora"));
-                txtRazaoSocial.setText(resultado.getString("razao_social"));
-                txtResponsavel.setText(resultado.getString("responsavel"));
-                fmCep.setText(resultado.getString("cep"));
-                fmTelefone.setText(resultado.getString("telefone"));
-            }
-            pesquisa.close();
-
-        } catch (SQLException ex) {
-        }
+        SolicitanteDAO.SolicitantePegarDados(codigo,
+                txtBeneficiario.getText(),
+                txtBeneficiario,
+                txtBairro.getText(),
+                txtBairro,
+                txtCidade.getText(),
+                txtCidade,
+                txtCpfCnpj.getText(),
+                txtCpfCnpj,
+                txtEmail.getText(),
+                txtEmail,
+                txtEndereco.getText(),
+                txtEndereco,
+                txtNome.getText(),
+                txtNome,
+                txtNomeFantasia.getText(),
+                txtNomeFantasia,
+                txtOperadora.getText(),
+                txtOperadora,
+                txtRazaoSocial.getText(),
+                txtRazaoSocial,
+                txtResponsavel.getText(),
+                txtResponsavel,
+                fmCep.getText(),
+                fmCep,
+                fmTelefone.getText(),
+                fmTelefone,
+                codAtr);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbSolicitanteMouseClicked
 
@@ -606,25 +644,20 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TelaSolicitanteMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        try {
-            System.out.println(codigo);
-            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
-            deletar.executeUpdate();
-            txtNome.setText("");
-            txtBeneficiario.setText("");
-            txtCpfCnpj.setText("");
-            fmTelefone.setText("");
-            txtEndereco.setText("");
-            txtBairro.setText("");
-            txtCidade.setText("");
-            fmCep.setText("");
-            txtEmail.setText("");
-            txtRazaoSocial.setText("");
-            txtNomeFantasia.setText("");
-            txtResponsavel.setText("");
-            txtOperadora.setText("");
-        } catch (SQLException ex) {
-        }
+        SolicitanteDAO.SolicitanteExcluir(codigo);
+        txtNome.setText("");
+        txtBeneficiario.setText("");
+        txtCpfCnpj.setText("");
+        fmTelefone.setText("");
+        txtEndereco.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        fmCep.setText("");
+        txtEmail.setText("");
+        txtRazaoSocial.setText("");
+        txtNomeFantasia.setText("");
+        txtResponsavel.setText("");
+        txtOperadora.setText("");
         SolicitanteDAO.SolicitanteTabelaAtualiza(tbSolicitante);
         TelaSolicitante.setSelectedIndex(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
