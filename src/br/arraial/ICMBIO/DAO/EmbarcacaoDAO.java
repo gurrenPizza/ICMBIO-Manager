@@ -6,13 +6,10 @@
 package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import br.arraial.ICMBIO.telas.cadastros.TelaCadEmbarcacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -26,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmbarcacaoDAO {
     
-    public static void PegarDadosEmbarcacao(String codigoembarcacao,String nomeembarcacao,JTextField txtNomeEmbarcacao,String tie,JTextField fmTie,String nomeproprietario,JTextField txtNomeProprietario,Integer numeropassageiros,JSpinner cgNumeroPassageiros,String tamanhoembarcacao,JTextField fmTamanhoEmbarcacao, Integer capacidadepassageiros, JSpinner cgCapacidadePassageiros,String local,JTextField txtLocal,String obs,JTextArea atObs,String modalidade,JComboBox cbModalidade){
+    public static void PegarDadosEmbarcacao(String codigoembarcacao,String nomeembarcacao,JTextField txtNomeEmbarcacao,String tie,JTextField fmTie,String nomeproprietario,JTextField txtNomeProprietario,Integer numeropassageiros,JSpinner cgNumeroPassageiros,String tamanhoembarcacao,JTextField fmTamanhoEmbarcacao, Integer capacidadepassageiros, JSpinner cgCapacidadePassageiros,String local,JTextField txtLocal,String obs,JTextArea atObs,Integer modalidade,JComboBox cbModalidade){
     try {
              Connection conexao = retornarConexao();
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = "+codigoembarcacao);
@@ -36,9 +33,9 @@ public class EmbarcacaoDAO {
                 txtNomeEmbarcacao.setText(resultado.getString("nome_embarcacao"));
                 fmTie.setText(resultado.getString("tie"));
                 txtNomeProprietario.setText(resultado.getString("nome_proprietario"));
-                cgNumeroPassageiros.setValue(resultado.getInt("numero_passageiros"));
+                cgNumeroPassageiros.setValue(Integer.parseInt(resultado.getString("numero_passageiros")));
                 fmTamanhoEmbarcacao.setText(resultado.getString("tamanho_embarcacao"));
-                cgCapacidadePassageiros.setValue(resultado.getInt("capacidade_passageiros"));
+                cgCapacidadePassageiros.setValue(Integer.parseInt(resultado.getString("capacidade_passageiros")));
                 txtLocal.setText(resultado.getString("local"));
                 atObs.setText(resultado.getString("obs"));
                 cbModalidade.setSelectedIndex(resultado.getInt("codigo_modalidade"));
@@ -109,10 +106,10 @@ public class EmbarcacaoDAO {
             ResultSet resultado = consultar.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
+            
             while (resultado.next()) {
                 model.addRow(new String[]{resultado.getString("codigo_embarcacao"), resultado.getString("nome_embarcacao"), resultado.getString("TIE"), resultado.getString("codigo_modalidade")});
             }
-            b.setRowSelectionAllowed(true);
             
             resultado.close();
             consultar.close();

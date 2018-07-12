@@ -86,14 +86,13 @@ public class SolicitanteDAO {
 
     }
 
-    public static void SolicitantTabelaConsulta(String a, JTable b, String atributo) {
+    public static void SolicitanteTabelaConsulta(String a, JTable b, String atributo) {
         try {
             Connection con = BancoDeDados.retornarConexao();
             PreparedStatement pesquisa = con.prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
             pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
-            DefaultTableModel model;
-            model = (DefaultTableModel) b.getModel();
+            DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_solicitante"), resultado.getString("nome"), resultado.getString("CPF_CNPJ"), resultado.getString("endereco"), resultado.getString("cidade"),});
@@ -102,22 +101,6 @@ public class SolicitanteDAO {
             pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
-        }
-    }
-
-    public static void SolicitanteTabelaAtualiza(JTable b) {
-        try {
-            Connection con = retornarConexao();
-            PreparedStatement pesquisa = con.prepareStatement("select * from solicitante");
-            ResultSet resultado = pesquisa.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) b.getModel();
-            model.setNumRows(0);
-            while (resultado.next()) {
-                model.addRow(new Object[]{resultado.getString("codigo_solicitante"), resultado.getString("nome"), resultado.getString("CPF_CNPJ"), resultado.getString("telefone"), resultado.getString("endereco"), resultado.getString("cidade"), resultado.getString("responsavel"),});
-            }
-            resultado.close();
-            pesquisa.close();
-        } catch (SQLException ex) {
         }
     }
 
