@@ -1,20 +1,19 @@
 package br.arraial.ICMBIO.DAO;
 
+import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
-    
-    public static void PegarDados(String codigo,String beneficiario,JTextField txtBeneficiario,String bairro,JTextField txtBairro,String cidade,JTextField txtCidade,String cpfcnpj,JTextField txtCpfCnpj,String email,JTextField txtEmail,String endereco,JTextField txtEndereco,String nome,JTextField txtNome,String nomefantasia,JTextField txtNomeFantasia,String operadora,JTextField txtOperadora,String razaosocial,JTextField txtRazaoSocial,String responsavel,JTextField txtResponsavel,String cep,JTextField fmCep,String telefone,JTextField fmTelefone){
-         try {
-            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
+
+    public static void SolicitantePegarDados(String codigo, String beneficiario, JTextField txtBeneficiario, String bairro, JTextField txtBairro, String cidade, JTextField txtCidade, String cpfcnpj, JTextField txtCpfCnpj, String email, JTextField txtEmail, String endereco, JTextField txtEndereco, String nome, JTextField txtNome, String nomefantasia, JTextField txtNomeFantasia, String operadora, JTextField txtOperadora, String razaosocial, JTextField txtRazaoSocial, String responsavel, JTextField txtResponsavel, String cep, JTextField fmCep, String telefone, JTextField fmTelefone, String atributo) {
+        try {
+            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante="+ codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtBeneficiario.setText(resultado.getString("beneficiario"));
@@ -34,8 +33,9 @@ public class SolicitanteDAO {
             pesquisa.close();
 
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
-    
+
     }
 
     public static void SolicitanteCadastrar(String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
@@ -57,6 +57,7 @@ public class SolicitanteDAO {
             inserir.setString(13, Operadora);
             inserir.execute();
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
 
     }
@@ -80,6 +81,7 @@ public class SolicitanteDAO {
             inserir.setString(13, Operadora);
             inserir.executeUpdate();
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
 
     }
@@ -87,7 +89,7 @@ public class SolicitanteDAO {
     public static void SolicitantTabelaConsulta(String a, JTable b, String atributo) {
         try {
             Connection con = BancoDeDados.retornarConexao();
-            PreparedStatement pesquisa = con.prepareStatement("select * from solicitante where "+atributo+" like ? order by "+atributo);
+            PreparedStatement pesquisa = con.prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
             pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
             DefaultTableModel model;
@@ -99,12 +101,13 @@ public class SolicitanteDAO {
             resultado.close();
             pesquisa.close();
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
 
     public static void SolicitanteTabelaAtualiza(JTable b) {
         try {
-            Connection con = BancoDeDados.retornarConexao();
+            Connection con = retornarConexao();
             PreparedStatement pesquisa = con.prepareStatement("select * from solicitante");
             ResultSet resultado = pesquisa.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -118,7 +121,12 @@ public class SolicitanteDAO {
         }
     }
 
-    public static void SolicitanteDadosCadastro() {
-
+    public static void SolicitanteExcluir(String codigo) {
+        try {
+            PreparedStatement deletar = retornarConexao().prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
+            deletar.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 }
