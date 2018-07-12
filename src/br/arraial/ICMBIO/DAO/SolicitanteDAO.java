@@ -7,9 +7,36 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
+    
+    public static void PegarDados(String codigo,String beneficiario,JTextField txtBeneficiario,String bairro,JTextField txtBairro,String cidade,JTextField txtCidade,String cpfcnpj,JTextField txtCpfCnpj,String email,JTextField txtEmail,String endereco,JTextField txtEndereco,String nome,JTextField txtNome,String nomefantasia,JTextField txtNomeFantasia,String operadora,JTextField txtOperadora,String razaosocial,JTextField txtRazaoSocial,String responsavel,JTextField txtResponsavel,String cep,JTextField fmCep,String telefone,JTextField fmTelefone){
+         try {
+            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                txtBeneficiario.setText(resultado.getString("beneficiario"));
+                txtBairro.setText(resultado.getString("bairro"));
+                txtCidade.setText(resultado.getString("cidade"));
+                txtCpfCnpj.setText(resultado.getString("cpf_cnpj"));
+                txtEmail.setText(resultado.getString("email"));
+                txtEndereco.setText(resultado.getString("endereco"));
+                txtNome.setText(resultado.getString("nome"));
+                txtNomeFantasia.setText(resultado.getString("nome_fantasia"));
+                txtOperadora.setText(resultado.getString("operadora"));
+                txtRazaoSocial.setText(resultado.getString("razao_social"));
+                txtResponsavel.setText(resultado.getString("responsavel"));
+                fmCep.setText(resultado.getString("cep"));
+                fmTelefone.setText(resultado.getString("telefone"));
+            }
+            pesquisa.close();
+
+        } catch (SQLException ex) {
+        }
+    
+    }
 
     public static void SolicitanteCadastrar(String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
