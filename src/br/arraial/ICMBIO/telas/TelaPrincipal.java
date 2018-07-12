@@ -74,6 +74,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         imRelatar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         imSobre = new javax.swing.JMenuItem();
+        mnBackup = new javax.swing.JMenu();
+        imCriar = new javax.swing.JMenuItem();
+        imRestaurar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
@@ -234,6 +237,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnAjuda);
 
+        mnBackup.setText("Backup");
+
+        imCriar.setText("Criar");
+        imCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCriarActionPerformed(evt);
+            }
+        });
+        mnBackup.add(imCriar);
+
+        imRestaurar.setText("Restaurar");
+        imRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imRestaurarActionPerformed(evt);
+            }
+        });
+        mnBackup.add(imRestaurar);
+
+        jMenuBar1.add(mnBackup);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -315,6 +338,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaproblema.show();
     }//GEN-LAST:event_imRelatarActionPerformed
 
+    private void imCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCriarActionPerformed
+        
+    }//GEN-LAST:event_imCriarActionPerformed
+
+    private void imRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRestaurarActionPerformed
+        TelaRestaurar telarestaurar = new TelaRestaurar();
+        pnCentral.add(telarestaurar);
+        telarestaurar.show();
+    }//GEN-LAST:event_imRestaurarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -360,7 +393,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConModalidade;
     private javax.swing.JMenuItem imConSolicitante;
     private javax.swing.JMenuItem imConUsuario;
+    private javax.swing.JMenuItem imCriar;
     private javax.swing.JMenuItem imRelatar;
+    private javax.swing.JMenuItem imRestaurar;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;
     private javax.swing.JMenuItem imSobre;
@@ -371,6 +406,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JMenu mnAjuda;
+    private javax.swing.JMenu mnBackup;
     private javax.swing.JMenu mnCadastro;
     private javax.swing.JMenu mnConsulta;
     private javax.swing.JMenu mnSaida;
