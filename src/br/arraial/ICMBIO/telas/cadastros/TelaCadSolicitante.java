@@ -32,7 +32,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbSolicitante = new javax.swing.JTable();
         cbAtributo = new javax.swing.JComboBox();
-        txtAtributo = new javax.swing.JLabel();
+        lblAtributo = new javax.swing.JLabel();
         pnCadastro = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -84,7 +84,6 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
 
         pnConsulta.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtPesquisa.setBackground(null);
         txtPesquisa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,7 +117,6 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             }
         });
 
-        tbSolicitante.setBackground(null);
         tbSolicitante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -154,7 +152,6 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbSolicitante);
 
-        cbAtributo.setBackground(null);
         cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Codigo", "CPF/CNPJ", "Endereco", "Cidade" }));
         cbAtributo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -162,9 +159,8 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
             }
         });
 
-        txtAtributo.setBackground(null);
-        txtAtributo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtAtributo.setText("Digite o nome:");
+        lblAtributo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAtributo.setText("Digite o nome:");
 
         javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
         pnConsulta.setLayout(pnConsultaLayout);
@@ -177,7 +173,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                     .addGroup(pnConsultaLayout.createSequentialGroup()
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPesquisa)))
                 .addContainerGap())
@@ -189,7 +185,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAtributo))
+                    .addComponent(lblAtributo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addContainerGap())
@@ -519,39 +515,36 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEnderecoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        try {
-            if (codigo == null) {
-                SolicitanteDAO.SolicitanteCadastrar(txtNome.getText(),
-                        txtBeneficiario.getText(), 
-                        txtCpfCnpj.getText(), 
-                        fmTelefone.getText(), 
-                        txtEndereco.getText(), 
-                        txtBairro.getText(), 
-                        txtCidade.getText(), 
-                        fmCep.getText(), 
-                        txtEmail.getText(), 
-                        txtRazaoSocial.getText(), 
-                        txtNomeFantasia.getText(), 
-                        txtResponsavel.getText(), 
-                        txtOperadora.getText());
-            } else {
-                SolicitanteDAO.SolicitanteAlterar(codigo,
-                        txtNome.getText(),
-                        txtBeneficiario.getText(),
-                        txtCpfCnpj.getText(), 
-                        fmTelefone.getText(),
-                        txtEndereco.getText(), 
-                        txtBairro.getText(), 
-                        txtCidade.getText(), 
-                        fmCep.getText(), 
-                        txtEmail.getText(),
-                        txtRazaoSocial.getText(), 
-                        txtNomeFantasia.getText(),
-                        txtResponsavel.getText(),
-                        txtOperadora.getText());
+        if (codigo == null) {
+            SolicitanteDAO.SolicitanteCadastrar(txtNome.getText(),
+                    txtBeneficiario.getText(),
+                    txtCpfCnpj.getText(),
+                    fmTelefone.getText(),
+                    txtEndereco.getText(),
+                    txtBairro.getText(),
+                    txtCidade.getText(),
+                    fmCep.getText(),
+                    txtEmail.getText(),
+                    txtRazaoSocial.getText(),
+                    txtNomeFantasia.getText(),
+                    txtResponsavel.getText(),
+                    txtOperadora.getText());
+        } else {
+            SolicitanteDAO.SolicitanteAlterar(codigo,
+                    txtNome.getText(),
+                    txtBeneficiario.getText(),
+                    txtCpfCnpj.getText(),
+                    fmTelefone.getText(),
+                    txtEndereco.getText(),
+                    txtBairro.getText(),
+                    txtCidade.getText(),
+                    fmCep.getText(),
+                    txtEmail.getText(),
+                    txtRazaoSocial.getText(),
+                    txtNomeFantasia.getText(),
+                    txtResponsavel.getText(),
+                    txtOperadora.getText());
 
-            }
-        } catch (Exception e) {
         }
         txtNome.setText("");
         txtBeneficiario.setText("");
@@ -566,7 +559,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtNomeFantasia.setText("");
         txtResponsavel.setText("");
         txtOperadora.setText("");
-        SolicitanteDAO.SolicitanteTabelaAtualiza(tbSolicitante);
+        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -658,7 +651,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtNomeFantasia.setText("");
         txtResponsavel.setText("");
         txtOperadora.setText("");
-        SolicitanteDAO.SolicitanteTabelaAtualiza(tbSolicitante);
+        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -678,7 +671,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbSolicitanteFocusGained
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        SolicitanteDAO.SolicitantTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseClicked
@@ -686,30 +679,30 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaMouseClicked
 
     private void txtPesquisaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseEntered
-        txtPesquisa.setText("");
+
     }//GEN-LAST:event_txtPesquisaMouseEntered
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         atributo = cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString();
         switch (atributo) {
             case "Nome":
-                txtAtributo.setText("Digite o nome:");
+                lblAtributo.setText("Digite o nome:");
                 codAtr = "nome";
                 break;
             case "Codigo":
-                txtAtributo.setText("Digite o codigo do solicitante:");
+                lblAtributo.setText("Digite o codigo do solicitante:");
                 codAtr = "codigo_solicitante";
                 break;
             case "CPF/CNPJ":
-                txtAtributo.setText("Digite o CPF ou CNPJ:");
+                lblAtributo.setText("Digite o CPF ou CNPJ:");
                 codAtr = "CPF_CNPJ";
                 break;
             case "Endereco":
-                txtAtributo.setText("Digite o endereço:");
+                lblAtributo.setText("Digite o endereço:");
                 codAtr = "endereco";
                 break;
             case "Cidade":
-                txtAtributo.setText("Digite a cidade:");
+                lblAtributo.setText("Digite a cidade:");
                 codAtr = "cidade";
                 break;
         }
@@ -744,10 +737,10 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField13;
+    private javax.swing.JLabel lblAtributo;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbSolicitante;
-    private javax.swing.JLabel txtAtributo;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtBeneficiario;
     private javax.swing.JTextField txtCidade;

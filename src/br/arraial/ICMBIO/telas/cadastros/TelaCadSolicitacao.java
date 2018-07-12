@@ -1,5 +1,9 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
+import br.arraial.ICMBIO.DAO.EmbarcacaoDAO;
+import br.arraial.ICMBIO.DAO.SolicitacaoDAO;
+import br.arraial.ICMBIO.DAO.SolicitanteDAO;
+
 
 
 /**
@@ -8,9 +12,10 @@ package br.arraial.ICMBIO.telas.cadastros;
  */
 public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Solicitacao1
-     */
+    private String codigo = null;
+    private String atributo = null;
+    private String codAtr = "nome";
+    
     public TelaCadSolicitacao() {
         initComponents();
     }
@@ -52,17 +57,34 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         tbEmbarcacao = new javax.swing.JTable();
         lblNome2 = new javax.swing.JLabel();
         txtNomeEmbarcacao = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        btSalvar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
 
         setClosable(true);
 
-        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Numero do Processo", "Solicitante", "Embarcação" }));
+        pnCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+        pnCadastrar.setOpaque(true);
+
+        pnConsulta.setBackground(java.awt.Color.white);
+
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyReleased(evt);
+            }
+        });
+
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Numero do Processo", "Codigo", "Solicitante", "Embarcação" }));
+        cbAtributo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAtributoItemStateChanged(evt);
+            }
+        });
 
         tbSolicitacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Numero Processo", "Solicitante", "Embarcação"
@@ -70,6 +92,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbSolicitacao);
 
+        lblPesquisa.setBackground(java.awt.Color.white);
         lblPesquisa.setText("Digite o numero do processo:");
 
         javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
@@ -79,10 +102,10 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
             .addGroup(pnConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
-                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -93,16 +116,20 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
             .addGroup(pnConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPesquisa)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblPesquisa)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnCadastrar.addTab("Consulta", pnConsulta);
+
+        pnCadastro.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Numero do processo:");
 
@@ -157,16 +184,20 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Solicitantes"));
 
         lblNome.setText("Digite o nome:");
 
+        txtNomeSolicitante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeSolicitanteKeyReleased(evt);
+            }
+        });
+
         tbSolicitante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nome", "CPF/CNPJ", "Endereço"
@@ -200,14 +231,12 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Embarcação"));
 
         tbEmbarcacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nome", "CPF/CNPJ", "Endereço"
@@ -216,6 +245,12 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(tbEmbarcacao);
 
         lblNome2.setText("Digite o Nome");
+
+        txtNomeEmbarcacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeEmbarcacaoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -239,8 +274,43 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                     .addComponent(lblNome2)
                     .addComponent(txtNomeEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        btSalvar.setBackground(new java.awt.Color(255, 255, 255));
+        btSalvar.setText("Salvar");
+
+        btExcluir.setBackground(new java.awt.Color(255, 255, 255));
+        btExcluir.setText("Excluir");
+
+        btLimpar.setBackground(new java.awt.Color(255, 255, 255));
+        btLimpar.setText("Limpar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btLimpar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btExcluir)
+                    .addComponent(btLimpar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnCadastroLayout = new javax.swing.GroupLayout(pnCadastro);
@@ -256,6 +326,10 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCadastroLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnCadastroLayout.setVerticalGroup(
             pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,6 +340,8 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -279,15 +355,52 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnCadastrar)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNomeSolicitanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeSolicitanteKeyReleased
+        SolicitanteDAO.SolicitanteTabelaConsulta(txtNomeSolicitante.getText(), tbSolicitante, "nome");
+    }//GEN-LAST:event_txtNomeSolicitanteKeyReleased
+
+    private void txtNomeEmbarcacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeEmbarcacaoKeyReleased
+        EmbarcacaoDAO.EmbarcacaoConsulta(txtNomeEmbarcacao.getText(), tbEmbarcacao, "nome_embarcacao");
+    }//GEN-LAST:event_txtNomeEmbarcacaoKeyReleased
+
+    private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
+        atributo = cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString();
+        switch (atributo) {
+            case "Numero do Processo":
+                lblPesquisa.setText("Digite o nome:");
+                codAtr = "Numero_processo";
+                break;
+            case "Codigo":
+                lblPesquisa.setText("Digite o Codigo da solicitação:");
+                codAtr = "codigo_solicitacao";
+                break;
+            case "Solicitante":
+                lblPesquisa.setText("Digite o nome do solicitante:");
+                codAtr = "codigo_solicitante";
+                break;
+            case "Embarcação":
+                lblPesquisa.setText("Digite o nome da embarcação");
+                codAtr = "codigo_embarcacao";
+                break;
+        }
+    }//GEN-LAST:event_cbAtributoItemStateChanged
+
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
+
+    }//GEN-LAST:event_txtPesquisaKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btLimpar;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbAtributo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -296,6 +409,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

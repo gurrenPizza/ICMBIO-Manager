@@ -46,6 +46,11 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        jPanel3.setBackground(java.awt.Color.white);
+
+        jPanel2.setBackground(java.awt.Color.white);
+
+        btSalvar.setBackground(java.awt.Color.white);
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +95,8 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
                     .addComponent(btLimpar))
                 .addContainerGap())
         );
+
+        jPanel1.setBackground(java.awt.Color.white);
 
         cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modalidade", "Cod. Modalidade" }));
         cbAtributo.setSelectedIndex(-1);

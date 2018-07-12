@@ -77,7 +77,7 @@
                           <Group type="102" attributes="0">
                               <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtAtributo" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="lblAtributo" min="-2" pref="168" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtPesquisa" max="32767" attributes="0"/>
                           </Group>
@@ -93,7 +93,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="221" max="32767" attributes="0"/>
@@ -105,9 +105,6 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtPesquisa">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color type="null"/>
-                </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
               <Events>
@@ -129,9 +126,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbSolicitante">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color type="null"/>
-                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="Codigo" type="java.lang.String"/>
@@ -193,9 +187,6 @@
             </Container>
             <Component class="javax.swing.JComboBox" name="cbAtributo">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color type="null"/>
-                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="Nome"/>
@@ -210,11 +201,8 @@
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtributoItemStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="txtAtributo">
+            <Component class="javax.swing.JLabel" name="lblAtributo">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color type="null"/>
-                </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Digite o nome:"/>
               </Properties>

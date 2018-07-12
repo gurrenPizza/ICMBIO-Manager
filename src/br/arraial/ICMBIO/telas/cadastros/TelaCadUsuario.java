@@ -44,6 +44,11 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        telaUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        telaUsuario.setOpaque(true);
+
+        pnConsultar.setBackground(new java.awt.Color(255, 255, 255));
+
         tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -113,6 +118,10 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
         telaUsuario.addTab("Consultar", pnConsultar);
 
+        pnCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoginActionPerformed(evt);
@@ -162,6 +171,8 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
                     .addComponent(txtConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {

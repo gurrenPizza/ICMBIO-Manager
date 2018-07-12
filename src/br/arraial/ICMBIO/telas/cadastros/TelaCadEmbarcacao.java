@@ -5,16 +5,7 @@
  */
 package br.arraial.ICMBIO.telas.cadastros;
 
-import br.arraial.ICMBIO.DAO.BancoDeDados;
-import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
+import br.arraial.ICMBIO.DAO.EmbarcacaoDAO;
 
 /**
  *
@@ -25,10 +16,10 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     /**
      * Creates new form Embarcacao
      */
-    
-    private String cod;
-    
-    
+    private String codigo = null;
+    private String atributo = null;
+    private String codAtr = "nome_embarcacao";
+
     public TelaCadEmbarcacao() {
         initComponents();
     }
@@ -45,11 +36,11 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         TelaEmbarcacao = new javax.swing.JTabbedPane();
         pnConsulta = new javax.swing.JPanel();
-        lbPesquisa = new javax.swing.JLabel();
-        txtConsulta = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        lblAtributo = new javax.swing.JLabel();
+        txtPesquisa = new javax.swing.JTextField();
+        cbAtriuto = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tTabela = new javax.swing.JTable();
+        tbEmbarcacao = new javax.swing.JTable();
         pnCadastro = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         btLimpar = new javax.swing.JButton();
@@ -71,7 +62,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         fmTamanhoEmbarcacao = new javax.swing.JFormattedTextField();
         fmTie = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        atObs = new javax.swing.JTextArea();
+        txtObeservacao = new javax.swing.JTextArea();
         lbObs = new javax.swing.JLabel();
         lbModalidade = new javax.swing.JLabel();
         cbModalidade = new javax.swing.JComboBox();
@@ -90,19 +81,33 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Embarcação");
 
+        TelaEmbarcacao.setBackground(new java.awt.Color(255, 255, 255));
         TelaEmbarcacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TelaEmbarcacao.setOpaque(true);
 
-        lbPesquisa.setText("Digite o nome da embarcação:");
+        pnConsulta.setBackground(java.awt.Color.white);
 
-        txtConsulta.addActionListener(new java.awt.event.ActionListener() {
+        lblAtributo.setText("Digite o nome da embarcação:");
+
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConsultaActionPerformed(evt);
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyReleased(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome", "TIE", "Modalidade" }));
+        cbAtriuto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Codigo", "TIE", "Modalidade" }));
+        cbAtriuto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAtriutoItemStateChanged(evt);
+            }
+        });
 
-        tTabela.setModel(new javax.swing.table.DefaultTableModel(
+        tbEmbarcacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,12 +123,12 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbEmbarcacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tTabelaMouseClicked(evt);
+                tbEmbarcacaoMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tTabela);
+        jScrollPane3.setViewportView(tbEmbarcacao);
 
         javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
         pnConsulta.setLayout(pnConsultaLayout);
@@ -134,11 +139,11 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbPesquisa)
+                        .addComponent(lblAtributo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnConsultaLayout.setVerticalGroup(
@@ -146,15 +151,19 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             .addGroup(pnConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbPesquisa)
-                    .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAtributo)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TelaEmbarcacao.addTab("Consultar", pnConsulta);
+
+        pnCadastro.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +210,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     .addComponent(btLimpar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lbNomeEmbarcacao.setText("Nome da embarcação:");
 
@@ -252,16 +263,15 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             }
         });
 
-        atObs.setColumns(20);
-        atObs.setRows(5);
-        jScrollPane1.setViewportView(atObs);
+        txtObeservacao.setColumns(20);
+        txtObeservacao.setRows(5);
+        jScrollPane1.setViewportView(txtObeservacao);
 
         lbObs.setText("Observação:");
 
         lbModalidade.setText("Modalidade:");
 
-        cbModalidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mergulho", "Pesca esportiva", "Passeio", "Taxi" }));
-        cbModalidade.setSelectedIndex(-1);
+        cbModalidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mergulho", "Pesca Escportiva", "Passeio", "Taxi", "Brinquedo" }));
         cbModalidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbModalidadeActionPerformed(evt);
@@ -283,9 +293,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(cgCapacidadePassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(txtNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(fmTamanhoEmbarcacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(txtLocal, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(fmTamanhoEmbarcacao)
+                        .addComponent(txtLocal))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lbLocal)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -387,7 +396,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProprietarioActionPerformed
-        txtNomeProprietario.getText();
+
     }//GEN-LAST:event_txtNomeProprietarioActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -398,138 +407,150 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         fmTamanhoEmbarcacao.setText("");
         cgCapacidadePassageiros.setValue(0);
         txtLocal.setText("");
-        atObs.setText("");
+        txtObeservacao.setText("");
         cbModalidade.setSelectedIndex(0);
-
-
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void fmTamanhoEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fmTamanhoEmbarcacaoActionPerformed
-        fmTamanhoEmbarcacao.getAction();
+
     }//GEN-LAST:event_fmTamanhoEmbarcacaoActionPerformed
 
     private void txtLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalActionPerformed
-        txtLocal.getText();
+
     }//GEN-LAST:event_txtLocalActionPerformed
 
     private void txtNomeEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeEmbarcacaoActionPerformed
-        txtNomeEmbarcacao.getText();
+
     }//GEN-LAST:event_txtNomeEmbarcacaoActionPerformed
 
     private void fmTieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fmTieActionPerformed
-        fmTie.getAction();
+
     }//GEN-LAST:event_fmTieActionPerformed
 
     private void cbModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbModalidadeActionPerformed
-        cbModalidade.getAction();
+
     }//GEN-LAST:event_cbModalidadeActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Connection conexao = BancoDeDados.retornarConexao();
-        try {
-               
-            PreparedStatement inserir = conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
-            inserir.setString(1, txtNomeEmbarcacao.getText());
-            inserir.setString(2, fmTie.getText());
-            inserir.setString(3, txtNomeProprietario.getText());
-            inserir.setString(4, cgNumeroPassageiros.getValue().toString());
-            inserir.setString(5, fmTamanhoEmbarcacao.getText());
-            inserir.setString(6, cgCapacidadePassageiros.getValue().toString());
-            inserir.setString(7, txtLocal.getText());
-            inserir.setString(8, atObs.getText());
-            inserir.setInt(9, cbModalidade.getSelectedIndex());
-           
-            inserir.execute();
-            inserir.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaCadEmbarcacao.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (codigo == null) {
+            EmbarcacaoDAO.EmbarcacaoCadastrar(txtNomeEmbarcacao.getText(),
+                    fmTie.getText(),
+                    txtNomeProprietario.getText(),
+                    cgNumeroPassageiros.getValue().toString(),
+                    fmTamanhoEmbarcacao.getText(),
+                    cgCapacidadePassageiros.getValue().toString(),
+                    txtLocal.getText(),
+                    txtObeservacao.getText(),
+                    cbModalidade.getSelectedIndex());
+        } else {
+            EmbarcacaoDAO.EmbarcacaoAlterar(codigo,
+                    txtNomeEmbarcacao.getText(),
+                    fmTie.getText(),
+                    txtNomeProprietario.getText(),
+                    cgNumeroPassageiros.getValue().toString(),
+                    fmTamanhoEmbarcacao.getText(),
+                    cgCapacidadePassageiros.getValue().toString(),
+                    txtLocal.getText(),
+                    txtObeservacao.getText(),
+                    cbModalidade.getSelectedIndex());
         }
-        
+        txtNomeEmbarcacao.setText("");
+        fmTie.setText("");
+        txtNomeProprietario.setText("");
+        cgNumeroPassageiros.setValue(0);
+        fmTamanhoEmbarcacao.setText("");
+        cgCapacidadePassageiros.setValue(0);
+        txtLocal.setText("");
+        txtObeservacao.setText("");
+        cbModalidade.setSelectedIndex(0);
+        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+        TelaEmbarcacao.setSelectedIndex(0);
+        this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        Connection conexao = BancoDeDados.retornarConexao();
-        try{
-          System.out.println(cod);         
-          PreparedStatement deletar = conexao.prepareStatement("delete from embarcacao where codigo_embarcacao = "+cod);
-          deletar.executeUpdate();
-          txtNomeEmbarcacao.setText("");
-          fmTie.setText("");
-          txtNomeProprietario.setText("");
-          cgNumeroPassageiros.setValue(0);
-          fmTamanhoEmbarcacao.setText("");
-          cgCapacidadePassageiros.setValue(0);
-          txtLocal.setText("");
-          atObs.setText("");
-          cbModalidade.setSelectedIndex(0);
-          deletar.execute();
-          deletar.close();
-        } catch (SQLException ex) {
-             System.out.println(ex);
-             Logger.getLogger(TelaCadEmbarcacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        EmbarcacaoDAO.EmbarcacaoExcluir(codigo);
+        txtNomeEmbarcacao.setText("");
+        fmTie.setText("");
+        txtNomeProprietario.setText("");
+        cgNumeroPassageiros.setValue(0);
+        fmTamanhoEmbarcacao.setText("");
+        cgCapacidadePassageiros.setValue(0);
+        txtLocal.setText("");
+        txtObeservacao.setText("");
+        cbModalidade.setSelectedIndex(0);
+        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+        TelaEmbarcacao.setSelectedIndex(0);
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void txtConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultaActionPerformed
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
 
-    }//GEN-LAST:event_txtConsultaActionPerformed
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
-    private void tTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tTabelaMouseClicked
+    private void tbEmbarcacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEmbarcacaoMouseClicked
+        txtPesquisa.setText("");
+        TelaEmbarcacao.setSelectedIndex(1);
+        this.codigo = tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString();
+        EmbarcacaoDAO.PegarDadosEmbarcacao(codigo,
+                txtNomeEmbarcacao.getText(),
+                txtNomeEmbarcacao,
+                fmTie.getText(),
+                fmTie,
+                txtNomeProprietario.getText(),
+                txtNomeProprietario,
+                Integer.parseInt(cgNumeroPassageiros.getValue().toString()),
+                cgNumeroPassageiros,
+                fmTamanhoEmbarcacao.getText(),
+                fmTamanhoEmbarcacao,
+                Integer.parseInt(cgCapacidadePassageiros.getValue().toString()),
+                cgCapacidadePassageiros,
+                txtLocal.getText(),
+                txtLocal,
+                txtObeservacao.getText(),
+                txtObeservacao,
+                cbModalidade.getSelectedIndex(),
+                cbModalidade);
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_tbEmbarcacaoMouseClicked
 
-        TelaEmbarcacao.setSelectedIndex(0);
-        /* txtNomeEmbarcacao.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 1)));
-        fmTie.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 2)));
-        txtNomeProprietario.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 3)));
-        cgNumeroPassageiros.setValue(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 4)));
-        fmTamanhoEmbarcacao.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 5)));
-        cgCapacidadePassageiros.setValue(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 6)));
-        txtLocal.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 7)));
-        atObs.setText(String.valueOf(tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 8)));
-        cbModalidade.setSelectedIndex((int) tTabela.getModel().getValueAt(tTabela.getSelectedRow(), 9));
-        */
-
-        Connection conexao = retornarConexao();
-        this.cod = tTabela.getValueAt(tTabela.getSelectedRow(), 0).toString();
-        try {
-            PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = "+cod);
-            ResultSet resultado = consultar.executeQuery();
-            if (resultado != null && resultado.next())
-            {
-                txtNomeEmbarcacao.setText(resultado.getString("nome_embarcacao"));
-                fmTie.setText(resultado.getString("tie"));
-                txtNomeProprietario.setText(resultado.getString("nome_proprietario"));
-                cgNumeroPassageiros.setValue(resultado.getInt("numero_passageiros"));
-                fmTamanhoEmbarcacao.setText(resultado.getString("tamanho_embarcacao"));
-                cgCapacidadePassageiros.setValue(resultado.getInt("capacidade_passageiros"));
-                txtLocal.setText(resultado.getString("local"));
-                atObs.setText(resultado.getString("obs"));
-                cbModalidade.setSelectedIndex(resultado.getInt("codigo_modalidade"));
-            }
-            resultado.close();
-            consultar.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaCadEmbarcacao.class.getName()).log(Level.SEVERE, null, ex);
+    private void cbAtriutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtriutoItemStateChanged
+        atributo = cbAtriuto.getItemAt(cbAtriuto.getSelectedIndex()).toString();
+        switch (atributo) {
+            case "Nome":
+                lblAtributo.setText("Digite o nome da embarcação:");
+                codAtr = "nome_embarcacao";
+                break;
+            case "Codigo":
+                lblAtributo.setText("Digite o codigo da embarcação:");
+                codAtr = "codigo_embarcacao";
+                break;
+            case "TIE":
+                lblAtributo.setText("Digite o TIE:");
+                codAtr = "TIE";
+                break;
+            case "Modalidade":
+                lblAtributo.setText("Digite a modalidade:");
+                codAtr = "codigo_modalidade";
+                break;
         }
-        txtConsulta.setText("");
+    }//GEN-LAST:event_cbAtriutoItemStateChanged
 
-    }//GEN-LAST:event_tTabelaMouseClicked
-    private void TelaEmbarcacaoMouseClicked(java.awt.event.MouseEvent evt) {                                             
-        this.cod=null;
-    }                                            
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
+        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+    }//GEN-LAST:event_txtPesquisaKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaEmbarcacao;
-    private javax.swing.JTextArea atObs;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbAtriuto;
     private javax.swing.JComboBox cbModalidade;
     private javax.swing.JSpinner cgCapacidadePassageiros;
     private javax.swing.JSpinner cgNumeroPassageiros;
     private javax.swing.JFormattedTextField fmTamanhoEmbarcacao;
     private javax.swing.JFormattedTextField fmTie;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
@@ -542,23 +563,16 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbNomeEmbarcacao;
     private javax.swing.JLabel lbNomeProprietario;
     private javax.swing.JLabel lbObs;
-    private javax.swing.JLabel lbPesquisa;
     private javax.swing.JLabel lbTEmbarcacao;
     private javax.swing.JLabel lbTie;
+    private javax.swing.JLabel lblAtributo;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
-    private javax.swing.JTable tTabela;
-    private javax.swing.JTextField txtConsulta;
+    private javax.swing.JTable tbEmbarcacao;
     private javax.swing.JTextField txtLocal;
     private javax.swing.JTextField txtNomeEmbarcacao;
     private javax.swing.JTextField txtNomeProprietario;
+    private javax.swing.JTextArea txtObeservacao;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
-
-    private void inserir(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void inserir(String text, String text0, String text1, Object value, String text2, Object value0, String text3, String text4, Object selectedItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
