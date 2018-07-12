@@ -55,7 +55,7 @@ public class UsuarioDAO {
             PreparedStatement alterar = conexao.prepareStatement("update usuario set login=?, senha=?");
             alterar.setString(1, login);
             alterar.setString(2, senha);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
