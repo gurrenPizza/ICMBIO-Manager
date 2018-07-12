@@ -8,7 +8,6 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
      * Creates new form TelaSolicitante
      */
     private String codigo = null;
-    private String atributo = null;
     private String codAtr = "nome";
 
     public TelaCadSolicitante() {
@@ -516,7 +515,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (codigo == null) {
-            SolicitanteDAO.SolicitanteCadastrar(txtNome.getText(),
+            SolicitanteDAO.Cadastrar(txtNome.getText(),
                     txtBeneficiario.getText(),
                     txtCpfCnpj.getText(),
                     fmTelefone.getText(),
@@ -530,7 +529,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                     txtResponsavel.getText(),
                     txtOperadora.getText());
         } else {
-            SolicitanteDAO.SolicitanteAlterar(codigo,
+            SolicitanteDAO.Alterar(codigo,
                     txtNome.getText(),
                     txtBeneficiario.getText(),
                     txtCpfCnpj.getText(),
@@ -559,7 +558,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtNomeFantasia.setText("");
         txtResponsavel.setText("");
         txtOperadora.setText("");
-        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitanteDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -601,7 +600,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtPesquisa.setText("");
         TelaSolicitante.setSelectedIndex(1);
         this.codigo = tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString();
-        SolicitanteDAO.SolicitantePegarDados(codigo,
+        SolicitanteDAO.PegarDados(codigo,
                 txtBeneficiario,
                 txtBairro,
                 txtCidade,
@@ -623,7 +622,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TelaSolicitanteMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        SolicitanteDAO.SolicitanteExcluir(codigo);
+        SolicitanteDAO.Excluir(codigo);
         txtNome.setText("");
         txtBeneficiario.setText("");
         txtCpfCnpj.setText("");
@@ -637,7 +636,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtNomeFantasia.setText("");
         txtResponsavel.setText("");
         txtOperadora.setText("");
-        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitanteDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -657,7 +656,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbSolicitanteFocusGained
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        SolicitanteDAO.SolicitanteTabelaConsulta(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitanteDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseClicked
@@ -669,8 +668,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaMouseEntered
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
-        atributo = cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString();
-        switch (atributo) {
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Nome":
                 lblAtributo.setText("Digite o nome:");
                 codAtr = "nome";

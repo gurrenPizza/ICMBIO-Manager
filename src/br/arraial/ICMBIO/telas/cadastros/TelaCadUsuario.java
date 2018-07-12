@@ -271,7 +271,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        UsuarioDAO.UsuarioExcluir(codigo);
+        UsuarioDAO.Excluir(codigo);
         txtLogin.setText("");
         txtConfirma.setText("");
         txtSenha.setText("");
@@ -286,7 +286,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if(codigo==null){
             if(txtConfirma.getText().equals(txtSenha.getText())){
-                UsuarioDAO.UsuarioCadastrar(txtLogin.getText(), txtSenha.getText());
+                UsuarioDAO.Cadastrar(txtLogin.getText(), txtSenha.getText());
             }
             else{
                 JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
@@ -294,13 +294,13 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         }
         else{
             if(txtConfirma.getText().equals(txtSenha.getText())){
-                UsuarioDAO.UsuarioAlterar(txtLogin.getText(), txtSenha.getText());
+                UsuarioDAO.Alterar(txtLogin.getText(), txtSenha.getText());
             }
             else{
                 JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
             }
         }
-        UsuarioDAO.consultaUsuario(txtPesquisa.getText(), tbUsuario, codAtr);
+        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
         TelaUsuario.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -320,22 +320,22 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         txtPesquisa.setText("");
         TelaUsuario.setSelectedIndex(1);
         this.codigo = tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString();
-        UsuarioDAO.UsuarioPegarDados(codigo, txtLogin, txtSenha, txtConfirma);
+        UsuarioDAO.PegarDados(codigo, txtLogin, txtSenha, txtConfirma);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbUsuarioMouseClicked
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         if (cbAtributo.getSelectedItem().equals("Codigo")) {
-            lblAtributo.setText("Digite o codigo:");
+            lblAtributo.setText("Digite o login:");
             codAtr = "codigo_usuario";
         } else {
-            lblAtributo.setText("Digite o login:");
+            lblAtributo.setText("Digite o codigo:");
             codAtr = "login";
         }
     }//GEN-LAST:event_cbAtributoItemStateChanged
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        UsuarioDAO.consultaUsuario(txtPesquisa.getText(), tbUsuario, codAtr);
+        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
 

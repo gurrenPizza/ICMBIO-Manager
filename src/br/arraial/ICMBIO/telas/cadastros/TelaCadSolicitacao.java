@@ -11,7 +11,6 @@ import br.arraial.ICMBIO.DAO.SolicitanteDAO;
 public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
     private String codigo = null;
-    private String atributo = null;
     private String codAtr = "numero_processo";
 
     public TelaCadSolicitacao() {
@@ -382,16 +381,15 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeSolicitanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeSolicitanteKeyReleased
-        SolicitanteDAO.SolicitanteTabelaConsulta(txtNomeSolicitante.getText(), tbSolicitante, "nome");
+        SolicitanteDAO.Consultar(txtNomeSolicitante.getText(), tbSolicitante, "nome");
     }//GEN-LAST:event_txtNomeSolicitanteKeyReleased
 
     private void txtNomeEmbarcacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeEmbarcacaoKeyReleased
-        EmbarcacaoDAO.EmbarcacaoConsulta(txtNomeEmbarcacao.getText(), tbEmbarcacao, "nome_embarcacao");
+        EmbarcacaoDAO.Consultar(txtNomeEmbarcacao.getText(), tbEmbarcacao, "nome_embarcacao");
     }//GEN-LAST:event_txtNomeEmbarcacaoKeyReleased
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
-        atributo = cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString();
-        switch (atributo) {
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Numero do Processo":
                 lblPesquisa.setText("Digite o nome:");
                 codAtr = "Numero_processo";
@@ -412,14 +410,14 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAtributoItemStateChanged
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        SolicitacaoDAO.consultaSolicitacoes(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
         txtPesquisa.setText("");
         TelaSolicitacao.setSelectedIndex(1);
         this.codigo = tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString();
-        SolicitacaoDAO.SolicitacaoPegarDados(codigo, txtNumeroProc.getText(), txtNumeroProc, txtSequencia.getText(), txtSequencia, txtStatus.getText(), txtStatus, txtMotivo.getText(), txtMotivo);
+        SolicitacaoDAO.PegarDados(codigo, txtNumeroProc.getText(), txtNumeroProc, txtSequencia.getText(), txtSequencia, txtStatus.getText(), txtStatus, txtMotivo.getText(), txtMotivo);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbSolicitacaoMouseClicked
 
@@ -436,7 +434,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        SolicitacaoDAO.SolicitacaoExcluir(codigo);
+        SolicitacaoDAO.Excluir(codigo);
         txtMotivo.setText("");
         txtNumeroProc.setText("");
         txtStatus.setText("");
@@ -445,18 +443,18 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         tbEmbarcacao.clearSelection();
         txtNomeSolicitante.setText("");
         tbSolicitante.clearSelection();
-        SolicitacaoDAO.consultaSolicitacoes(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitacao.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (codigo == null) {
-            SolicitacaoDAO.SolicitacaoCadastrar(txtNumeroProc.getText(), txtSequencia.getText(), txtStatus.getText(), txtMotivo.getText(), tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString(), tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString());
+            SolicitacaoDAO.Cadastrar(txtNumeroProc.getText(), txtSequencia.getText(), txtStatus.getText(), txtMotivo.getText(), tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString(), tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString());
         } else {
-            SolicitacaoDAO.SolicitacaoAlterar(txtNumeroProc.getText(), txtSequencia.getText(), txtStatus.getText(), txtMotivo.getText(), tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString(), tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString());
+            SolicitacaoDAO.Alterar(txtNumeroProc.getText(), txtSequencia.getText(), txtStatus.getText(), txtMotivo.getText(), tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString(), tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString());
         }
-        SolicitacaoDAO.consultaSolicitacoes(txtPesquisa.getText(), tbSolicitacao, codAtr);
+        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
         TelaSolicitacao.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed

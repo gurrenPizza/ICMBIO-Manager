@@ -1,8 +1,8 @@
 package br.arraial.ICMBIO.DAO;
 
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class BancoDeDados {
 
@@ -14,7 +14,7 @@ public class BancoDeDados {
         try {
             return DriverManager.getConnection(BANCO, USUARIO, SENHA);
         } catch (SQLException ex) {
-            Logger.getLogger(BancoDeDados.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
             return null;
         }
     }

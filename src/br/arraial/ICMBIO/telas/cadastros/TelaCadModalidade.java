@@ -1,18 +1,15 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
-import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.DAO.ModalidadesDAO;
 import br.arraial.ICMBIO.model.Modalidade;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 /**
  *
  * @author Euller Felipe
  */
 public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
-    private String codigomodalidade = null;
+    private String codigo = null;
+    private String codAtr = "nome_modalidade";
 
     /**
      * Creates new form NewJInternalFrame
@@ -40,9 +37,9 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         txtModalidade = new javax.swing.JTextField();
         lbModalidade1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbModalidade_Consulta = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        txtPesquisar = new javax.swing.JTextField();
+        tbModalidade = new javax.swing.JTable();
+        lblAtributo = new javax.swing.JLabel();
+        txtPesquisa = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -98,8 +95,12 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(java.awt.Color.white);
 
-        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modalidade", "Cod. Modalidade" }));
-        cbAtributo.setSelectedIndex(-1);
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modalidade", "Codigo" }));
+        cbAtributo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAtributoItemStateChanged(evt);
+            }
+        });
         cbAtributo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAtributoActionPerformed(evt);
@@ -108,7 +109,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
         lbModalidade1.setText("Modalidade:");
 
-        tbModalidade_Consulta.setModel(new javax.swing.table.DefaultTableModel(
+        tbModalidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -124,13 +125,23 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbModalidade_Consulta);
+        tbModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbModalidadeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbModalidade);
 
-        jLabel1.setText("Digite a modalidade:");
+        lblAtributo.setText("Digite a modalidade:");
 
-        txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarActionPerformed(evt);
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyReleased(evt);
             }
         });
 
@@ -148,9 +159,9 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cbAtributo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)
+                        .addComponent(lblAtributo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -159,9 +170,9 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblAtributo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,42 +224,63 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisarActionPerformed
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Modalidade mod = new Modalidade(txtModalidade.getText());
-        ModalidadesDAO.CadastrarModalidade(mod.getMod());
+        ModalidadesDAO.Cadastrar(mod.getMod());
         try {
-            if (codigomodalidade == null) {
-                ModalidadesDAO.CadastrarModalidade(mod.getMod());
+            if (codigo == null) {
+                ModalidadesDAO.Cadastrar(txtModalidade.getText());
             } else {
-                ModalidadesDAO.AlterarModalidade(codigomodalidade, mod.getMod());
+                ModalidadesDAO.Alterar(txtModalidade.getText(), codigo);
             }
         } catch (Exception e) {
         }
         txtModalidade.setText("");
-        this.codigomodalidade = null;
+        ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
+        this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        try {
-            PreparedStatement deletar = BancoDeDados.retornarConexao().prepareStatement("DELETE FROM modalidade WHERE codigo_modalidade=" + codigomodalidade);
-            deletar.executeUpdate();
-            txtModalidade.setText("");
-        } catch (SQLException ex) {
-
-        }
+        ModalidadesDAO.Excluir(codigo);
+        txtModalidade.setText("");
+        ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
+        this.codigo=null;
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         txtModalidade.setText("");
+        this.codigo=null;
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void cbAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAtributoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbAtributoActionPerformed
+
+    private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
+        if(cbAtributo.getSelectedItem().toString().equals("Modalidade")){
+            lblAtributo.setText("Digite a modalidade:");
+            codAtr = "nome_modalidade";
+        }
+        else{
+            lblAtributo.setText("Digite a modalidade:");
+            codAtr = "codigo_modalidade";
+        }
+    }//GEN-LAST:event_cbAtributoItemStateChanged
+
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
+        ModalidadesDAO.Consultar(txtPesquisa.getText(), tbModalidade, codAtr);
+    }//GEN-LAST:event_txtPesquisaKeyReleased
+
+    private void tbModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbModalidadeMouseClicked
+        txtPesquisa.setText("");
+        this.codigo = tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 0).toString();
+        ModalidadesDAO.PegarDados(codigo, txtModalidade);
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_tbModalidadeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -256,18 +288,14 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbAtributo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbModalidade1;
-    private javax.swing.JTable tbModalidade_Consulta;
+    private javax.swing.JLabel lblAtributo;
+    private javax.swing.JTable tbModalidade;
     private javax.swing.JTextField txtModalidade;
-    private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
-
-    private void UpdateJTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

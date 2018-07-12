@@ -2,7 +2,6 @@ package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
 import br.arraial.ICMBIO.telas.Login;
-import br.arraial.ICMBIO.telas.cadastros.TelaCadSaida;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

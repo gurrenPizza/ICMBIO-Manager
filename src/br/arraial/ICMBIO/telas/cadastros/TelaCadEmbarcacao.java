@@ -17,7 +17,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
      * Creates new form Embarcacao
      */
     private String codigo = null;
-    private String atributo = null;
     private String codAtr = "nome_embarcacao";
 
     public TelaCadEmbarcacao() {
@@ -435,7 +434,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
 
         if (codigo == null) {
-            EmbarcacaoDAO.EmbarcacaoCadastrar(txtNomeEmbarcacao.getText(),
+            EmbarcacaoDAO.Cadastrar(txtNomeEmbarcacao.getText(),
                     fmTie.getText(),
                     txtNomeProprietario.getText(),
                     cgNumeroPassageiros.getValue().toString(),
@@ -445,7 +444,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     txtObeservacao.getText(),
                     cbModalidade.getSelectedIndex());
         } else {
-            EmbarcacaoDAO.EmbarcacaoAlterar(codigo,
+            EmbarcacaoDAO.Alterar(codigo,
                     txtNomeEmbarcacao.getText(),
                     fmTie.getText(),
                     txtNomeProprietario.getText(),
@@ -465,13 +464,13 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         txtLocal.setText("");
         txtObeservacao.setText("");
         cbModalidade.setSelectedIndex(0);
-        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+        EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        EmbarcacaoDAO.EmbarcacaoExcluir(codigo);
+        EmbarcacaoDAO.Excluir(codigo);
         txtNomeEmbarcacao.setText("");
         fmTie.setText("");
         txtNomeProprietario.setText("");
@@ -481,7 +480,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         txtLocal.setText("");
         txtObeservacao.setText("");
         cbModalidade.setSelectedIndex(0);
-        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+        EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -494,7 +493,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         txtPesquisa.setText("");
         TelaEmbarcacao.setSelectedIndex(1);
         this.codigo = tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString();
-        EmbarcacaoDAO.PegarDadosEmbarcacao(codigo,
+        EmbarcacaoDAO.PegarDados(codigo,
                 txtNomeEmbarcacao,
                 fmTie,
                 txtNomeProprietario,
@@ -508,8 +507,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbEmbarcacaoMouseClicked
 
     private void cbAtriutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtriutoItemStateChanged
-        atributo = cbAtriuto.getItemAt(cbAtriuto.getSelectedIndex()).toString();
-        switch (atributo) {
+        switch (cbAtriuto.getItemAt(cbAtriuto.getSelectedIndex()).toString()) {
             case "Nome":
                 lblAtributo.setText("Digite o nome da embarcação:");
                 codAtr = "nome_embarcacao";
@@ -530,7 +528,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAtriutoItemStateChanged
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
+        EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
