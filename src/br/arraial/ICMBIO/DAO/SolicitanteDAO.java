@@ -11,9 +11,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
 
-    public static void SolicitantePegarDados(String codigo, String beneficiario, JTextField txtBeneficiario, String bairro, JTextField txtBairro, String cidade, JTextField txtCidade, String cpfcnpj, JTextField txtCpfCnpj, String email, JTextField txtEmail, String endereco, JTextField txtEndereco, String nome, JTextField txtNome, String nomefantasia, JTextField txtNomeFantasia, String operadora, JTextField txtOperadora, String razaosocial, JTextField txtRazaoSocial, String responsavel, JTextField txtResponsavel, String cep, JTextField fmCep, String telefone, JTextField fmTelefone, String atributo) {
+    public static void SolicitantePegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
-            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante="+ codigo);
+            PreparedStatement pesquisa = retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante="+ codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtBeneficiario.setText(resultado.getString("beneficiario"));

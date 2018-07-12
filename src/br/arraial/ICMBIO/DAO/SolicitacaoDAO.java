@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +26,7 @@ public class SolicitacaoDAO {
             Connection conexao = BancoDeDados.retornarConexao();
 
             PreparedStatement consulta = conexao.prepareStatement("Select * from solicitacao where " + atributo + " like ? order by " + atributo);
-            consulta.setString(1, a);
+            consulta.setString(1, a+"%");
             ResultSet resultado = consulta.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
@@ -35,8 +37,7 @@ public class SolicitacaoDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Registro não encontrado!");
+            System.out.println(ex);
         }
 
     }
@@ -44,7 +45,7 @@ public class SolicitacaoDAO {
     public static void SolicitacaoCadastrar(String numeroprocesso, String sequenciaanual, String status, String motivo, String codigosolicitante, String codigoembarcacao) {
         Connection conexao = BancoDeDados.retornarConexao();
         try {
-            PreparedStatement inserir = conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement inserir = conexao.prepareStatement("insert into solicitacao(numero_processo, sequencia_anual,status, motivo, codigo_solicitante, codigo_embarcacao) values(?,?,?,?,?,?)");
             inserir.setString(1, numeroprocesso);
             inserir.setString(2, sequenciaanual);
             inserir.setString(3, status);
@@ -72,15 +73,34 @@ public class SolicitacaoDAO {
             System.out.println(ex);
         }
     }
-     public static void SolicitacaoExcluir(String codigo){
-         Connection conexao = BancoDeDados.retornarConexao();
-        try{         
-          PreparedStatement deletar = conexao.prepareStatement("delete from solicitacao where codigo_solicitacao = "+codigo);
-          deletar.executeUpdate();
-          deletar.execute();
-          deletar.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);           
+
+    public static void SolicitacaoExcluir(String codigo) {
+        Connection conexao = BancoDeDados.retornarConexao();
+        try {
+            PreparedStatement deletar = conexao.prepareStatement("delete from solicitacao where codigo_solicitacao = " + codigo);
+            deletar.executeUpdate();
+            deletar.execute();
+            deletar.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
-     }
+    }
+
+    public static void SolicitacaoPegarDados(String codigo, String numero, JTextField txtNumero, String squencia, JTextField txtSequencia, String status, JTextField txtStatus, String motivo, JTextArea txtmotivo/*, String nomesol, JTextField txtNome, String nomeemb, JTextField txtNome2*/) {
+        try {
+            PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitacao where codigo_solicitacao = "+codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                txtNumero.setText(resultado.getString("numero_processo"));
+                txtSequencia.setText(resultado.getString("sequencia"));
+                txtStatus.setText(resultado.getString("status"));
+                txtmotivo.setText(resultado.getString("motivo"));
+                //txtNome.setText(resultado.getString(""));
+                //txtNome2.setText(resultado.getString(""));
+            }
+            pesquisa.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 }

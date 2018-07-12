@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -23,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmbarcacaoDAO {
     
-    public static void PegarDadosEmbarcacao(String codigoembarcacao,String nomeembarcacao,JTextField txtNomeEmbarcacao,String tie,JTextField fmTie,String nomeproprietario,JTextField txtNomeProprietario,Integer numeropassageiros,JSpinner cgNumeroPassageiros,String tamanhoembarcacao,JTextField fmTamanhoEmbarcacao, Integer capacidadepassageiros, JSpinner cgCapacidadePassageiros,String local,JTextField txtLocal,String obs,JTextArea atObs,Integer modalidade,JComboBox cbModalidade){
+    public static void PegarDadosEmbarcacao(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade){
     try {
              Connection conexao = retornarConexao();
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = "+codigoembarcacao);
