@@ -34,7 +34,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="telaUsuario" min="-2" max="-2" attributes="0"/>
+              <Component id="TelaUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -42,14 +42,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="telaUsuario" min="-2" max="-2" attributes="0"/>
+              <Component id="TelaUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="telaUsuario">
+    <Container class="javax.swing.JTabbedPane" name="TelaUsuario">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -83,7 +83,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="79" max="32767" attributes="0"/>
-                              <Component id="lblPesquisa" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtPesquisa" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
@@ -99,7 +99,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
@@ -119,10 +119,9 @@
                 <Component class="javax.swing.JTable" name="tbUsuario">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
+                      <Table columnCount="2" rowCount="0">
                         <Column editable="false" title="Codigo" type="java.lang.Object"/>
                         <Column editable="true" title="Login" type="java.lang.Object"/>
-                        <Column editable="true" title="Nome" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -155,20 +154,23 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisaActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisaKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbAtributo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Codigo"/>
-                    <StringItem index="1" value="Login"/>
-                    <StringItem index="2" value="Nome"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="Login"/>
+                    <StringItem index="1" value="Codigo"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtributoItemStateChanged"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblPesquisa">
+            <Component class="javax.swing.JLabel" name="lblAtributo">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Digite o codigo:"/>
@@ -211,7 +213,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -237,10 +239,10 @@
                               <Component id="lblLogin" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtConfirmacao" pref="291" max="32767" attributes="0"/>
-                              <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtLogin" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtLogin" pref="291" max="32767" attributes="0"/>
+                              <Component id="txtSenha" max="32767" attributes="0"/>
+                              <Component id="txtConfirma" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -262,7 +264,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblConfirmacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtConfirmacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtConfirma" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -299,9 +301,9 @@
                     <Property name="text" type="java.lang.String" value="Confirmar:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtSenha">
+                <Component class="javax.swing.JPasswordField" name="txtSenha">
                 </Component>
-                <Component class="javax.swing.JPasswordField" name="txtConfirmacao">
+                <Component class="javax.swing.JPasswordField" name="txtConfirma">
                 </Component>
               </SubComponents>
             </Container>

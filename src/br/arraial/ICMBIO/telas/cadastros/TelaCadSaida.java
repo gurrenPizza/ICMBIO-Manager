@@ -493,12 +493,6 @@ public class TelaCadSaida extends JInternalFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        //REVISAR CODIGO (PARTE FOI COPIADO DE LOGIN)
-        //OK, OBRIGADO! REVISADO COM SUCESSO. - 25/06
-        
-        Solicitacao sol = new Solicitacao(txtPesquisa.getText());
-        SolicitacaoDAO.consultaSolicitacoes(sol.getNumeroprocesso(),tbSolicitacoes);
-        
         
     }//GEN-LAST:event_btPesquisarActionPerformed
 

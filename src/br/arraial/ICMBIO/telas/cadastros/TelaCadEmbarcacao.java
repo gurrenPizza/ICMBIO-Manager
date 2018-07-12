@@ -409,6 +409,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         txtLocal.setText("");
         txtObeservacao.setText("");
         cbModalidade.setSelectedIndex(0);
+        this.codigo = null;
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void fmTamanhoEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fmTamanhoEmbarcacaoActionPerformed
@@ -482,6 +483,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         cbModalidade.setSelectedIndex(0);
         EmbarcacaoDAO.EmbarcacaoConsulta(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
+        this.codigo = null;
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -493,23 +495,14 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         TelaEmbarcacao.setSelectedIndex(1);
         this.codigo = tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString();
         EmbarcacaoDAO.PegarDadosEmbarcacao(codigo,
-                txtNomeEmbarcacao.getText(),
                 txtNomeEmbarcacao,
-                fmTie.getText(),
                 fmTie,
-                txtNomeProprietario.getText(),
                 txtNomeProprietario,
-                Integer.parseInt(cgNumeroPassageiros.getValue().toString()),
                 cgNumeroPassageiros,
-                fmTamanhoEmbarcacao.getText(),
                 fmTamanhoEmbarcacao,
-                Integer.parseInt(cgCapacidadePassageiros.getValue().toString()),
                 cgCapacidadePassageiros,
-                txtLocal.getText(),
                 txtLocal,
-                txtObeservacao.getText(),
                 txtObeservacao,
-                cbModalidade.getSelectedIndex(),
                 cbModalidade);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbEmbarcacaoMouseClicked

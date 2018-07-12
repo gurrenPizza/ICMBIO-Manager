@@ -602,33 +602,19 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         TelaSolicitante.setSelectedIndex(1);
         this.codigo = tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString();
         SolicitanteDAO.SolicitantePegarDados(codigo,
-                txtBeneficiario.getText(),
                 txtBeneficiario,
-                txtBairro.getText(),
                 txtBairro,
-                txtCidade.getText(),
                 txtCidade,
-                txtCpfCnpj.getText(),
                 txtCpfCnpj,
-                txtEmail.getText(),
                 txtEmail,
-                txtEndereco.getText(),
                 txtEndereco,
-                txtNome.getText(),
                 txtNome,
-                txtNomeFantasia.getText(),
                 txtNomeFantasia,
-                txtOperadora.getText(),
                 txtOperadora,
-                txtRazaoSocial.getText(),
                 txtRazaoSocial,
-                txtResponsavel.getText(),
                 txtResponsavel,
-                fmCep.getText(),
                 fmCep,
-                fmTelefone.getText(),
-                fmTelefone,
-                codAtr);
+                fmTelefone);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbSolicitanteMouseClicked
 
