@@ -20,8 +20,8 @@ public class SolicitacaoDAO {
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
-                model.addRow(new Object[]{resultado.getString("numero_processo"), resultado.getString("motivo"),
-                    resultado.getString("status"), resultado.getString("sequencia_anual")
+                model.addRow(new Object[]{resultado.getString("codigo_solicitacao"), resultado.getString("numero_processo"),
+                    resultado.getString("status")//, resultado.getString("")
                 });
             }
 
@@ -73,13 +73,13 @@ public class SolicitacaoDAO {
         }
     }
 
-    public static void PegarDados(String codigo, String numero, JTextField txtNumero, String squencia, JTextField txtSequencia, String status, JTextField txtStatus, String motivo, JTextArea txtmotivo/*, String nomesol, JTextField txtNome, String nomeemb, JTextField txtNome2*/) {
+    public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo/*, String nomesol, JTextField txtNome, String nomeemb, JTextField txtNome2*/) {
         try {
             PreparedStatement pesquisa = BancoDeDados.retornarConexao().prepareStatement("select * from solicitacao where codigo_solicitacao = "+codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNumero.setText(resultado.getString("numero_processo"));
-                txtSequencia.setText(resultado.getString("sequencia"));
+                txtSequencia.setText(resultado.getString("sequencia_anual"));
                 txtStatus.setText(resultado.getString("status"));
                 txtmotivo.setText(resultado.getString("motivo"));
                 //txtNome.setText(resultado.getString(""));

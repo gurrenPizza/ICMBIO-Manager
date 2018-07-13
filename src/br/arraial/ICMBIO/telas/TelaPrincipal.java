@@ -333,9 +333,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imSobreActionPerformed
 
     private void imRelatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatarActionPerformed
-        TelaRelatarProblema telaproblema = new TelaRelatarProblema();
-        pnCentral.add(telaproblema);
-        telaproblema.show();
+        DialogoRelatarProblema a = new DialogoRelatarProblema(this, rootPaneCheckingEnabled);
+        a.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_imRelatarActionPerformed
 
     private void imCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCriarActionPerformed

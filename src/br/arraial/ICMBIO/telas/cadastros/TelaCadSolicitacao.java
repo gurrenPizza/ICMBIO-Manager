@@ -84,7 +84,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Codigo", "Numero Processo", "Solicitante", "Embarcação"
+                "Codigo", "Numero Processo", "Status", "Solicitante", "Embarcação"
             }
         ));
         tbSolicitacao.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -392,7 +392,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Numero do Processo":
                 lblPesquisa.setText("Digite o nome:");
-                codAtr = "Numero_processo";
+                codAtr = "numero_processo";
                 break;
             case "Codigo":
                 lblPesquisa.setText("Digite o Codigo da solicitação:");
@@ -410,14 +410,14 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAtributoItemStateChanged
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
         txtPesquisa.setText("");
         TelaSolicitacao.setSelectedIndex(1);
-        this.codigo = tbSolicitante.getValueAt(tbSolicitante.getSelectedRow(), 0).toString();
-        SolicitacaoDAO.PegarDados(codigo, txtNumeroProc.getText(), txtNumeroProc, txtSequencia.getText(), txtSequencia, txtStatus.getText(), txtStatus, txtMotivo.getText(), txtMotivo);
+        this.codigo = tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString();
+        SolicitacaoDAO.PegarDados(codigo, txtNumeroProc, txtSequencia, txtStatus, txtMotivo);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbSolicitacaoMouseClicked
 
@@ -443,7 +443,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         tbEmbarcacao.clearSelection();
         txtNomeSolicitante.setText("");
         tbSolicitante.clearSelection();
-        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
+        SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
         TelaSolicitacao.setSelectedIndex(0);
         this.codigo = null;
     }//GEN-LAST:event_btExcluirActionPerformed

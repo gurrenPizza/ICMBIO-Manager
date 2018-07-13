@@ -275,6 +275,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         txtLogin.setText("");
         txtConfirma.setText("");
         txtSenha.setText("");
+        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
         this.codigo = null;
         TelaUsuario.setSelectedIndex(0);
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -294,7 +295,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         }
         else{
             if(txtConfirma.getText().equals(txtSenha.getText())){
-                UsuarioDAO.Alterar(txtLogin.getText(), txtSenha.getText());
+                UsuarioDAO.Alterar(txtLogin.getText(), txtSenha.getText(), codigo);
             }
             else{
                 JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");

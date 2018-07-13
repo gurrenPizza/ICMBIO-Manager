@@ -40,9 +40,9 @@ public class UsuarioDAO {
         }
     }
 
-    public static void Alterar(String login, String senha) {
+    public static void Alterar(String login, String senha,String codigo) {
         try {
-            PreparedStatement alterar = retornarConexao().prepareStatement("update usuario set login=?, senha=?");
+            PreparedStatement alterar = retornarConexao().prepareStatement("update usuario set login=?, senha=? where codigo_usuario="+codigo);
             alterar.setString(1, login);
             alterar.setString(2, senha);
             alterar.executeUpdate();
