@@ -1,15 +1,10 @@
 package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.model.Usuario;
-import br.arraial.ICMBIO.DAO.BancoDeDados;
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import java.awt.Image;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,12 +13,15 @@ import javax.swing.JOptionPane;
  *
  * @author Aluno
  */
-public class Login extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
-    public Login() {
+    private final TelaPrincipal telaprincipal = new TelaPrincipal();
+
+    public TelaPrincipal getTelaprincipal() {
+        return telaprincipal;
+    }
+    
+    public TelaLogin() {
         initComponents();
     }
 
@@ -173,18 +171,17 @@ public class Login extends javax.swing.JFrame {
             consulta.setString(2, usuario.getSenha());
             ResultSet resultado = consulta.executeQuery();
             Boolean existe = resultado.next();
-
-            TelaPrincipal telaP = new TelaPrincipal();
             if (existe) {
-                telaP.setIconImage(new ImageIcon("icone.jpg").getImage());
-                telaP.setVisible(true);
-                telaP.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                telaprincipal.setIconImage(new ImageIcon("icone.jpg").getImage());
+                telaprincipal.setVisible(true);
+                telaprincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "usuario ou senha incorreto!");
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jbEntrarActionPerformed
 
@@ -209,20 +206,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }

@@ -6,6 +6,8 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
 import br.arraial.ICMBIO.DAO.EmbarcacaoDAO;
+import br.arraial.ICMBIO.DAO.ModalidadesDAO;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -65,6 +67,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         lbObs = new javax.swing.JLabel();
         lbModalidade = new javax.swing.JLabel();
         cbModalidade = new javax.swing.JComboBox();
+        ModalidadesDAO.PegarDados2(cbModalidade);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -79,10 +82,25 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Cadastro de Embarcação");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         TelaEmbarcacao.setBackground(new java.awt.Color(255, 255, 255));
         TelaEmbarcacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TelaEmbarcacao.setOpaque(true);
+        TelaEmbarcacao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TelaEmbarcacaoFocusGained(evt);
+            }
+        });
+        TelaEmbarcacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TelaEmbarcacaoMouseEntered(evt);
+            }
+        });
 
         pnConsulta.setBackground(java.awt.Color.white);
 
@@ -194,7 +212,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 .addComponent(btSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(btLimpar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -270,7 +288,20 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         lbModalidade.setText("Modalidade:");
 
-        cbModalidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mergulho", "Pesca Escportiva", "Passeio", "Taxi", "Brinquedo" }));
+        cbModalidade.setMaximumRowCount(0);
+        cbModalidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbModalidadeFocusLost(evt);
+            }
+        });
+        cbModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbModalidadeMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cbModalidadeMouseReleased(evt);
+            }
+        });
         cbModalidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbModalidadeActionPerformed(evt);
@@ -363,8 +394,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCadastroLayout.createSequentialGroup()
                 .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnCadastroLayout.setVerticalGroup(
@@ -434,7 +465,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbModalidadeActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-
         if (codigo == null) {
             EmbarcacaoDAO.Cadastrar(txtNomeEmbarcacao.getText(),
                     fmTie.getText(),
@@ -532,7 +562,23 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
+    private void cbModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbModalidadeMouseClicked
+    }//GEN-LAST:event_cbModalidadeMouseClicked
+    private void TelaEmbarcacaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelaEmbarcacaoFocusGained
+    }//GEN-LAST:event_TelaEmbarcacaoFocusGained
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+    }//GEN-LAST:event_formMouseEntered
+    private void cbModalidadeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbModalidadeMouseReleased
+    }//GEN-LAST:event_cbModalidadeMouseReleased
+    private void TelaEmbarcacaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TelaEmbarcacaoMouseEntered
+    }//GEN-LAST:event_TelaEmbarcacaoMouseEntered
+    private void cbModalidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbModalidadeFocusLost
+    }//GEN-LAST:event_cbModalidadeFocusLost
 
+    public JComboBox getCbModalidade() {
+        return cbModalidade;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaEmbarcacao;
     private javax.swing.JButton btExcluir;

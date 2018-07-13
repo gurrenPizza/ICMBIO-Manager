@@ -106,7 +106,7 @@ public class EmbarcacaoDAO {
             model.setNumRows(0);
 
             while (resultado.next()) {
-                model.addRow(new String[]{resultado.getString("codigo_embarcacao"), resultado.getString("nome_embarcacao"), resultado.getString("TIE"), resultado.getString("codigo_modalidade")});
+                model.addRow(new String[]{resultado.getString("codigo_embarcacao"), resultado.getString("nome_embarcacao"), resultado.getString("TIE"), ModalidadesDAO.Buscar("nome_modalidade", resultado.getString("codigo_modalidade"))});
             }
 
             resultado.close();

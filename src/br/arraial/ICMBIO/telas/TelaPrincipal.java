@@ -4,6 +4,7 @@ import br.arraial.ICMBIO.telas.consultas.*;
 import br.arraial.ICMBIO.telas.cadastros.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 
 /**
@@ -12,9 +13,21 @@ import javax.swing.SwingUtilities;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    private final TelaCadUsuario telausuario = new TelaCadUsuario();
+    private final TelaCadSaida telasaida = new TelaCadSaida();
+    private final TelaCadModalidade telamodalidade = new TelaCadModalidade();
+    private final TelaCadEmbarcacao telaembarcacao = new TelaCadEmbarcacao();
+    private final TelaCadSolicitacao telacadsol = new TelaCadSolicitacao();
+    private final TelaConSolicitacao telaconsol = new TelaConSolicitacao();
+    private final TelaRestaurar telarestaurar = new TelaRestaurar();
+    private final TelaCadSolicitante telasolicitante = new TelaCadSolicitante();
+    private final TelaAjuda telajuda = new TelaAjuda();
+    private final TelaSobre telasobre = new TelaSobre();
+
+    public TelaCadEmbarcacao getTelaembarcacao() {
+        return telaembarcacao;
+    }
+
     public TelaPrincipal() {
         initComponents();
         SwingUtilities.invokeLater(new Runnable() {
@@ -280,55 +293,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imConEmbarcacaoActionPerformed
 
     private void imCadSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSolicitanteActionPerformed
-        TelaCadSolicitante telasolicitante = new TelaCadSolicitante();
         pnCentral.add(telasolicitante);
         telasolicitante.show();
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
 
     private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
-        TelaCadModalidade telamodalidade = new TelaCadModalidade();
         pnCentral.add(telamodalidade);
         telamodalidade.show();
     }//GEN-LAST:event_imCadModalidadeActionPerformed
 
     private void imCadEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadEmbarcacaoActionPerformed
-        TelaCadEmbarcacao telaembarcacao = new TelaCadEmbarcacao();
         pnCentral.add(telaembarcacao);
         telaembarcacao.show();
     }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
 
     private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
-        TelaCadUsuario telausuario = new TelaCadUsuario();
         pnCentral.add(telausuario);
         telausuario.show();
     }//GEN-LAST:event_imCadUsuarioActionPerformed
 
     private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
-        TelaCadSaida telasaida = new TelaCadSaida();
         pnCentral.add(telasaida);
         telasaida.show();
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
     private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
-        TelaCadSolicitacao telacadsol = new TelaCadSolicitacao();
         pnCentral.add(telacadsol);
         telacadsol.show();
     }//GEN-LAST:event_imSoliCadastroActionPerformed
 
     private void imSoliConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliConsultaActionPerformed
-        TelaConSolicitacao telaconsol = new TelaConSolicitacao();
         pnCentral.add(telaconsol);
         telaconsol.show();
     }//GEN-LAST:event_imSoliConsultaActionPerformed
 
     private void imAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAjudaActionPerformed
-        TelaAjuda telajuda = new TelaAjuda();
         pnCentral.add(telajuda);
         telajuda.show();
     }//GEN-LAST:event_imAjudaActionPerformed
 
     private void imSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSobreActionPerformed
-        TelaSobre telasobre = new TelaSobre();
         pnCentral.add(telasobre);
         telasobre.show();
     }//GEN-LAST:event_imSobreActionPerformed
@@ -339,11 +343,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imRelatarActionPerformed
 
     private void imCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCriarActionPerformed
-        
+
     }//GEN-LAST:event_imCriarActionPerformed
 
     private void imRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRestaurarActionPerformed
-        TelaRestaurar telarestaurar = new TelaRestaurar();
         pnCentral.add(telarestaurar);
         telarestaurar.show();
     }//GEN-LAST:event_imRestaurarActionPerformed

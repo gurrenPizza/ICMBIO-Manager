@@ -1,7 +1,7 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
 import br.arraial.ICMBIO.DAO.ModalidadesDAO;
-import br.arraial.ICMBIO.model.Modalidade;
+import br.arraial.ICMBIO.telas.ICMBio;
 /**
  *
  * @author Euller Felipe
@@ -230,16 +230,16 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Modalidade mod = new Modalidade(txtModalidade.getText());
-        ModalidadesDAO.Cadastrar(mod.getMod());
         try {
             if (codigo == null) {
                 ModalidadesDAO.Cadastrar(txtModalidade.getText());
             } else {
                 ModalidadesDAO.Alterar(txtModalidade.getText(), codigo);
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
+        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelaembarcacao().getCbModalidade());
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo = null;
@@ -279,7 +279,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     private void tbModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbModalidadeMouseClicked
         txtPesquisa.setText("");
         this.codigo = tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 0).toString();
-        ModalidadesDAO.PegarDados(codigo, txtModalidade);
+        ModalidadesDAO.PegarDados1(codigo, txtModalidade);
         txtPesquisa.setText("");
     }//GEN-LAST:event_tbModalidadeMouseClicked
 

@@ -1,7 +1,7 @@
 package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import br.arraial.ICMBIO.telas.Login;
+import br.arraial.ICMBIO.telas.TelaLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +39,7 @@ public class SaidaDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Registro não encontrado!");
 
         }
