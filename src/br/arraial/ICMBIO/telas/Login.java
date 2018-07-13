@@ -2,6 +2,8 @@ package br.arraial.ICMBIO.telas;
 
 import br.arraial.ICMBIO.model.Usuario;
 import br.arraial.ICMBIO.DAO.BancoDeDados;
+import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -166,17 +168,13 @@ public class Login extends javax.swing.JFrame {
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         try {
             Usuario usuario = new Usuario(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
-            //BancoDeDados con = new BancoDeDados();
-            Connection conexao = BancoDeDados.retornarConexao();
-
-            PreparedStatement consulta = conexao.prepareStatement("Select * from usuario where login=? and senha=?");
+            PreparedStatement consulta = retornarConexao().prepareStatement("Select * from usuario where login=? and senha=?");
             consulta.setString(1, usuario.getLogin());
             consulta.setString(2, usuario.getSenha());
             ResultSet resultado = consulta.executeQuery();
             Boolean existe = resultado.next();
 
             TelaPrincipal telaP = new TelaPrincipal();
-
             if (existe) {
                 telaP.setIconImage(new ImageIcon("icone.jpg").getImage());
                 telaP.setVisible(true);

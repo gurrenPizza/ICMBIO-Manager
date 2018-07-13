@@ -60,6 +60,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         btLimpar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Cadastro de Solicitação");
 
         TelaSolicitacao.setBackground(new java.awt.Color(255, 255, 255));
         TelaSolicitacao.setOpaque(true);

@@ -16,12 +16,12 @@ public class ICMBio {
             for (i = 0; i < 101; i++) {
                 sleep(5);
                 janela.barra.setValue(i);
-                janela.porcentagem.setText(Integer.toString(i) + "%");
+                janela.porcentagem.setText(i+ "%");
 
             }
             Login login = new Login();
             login.setVisible(true);
-            janela.setVisible(false);
+            janela.dispose();
 
         } catch (InterruptedException ex) {
             Logger.getLogger(ICMBio.class.getName()).log(Level.SEVERE, null, ex);

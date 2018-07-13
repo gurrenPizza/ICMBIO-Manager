@@ -41,6 +41,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setClosable(true);
+        setTitle("Cadastro de Usuario");
 
         TelaUsuario.setBackground(new java.awt.Color(255, 255, 255));
         TelaUsuario.setOpaque(true);

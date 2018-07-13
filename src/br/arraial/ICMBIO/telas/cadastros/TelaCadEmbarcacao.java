@@ -78,7 +78,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         );
 
         setClosable(true);
-        setTitle("Embarcação");
+        setTitle("Cadastro de Embarcação");
 
         TelaEmbarcacao.setBackground(new java.awt.Color(255, 255, 255));
         TelaEmbarcacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -154,8 +154,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     .addComponent(lblAtributo)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TelaEmbarcacao.addTab("Consultar", pnConsulta);
@@ -232,13 +232,13 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         lbNPassageiros.setText("Número de passageiros:");
 
-        cgNumeroPassageiros.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        cgNumeroPassageiros.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         lbTEmbarcacao.setText("Tamanho da embarcação: ");
 
         lbCPassageiros.setText("Capacidade de passageiros:");
 
-        cgCapacidadePassageiros.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        cgCapacidadePassageiros.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         lbLocal.setText("Local de atuação:");
 
@@ -371,7 +371,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCadastroLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -388,7 +388,9 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaEmbarcacao)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(TelaEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
