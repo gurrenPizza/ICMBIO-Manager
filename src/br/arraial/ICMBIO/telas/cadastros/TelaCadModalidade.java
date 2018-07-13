@@ -50,6 +50,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
         btSalvar.setBackground(java.awt.Color.white);
         btSalvar.setText("Salvar");
+        btSalvar.setOpaque(false);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -247,6 +248,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         ModalidadesDAO.Excluir(codigo);
+        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelaembarcacao().getCbModalidade());
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo=null;

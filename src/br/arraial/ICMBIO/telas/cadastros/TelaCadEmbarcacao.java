@@ -288,7 +288,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         lbModalidade.setText("Modalidade:");
 
-        cbModalidade.setMaximumRowCount(0);
         cbModalidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbModalidadeFocusLost(evt);

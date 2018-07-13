@@ -198,6 +198,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         });
 
         btSalvar.setText("Salvar");
+        btSalvar.setOpaque(false);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);

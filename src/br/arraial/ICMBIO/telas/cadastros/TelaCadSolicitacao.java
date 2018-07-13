@@ -285,6 +285,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         btSalvar.setBackground(new java.awt.Color(255, 255, 255));
         btSalvar.setText("Salvar");
+        btSalvar.setOpaque(false);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -293,6 +294,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         btExcluir.setBackground(new java.awt.Color(255, 255, 255));
         btExcluir.setText("Excluir");
+        btExcluir.setOpaque(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -301,6 +303,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         btLimpar.setBackground(new java.awt.Color(255, 255, 255));
         btLimpar.setText("Limpar");
+        btLimpar.setOpaque(false);
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);
