@@ -9,12 +9,12 @@ package br.arraial.ICMBIO.telas;
  *
  * @author Aluno
  */
-public class ConsultaSolicitacao extends javax.swing.JInternalFrame {
+public class TelaAjuda extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Consulta
+     * Creates new form TelaAjuda
      */
-    public ConsultaSolicitacao() {
+    public TelaAjuda() {
         initComponents();
     }
 
