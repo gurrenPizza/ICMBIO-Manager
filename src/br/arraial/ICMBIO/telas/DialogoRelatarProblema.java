@@ -5,7 +5,6 @@
  */
 package br.arraial.ICMBIO.telas;
 
-import java.text.SimpleDateFormat;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -22,8 +21,8 @@ import javax.mail.internet.MimeMessage;
 public class DialogoRelatarProblema extends javax.swing.JDialog {
 
     
-    final String username = "aaaaaa@gmail.com";
-    final String password = "senhaaaaaa";
+    final String username = "br.arraial.icmbio.problema@gmail.com";
+    final String password = "abcd,1234";
     
     public DialogoRelatarProblema(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
