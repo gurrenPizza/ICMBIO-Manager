@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.arraial.ICMBIO.telas;
+package br.arraial.ICMBIO.telas.consultas;
 
+import br.arraial.ICMBIO.telas.cadastros.TelaCadSolicitacao;
 import br.arraial.ICMBIO.DAO.BancoDeDados;
 import br.arraial.ICMBIO.model.Solicitante;
 import java.sql.Connection;
@@ -19,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author abner_s88su1i
  */
-public class TelaConsulta extends javax.swing.JInternalFrame {
+public class TelaConSolicitacao extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaConsulta
      */
-    public TelaConsulta() {
+    public TelaConSolicitacao() {
         initComponents();
     }
 
@@ -53,6 +54,8 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
         lblCodSolConsul = new javax.swing.JLabel();
         lblCodEmbConsul = new javax.swing.JLabel();
         btConsultar = new javax.swing.JButton();
+        btLimparConsul = new javax.swing.JButton();
+        btVoltarConsul = new javax.swing.JButton();
 
         jLabel1.setText("Código da solicitação:");
 
@@ -87,6 +90,20 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
             }
         });
 
+        btLimparConsul.setText("Limpar");
+        btLimparConsul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparConsulActionPerformed(evt);
+            }
+        });
+
+        btVoltarConsul.setText("Menu Principal");
+        btVoltarConsul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarConsulActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,21 +111,6 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCodSoliConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btConsultar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumProcConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -135,7 +137,27 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMotivoConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodSoliConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btConsultar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNumProcConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btLimparConsul)
+                                .addGap(166, 166, 166)
+                                .addComponent(btVoltarConsul)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +190,11 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel7)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btLimparConsul)
+                    .addComponent(btVoltarConsul))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,13 +220,31 @@ public class TelaConsulta extends javax.swing.JInternalFrame {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(TelaSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaCadSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btConsultarActionPerformed
+
+    private void btLimparConsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparConsulActionPerformed
+       txtCodSoliConsulta.setText("");
+       lblNumProcConsulta.setText("");
+       lblSequeAnualConsul.setText("");
+       lblStatusConsul.setText("");
+       lblCodSolConsul.setText("");
+       lblCodEmbConsul.setText("");
+       txtMotivoConsul.setText("");
+       
+    }//GEN-LAST:event_btLimparConsulActionPerformed
+
+    private void btVoltarConsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarConsulActionPerformed
+      this.dispose();
+
+    }//GEN-LAST:event_btVoltarConsulActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
+    private javax.swing.JButton btLimparConsul;
+    private javax.swing.JButton btVoltarConsul;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

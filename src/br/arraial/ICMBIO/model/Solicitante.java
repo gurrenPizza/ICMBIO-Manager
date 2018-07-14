@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.model;
-
-import java.sql.PreparedStatement;
 
 /**
  *
  * @author Aluno
  */
 public class Solicitante {
+
     private String nome;
     private String beneficiario;
     private String CPFCNPJ;
@@ -41,9 +35,10 @@ public class Solicitante {
         this.responsavel = responsavel;
         this.operadora = operadora;
     }
- public Solicitante (){
- }
-    
+
+    public Solicitante() {
+    }
+
     public String getNome() {
         return nome;
     }
@@ -147,15 +142,4 @@ public class Solicitante {
     public void setOperadora(String operadora) {
         this.operadora = operadora;
     }
-    
-
-
-    public PreparedStatement prepareStatement(String insert_into_modalidadenome_modalidade_val) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setString(int i, String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

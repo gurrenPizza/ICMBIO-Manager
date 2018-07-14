@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.arraial.ICMBIO.telas;
+package br.arraial.ICMBIO.telas.consultas;
 
 /**
  *
- * @author Aluno
+ * @author Gabriel
  */
-public class ConsultaSolicitacao extends javax.swing.JInternalFrame {
+public class TelaConUsuario extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Consulta
+     * Creates new form TelaConUsuario
      */
-    public ConsultaSolicitacao() {
+    public TelaConUsuario() {
         initComponents();
     }
 
