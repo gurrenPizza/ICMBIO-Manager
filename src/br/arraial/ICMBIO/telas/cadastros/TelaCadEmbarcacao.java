@@ -202,6 +202,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -510,6 +511,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -526,6 +528,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -563,6 +566,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 codAtr = "codigo_modalidade";
                 break;
         }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbEmbarcacaoMouseClicked
 
     private void cbAtriutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtriutoItemStateChanged

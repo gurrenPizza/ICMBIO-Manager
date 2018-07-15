@@ -57,6 +57,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -244,6 +245,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -252,6 +254,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo=null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -289,6 +292,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
             txtPesquisa.setText("Digite a modalidade");
             codAtr = "codigo_modalidade";
         }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbModalidadeMouseClicked
 
     private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed

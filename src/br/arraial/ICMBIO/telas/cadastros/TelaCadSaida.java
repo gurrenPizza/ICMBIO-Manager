@@ -1,11 +1,7 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
-import br.arraial.ICMBIO.DAO.*;
-import br.arraial.ICMBIO.model.*;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
+
 
 /**
  * @version 6.0 - 11/07
@@ -328,7 +324,7 @@ public class TelaCadSaida extends JInternalFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void txtPesquisaMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaMesActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtPesquisaMesActionPerformed
 
     private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
@@ -354,28 +350,24 @@ public class TelaCadSaida extends JInternalFrame {
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         switch (cbAtributo.getSelectedIndex()) {
             case 0:
-                lbPesquisaSaidas.setText("Digite o código da saída:");
+                lbPesquisaSaidas.setText("Digite o código da saída");
                 break;
             case 1:
-                lbPesquisaSaidas.setText("Digite o código da solicitação:");
+                lbPesquisaSaidas.setText("Digite o código da solicitação");
                 break;
             case 2:
-                lbPesquisaSaidas.setText("Digite o número de saídas:");
+                lbPesquisaSaidas.setText("Digite o número de saídas");
                 break;
             case 3:
-                lbPesquisaSaidas.setText("Digite o número de visitantes:");
+                lbPesquisaSaidas.setText("Digite o número de visitantes");
                 break;
             case 4:
-                lbPesquisaSaidas.setText("Digite o número de ano:");
+                lbPesquisaSaidas.setText("Digite o número de ano");
                 break;
             case 5:
-                lbPesquisaSaidas.setText("Digite o número de mês:");
+                lbPesquisaSaidas.setText("Digite o número de mês");
                 break;
-
-            default:
-                throw new AssertionError();
         }
-
     }//GEN-LAST:event_cbAtributoItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -406,6 +406,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -558,6 +559,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         SolicitanteDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
         this.codigo = null;
+        btnExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -610,7 +612,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 txtResponsavel,
                 fmCep,
                 fmTelefone);
-                switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Nome":
                 txtPesquisa.setText("Digite o nome");
                 codAtr = "nome";
@@ -632,6 +634,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 codAtr = "cidade";
                 break;
         }
+        btnExcluir.setEnabled(true);
     }//GEN-LAST:event_tbSolicitanteMouseClicked
 
     private void TelaSolicitanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TelaSolicitanteMouseClicked
@@ -655,6 +658,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
         txtOperadora.setText("");
         SolicitanteDAO.Consultar(txtPesquisa.getText(), tbSolicitante, codAtr);
         TelaSolicitante.setSelectedIndex(0);
+        btnExcluir.setEnabled(false);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseReleased
@@ -707,6 +711,7 @@ public class TelaCadSolicitante extends javax.swing.JInternalFrame {
                 codAtr = "cidade";
                 break;
         }
+        btnExcluir.setEnabled(true);
     }//GEN-LAST:event_cbAtributoItemStateChanged
 
     private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed

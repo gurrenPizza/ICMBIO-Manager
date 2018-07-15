@@ -279,6 +279,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
         this.codigo = null;
         TelaUsuario.setSelectedIndex(0);
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -305,6 +306,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
         TelaUsuario.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -329,6 +331,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             txtPesquisa.setText("Digite o codigo");
             codAtr = "login";
         }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbUsuarioMouseClicked
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged

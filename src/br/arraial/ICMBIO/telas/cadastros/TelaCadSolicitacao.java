@@ -292,6 +292,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         btExcluir.setBackground(new java.awt.Color(255, 255, 255));
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
         btExcluir.setOpaque(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,11 +314,11 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(btSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btLimpar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -437,6 +438,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 codAtr = "codigo_embarcacao";
                 break;
         }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbSolicitacaoMouseClicked
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -464,6 +466,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
         TelaSolicitacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -475,6 +478,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         SolicitacaoDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
         TelaSolicitacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
