@@ -24,7 +24,6 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         tbUsuario = new javax.swing.JTable();
         txtPesquisa = new javax.swing.JTextField();
         cbAtributo = new javax.swing.JComboBox();
-        lblAtributo = new javax.swing.JLabel();
         pnCadastrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtLogin = new javax.swing.JTextField();
@@ -75,6 +74,12 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         }
 
         txtPesquisa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPesquisa.setText("Digite o login");
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPesquisaMousePressed(evt);
+            }
+        });
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
@@ -93,9 +98,6 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        lblAtributo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAtributo.setText("Digite o codigo:");
-
         javax.swing.GroupLayout pnConsultarLayout = new javax.swing.GroupLayout(pnConsultar);
         pnConsultar.setLayout(pnConsultarLayout);
         pnConsultarLayout.setHorizontalGroup(
@@ -103,13 +105,11 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             .addGroup(pnConsultarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                     .addGroup(pnConsultarLayout.createSequentialGroup()
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(lblAtributo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPesquisa)))
                 .addContainerGap())
         );
         pnConsultarLayout.setVerticalGroup(
@@ -118,11 +118,10 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAtributo))
+                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         TelaUsuario.addTab("Consultar", pnConsultar);
@@ -320,19 +319,24 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void tbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioMouseClicked
-        txtPesquisa.setText("");
         TelaUsuario.setSelectedIndex(1);
         this.codigo = tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString();
         UsuarioDAO.PegarDados(codigo, txtLogin, txtSenha, txtConfirma);
-        txtPesquisa.setText("");
+        if (cbAtributo.getSelectedItem().equals("Codigo")) {
+            txtPesquisa.setText("Digite o login");
+            codAtr = "codigo_usuario";
+        } else {
+            txtPesquisa.setText("Digite o codigo");
+            codAtr = "login";
+        }
     }//GEN-LAST:event_tbUsuarioMouseClicked
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         if (cbAtributo.getSelectedItem().equals("Codigo")) {
-            lblAtributo.setText("Digite o login:");
+            txtPesquisa.setText("Digite o login");
             codAtr = "codigo_usuario";
         } else {
-            lblAtributo.setText("Digite o codigo:");
+            txtPesquisa.setText("Digite o codigo");
             codAtr = "login";
         }
     }//GEN-LAST:event_cbAtributoItemStateChanged
@@ -340,6 +344,10 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
     }//GEN-LAST:event_txtPesquisaKeyReleased
+
+    private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_txtPesquisaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -353,7 +361,6 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblAtributo;
     private javax.swing.JLabel lblConfirmacao;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;

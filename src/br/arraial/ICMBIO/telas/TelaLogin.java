@@ -179,7 +179,8 @@ public class TelaLogin extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "usuario ou senha incorreto!");
             }
-
+            consulta.close();
+            resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }

@@ -161,12 +161,10 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtModalidade" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cbAtributo" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblAtributo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtPesquisa" min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="txtPesquisa" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="411" max="-2" attributes="0"/>
                       </Group>
@@ -181,7 +179,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
@@ -256,13 +253,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="lblAtributo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Digite a modalidade:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtPesquisa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Digite a modalidade"/>
+              </Properties>
               <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMousePressed"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisaActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisaKeyReleased"/>
               </Events>

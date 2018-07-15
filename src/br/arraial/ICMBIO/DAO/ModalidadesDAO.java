@@ -25,7 +25,8 @@ public class ModalidadesDAO {
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_modalidade"), resultado.getString("nome_modalidade"),});
             }
-
+            consulta.close();
+            resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -84,6 +85,7 @@ public class ModalidadesDAO {
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
                 pesquisa.close();
+                resultado.close();
                 return retorno;
             } else {
                 pesquisa.close();
@@ -112,6 +114,8 @@ public class ModalidadesDAO {
             DefaultComboBoxModel model = new DefaultComboBoxModel(lista.toArray());
             cbModalidade.setMaximumRowCount(cont);
             cbModalidade.setModel(model);
+            consulta.close();
+            resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }

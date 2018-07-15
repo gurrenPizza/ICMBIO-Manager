@@ -32,7 +32,6 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         cbAtributo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbSolicitacao = new javax.swing.JTable();
-        lblPesquisa = new javax.swing.JLabel();
         pnCadastro = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -67,6 +66,12 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         pnConsulta.setBackground(java.awt.Color.white);
 
+        txtPesquisa.setText("Digite o numero do processo");
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPesquisaMousePressed(evt);
+            }
+        });
         txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyReleased(evt);
@@ -95,9 +100,6 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbSolicitacao);
 
-        lblPesquisa.setBackground(java.awt.Color.white);
-        lblPesquisa.setText("Digite o numero do processo:");
-
         javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
         pnConsulta.setLayout(pnConsultaLayout);
         pnConsultaLayout.setHorizontalGroup(
@@ -108,10 +110,8 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPesquisa)))
                 .addContainerGap())
         );
         pnConsultaLayout.setVerticalGroup(
@@ -120,9 +120,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPesquisa)))
+                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
@@ -395,19 +393,19 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Numero do Processo":
-                lblPesquisa.setText("Digite o nome:");
+                txtPesquisa.setText("Digite o nome");
                 codAtr = "numero_processo";
                 break;
             case "Codigo":
-                lblPesquisa.setText("Digite o Codigo da solicitação:");
+                txtPesquisa.setText("Digite o Codigo da solicitação");
                 codAtr = "codigo_solicitacao";
                 break;
             case "Solicitante":
-                lblPesquisa.setText("Digite o nome do solicitante:");
+                txtPesquisa.setText("Digite o nome do solicitante");
                 codAtr = "codigo_solicitante";
                 break;
             case "Embarcação":
-                lblPesquisa.setText("Digite o nome da embarcação");
+                txtPesquisa.setText("Digite o nome da embarcação");
                 codAtr = "codigo_embarcacao";
                 break;
         }
@@ -418,11 +416,27 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
-        txtPesquisa.setText("");
         TelaSolicitacao.setSelectedIndex(1);
         this.codigo = tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString();
         SolicitacaoDAO.PegarDados(codigo, txtNumeroProc, txtSequencia, txtStatus, txtMotivo);
-        txtPesquisa.setText("");
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
+            case "Numero do Processo":
+                txtPesquisa.setText("Digite o nome");
+                codAtr = "numero_processo";
+                break;
+            case "Codigo":
+                txtPesquisa.setText("Digite o Codigo da solicitação");
+                codAtr = "codigo_solicitacao";
+                break;
+            case "Solicitante":
+                txtPesquisa.setText("Digite o nome do solicitante");
+                codAtr = "codigo_solicitante";
+                break;
+            case "Embarcação":
+                txtPesquisa.setText("Digite o nome da embarcação");
+                codAtr = "codigo_embarcacao";
+                break;
+        }
     }//GEN-LAST:event_tbSolicitacaoMouseClicked
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -463,6 +477,10 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
         this.codigo = null;
     }//GEN-LAST:event_btSalvarActionPerformed
 
+    private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_txtPesquisaMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaSolicitacao;
     private javax.swing.JButton btExcluir;
@@ -483,7 +501,6 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNome2;
-    private javax.swing.JLabel lblPesquisa;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbEmbarcacao;
