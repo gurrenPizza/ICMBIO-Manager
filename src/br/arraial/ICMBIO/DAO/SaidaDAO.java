@@ -1,13 +1,10 @@
 package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import br.arraial.ICMBIO.telas.TelaLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -19,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * Viana, Laura Fidalgo e Phillipe Loriot de Rouvray
  */
 public class SaidaDAO {
-  
+
     static Connection conexao = retornarConexao();
 
     public static void insereSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
@@ -31,7 +28,7 @@ public class SaidaDAO {
             inserir.setString(4, ano);
             inserir.setInt(5, Integer.parseInt(codigosolicitacao));
             inserir.execute();
-
+            inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -46,9 +43,9 @@ public class SaidaDAO {
             alterar.setString(3, mes);
             alterar.setString(4, ano);
             alterar.execute();
+            alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
 
@@ -56,15 +53,16 @@ public class SaidaDAO {
         try {
             PreparedStatement excluir = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
             excluir.execute();
+            excluir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
+
     public static void Consultar(String a, JTable b, String atributo) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
-            pesquisa.setString(1, a+"%");
+            pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
@@ -77,6 +75,7 @@ public class SaidaDAO {
             System.out.println(ex);
         }
     }
+
     public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select * from saida where codigo_saida = " + codigo);

@@ -113,4 +113,22 @@ public class SolicitanteDAO {
             System.out.println(ex);
         }
     }
+    public static String Buscar(String atributo, String codigo) {
+        try {
+            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitante where codigo_solicitante = " + codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                String retorno = resultado.getString(atributo);
+                pesquisa.close();
+                resultado.close();
+                return retorno;
+            } else {
+                pesquisa.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
 }

@@ -24,8 +24,7 @@ public class SolicitacaoDAO {
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_solicitacao"), resultado.getString("numero_processo"),
-                    resultado.getString("status")//, resultado.getString("")
-                });
+                    resultado.getString("status"), SolicitanteDAO.Buscar("nome", resultado.getString("codigo_solicitante")),EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")),});
             }
             consulta.close();
             resultado.close();
@@ -77,7 +76,7 @@ public class SolicitacaoDAO {
         }
     }
 
-    public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo/*, String nomesol, JTextField txtNome, String nomeemb, JTextField txtNome2*/) {
+    public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo, JTextField txtNome, JTextField txtNome2) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitacao where codigo_solicitacao = " + codigo);
             ResultSet resultado = pesquisa.executeQuery();
@@ -86,8 +85,8 @@ public class SolicitacaoDAO {
                 txtSequencia.setText(resultado.getString("sequencia_anual"));
                 txtStatus.setText(resultado.getString("status"));
                 txtmotivo.setText(resultado.getString("motivo"));
-                //txtNome.setText(resultado.getString(""));
-                //txtNome2.setText(resultado.getString(""));
+                txtNome.setText(SolicitanteDAO.Buscar("nome", resultado.getString("codigo_solicitante")));
+                txtNome2.setText(EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")));
             }
             resultado.close();
             pesquisa.close();
@@ -95,6 +94,7 @@ public class SolicitacaoDAO {
             System.out.println(ex);
         }
     }
+
     public static String Buscar(String atributo, String codigo) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitacao where codigo_solicitacao = " + codigo);

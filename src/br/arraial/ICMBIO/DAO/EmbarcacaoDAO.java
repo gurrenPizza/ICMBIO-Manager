@@ -20,7 +20,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class EmbarcacaoDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
+
+    ;
 
     public static void PegarDados(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade) {
         try {
@@ -106,6 +108,25 @@ public class EmbarcacaoDAO {
             consultar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+
+    public static String Buscar(String atributo, String codigo) {
+        try {
+            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from embarcacao where codigo_embarcacao = " + codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                String retorno = resultado.getString(atributo);
+                pesquisa.close();
+                resultado.close();
+                return retorno;
+            } else {
+                pesquisa.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
 }
