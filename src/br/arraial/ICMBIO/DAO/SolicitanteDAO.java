@@ -11,11 +11,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
 
-    static Connection conexao;
+    static Connection conexao = retornarConexao();;
 
     public static void PegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
-            conexao = retornarConexao();
             PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
@@ -35,7 +34,6 @@ public class SolicitanteDAO {
             }
             pesquisa.close();
             resultado.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -44,7 +42,6 @@ public class SolicitanteDAO {
 
     public static void Cadastrar(String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
-            conexao = retornarConexao();
             PreparedStatement inserir = conexao.prepareStatement("insert into solicitante(nome,beneficiario,CPF_CNPJ,telefone,endereco,bairro,cidade,cep,email,razao_social,nome_fantasia,responsavel,operadora) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             inserir.setString(1, Nome);
             inserir.setString(2, Beneficiario);
@@ -61,7 +58,6 @@ public class SolicitanteDAO {
             inserir.setString(13, Operadora);
             inserir.executeUpdate();
             inserir.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -70,7 +66,6 @@ public class SolicitanteDAO {
 
     public static void Alterar(String codigo, String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
-            conexao = retornarConexao();
             PreparedStatement alterar = conexao.prepareStatement("UPDATE solicitante SET nome = ?, beneficiario = ?, CPF_CNPJ = ?, telefone = ?, endereco = ?, bairro = ?, cidade = ?, cep = ?, email = ?, razao_social = ?, nome_fantasia = ?, responsavel = ?, operadora = ? WHERE codigo_solicitante = " + codigo);
             alterar.setString(1, Nome);
             alterar.setString(2, Beneficiario);
@@ -87,7 +82,6 @@ public class SolicitanteDAO {
             alterar.setString(13, Operadora);
             alterar.executeUpdate();
             alterar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -96,7 +90,6 @@ public class SolicitanteDAO {
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            conexao = retornarConexao();
             PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
             pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
@@ -107,7 +100,6 @@ public class SolicitanteDAO {
             }
             resultado.close();
             pesquisa.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -115,10 +107,8 @@ public class SolicitanteDAO {
 
     public static void Excluir(String codigo) {
         try {
-            conexao = retornarConexao();
             PreparedStatement deletar = conexao.prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
             deletar.executeUpdate();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }

@@ -20,11 +20,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class EmbarcacaoDAO {
 
-    static Connection conexao;
+    static Connection conexao = retornarConexao();;
 
     public static void PegarDados(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade) {
         try {
-            conexao = retornarConexao();
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = " + codigoembarcacao);
             ResultSet resultado = consultar.executeQuery();
             if (resultado != null && resultado.next()) {
@@ -40,7 +39,6 @@ public class EmbarcacaoDAO {
             }
             resultado.close();
             consultar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -48,7 +46,6 @@ public class EmbarcacaoDAO {
 
     public static void Alterar(String codigoembarcacao, String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
         try {
-            conexao = retornarConexao();
             PreparedStatement alterar = conexao.prepareStatement("update embarcacao set nome_embarcacao=?, tie=?, nome_proprietario=?, numero_passageiros=?, tamanho_embarcacao=?, capacidade_passageiros=?, local=?, obs=?, codigo_modalidade=? where codigo_embarcacao = " + codigoembarcacao);
             alterar.setString(1, nome);
             alterar.setString(2, tie);
@@ -61,7 +58,6 @@ public class EmbarcacaoDAO {
             alterar.setInt(9, modalidade);
             alterar.executeUpdate();
             alterar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -69,7 +65,6 @@ public class EmbarcacaoDAO {
 
     public static void Cadastrar(String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
         try {
-            conexao = retornarConexao();
             PreparedStatement inserir = conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
             inserir.setString(1, nome);
             inserir.setString(2, tie);
@@ -82,7 +77,6 @@ public class EmbarcacaoDAO {
             inserir.setInt(9, modalidade);
             inserir.executeUpdate();
             inserir.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -90,11 +84,9 @@ public class EmbarcacaoDAO {
 
     public static void Excluir(String codigoembarcacao) {
         try {
-            conexao = retornarConexao();
             PreparedStatement deletar = conexao.prepareStatement("delete from embarcacao where codigo_embarcacao = " + codigoembarcacao);
             deletar.executeUpdate();
             deletar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -102,7 +94,6 @@ public class EmbarcacaoDAO {
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            conexao = retornarConexao();
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where " + atributo + " like ? order by " + atributo);
             consultar.setString(1, a + "%");
             ResultSet resultado = consultar.executeQuery();
@@ -113,7 +104,6 @@ public class EmbarcacaoDAO {
             }
             resultado.close();
             consultar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }

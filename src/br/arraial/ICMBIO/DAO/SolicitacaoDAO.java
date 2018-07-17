@@ -12,12 +12,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class SolicitacaoDAO {
 
-    static Connection conexao;
+    static Connection conexao = retornarConexao();
 
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            conexao = retornarConexao();
             PreparedStatement consulta = conexao.prepareStatement("Select * from solicitacao where " + atributo + " like ? order by " + atributo);
             consulta.setString(1, a + "%");
             ResultSet resultado = consulta.executeQuery();
@@ -30,7 +29,6 @@ public class SolicitacaoDAO {
             }
             consulta.close();
             resultado.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -39,7 +37,6 @@ public class SolicitacaoDAO {
 
     public static void Cadastrar(String numeroprocesso, String sequenciaanual, String status, String motivo, String codigosolicitante, String codigoembarcacao) {
         try {
-            conexao = retornarConexao();
             PreparedStatement inserir = conexao.prepareStatement("insert into solicitacao(numero_processo, sequencia_anual,status, motivo, codigo_solicitante, codigo_embarcacao) values(?,?,?,?,?,?)");
             inserir.setString(1, numeroprocesso);
             inserir.setString(2, sequenciaanual);
@@ -49,7 +46,6 @@ public class SolicitacaoDAO {
             inserir.setString(6, codigoembarcacao);
             inserir.executeUpdate();
             inserir.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -57,7 +53,6 @@ public class SolicitacaoDAO {
 
     public static void Alterar(String numeroprocesso, String sequenciaanual, String status, String motivo, String codigosolicitante, String codigoembarcacao) {
         try {
-            conexao = retornarConexao();
             PreparedStatement alterar = conexao.prepareStatement("update solicitacao set numero_processo=?, sequencia_anual=?, status=?, motivo=?");
             alterar.setString(1, numeroprocesso);
             alterar.setString(2, sequenciaanual);
@@ -67,7 +62,6 @@ public class SolicitacaoDAO {
             alterar.setString(6, codigoembarcacao);
             alterar.executeUpdate();
             alterar.close();
-            conexao.close();
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -75,11 +69,9 @@ public class SolicitacaoDAO {
 
     public static void Excluir(String codigo) {
         try {
-            conexao = retornarConexao();
             PreparedStatement deletar = conexao.prepareStatement("delete from solicitacao where codigo_solicitacao = " + codigo);
             deletar.executeUpdate();
             deletar.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -87,7 +79,6 @@ public class SolicitacaoDAO {
 
     public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo/*, String nomesol, JTextField txtNome, String nomeemb, JTextField txtNome2*/) {
         try {
-            conexao = retornarConexao();
             PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitacao where codigo_solicitacao = " + codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
@@ -100,7 +91,6 @@ public class SolicitacaoDAO {
             }
             resultado.close();
             pesquisa.close();
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
