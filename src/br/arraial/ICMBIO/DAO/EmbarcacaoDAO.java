@@ -20,9 +20,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class EmbarcacaoDAO {
 
+    static Connection conexao = retornarConexao();
+
+    ;
+
     public static void PegarDados(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade) {
         try {
-            Connection conexao = retornarConexao();
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = " + codigoembarcacao);
             ResultSet resultado = consultar.executeQuery();
             if (resultado != null && resultado.next()) {
@@ -44,10 +47,8 @@ public class EmbarcacaoDAO {
     }
 
     public static void Alterar(String codigoembarcacao, String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
-        Connection conexao = BancoDeDados.retornarConexao();
         try {
             PreparedStatement alterar = conexao.prepareStatement("update embarcacao set nome_embarcacao=?, tie=?, nome_proprietario=?, numero_passageiros=?, tamanho_embarcacao=?, capacidade_passageiros=?, local=?, obs=?, codigo_modalidade=? where codigo_embarcacao = " + codigoembarcacao);
-
             alterar.setString(1, nome);
             alterar.setString(2, tie);
             alterar.setString(3, nomeproprietario);
@@ -65,9 +66,7 @@ public class EmbarcacaoDAO {
     }
 
     public static void Cadastrar(String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
-        Connection conexao = BancoDeDados.retornarConexao();
         try {
-
             PreparedStatement inserir = conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
             inserir.setString(1, nome);
             inserir.setString(2, tie);
@@ -86,7 +85,6 @@ public class EmbarcacaoDAO {
     }
 
     public static void Excluir(String codigoembarcacao) {
-        Connection conexao = BancoDeDados.retornarConexao();
         try {
             PreparedStatement deletar = conexao.prepareStatement("delete from embarcacao where codigo_embarcacao = " + codigoembarcacao);
             deletar.executeUpdate();
@@ -97,22 +95,38 @@ public class EmbarcacaoDAO {
     }
 
     public static void Consultar(String a, JTable b, String atributo) {
-        Connection conexao = retornarConexao();
         try {
             PreparedStatement consultar = conexao.prepareStatement("select * from embarcacao where " + atributo + " like ? order by " + atributo);
             consultar.setString(1, a + "%");
             ResultSet resultado = consultar.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
-
             while (resultado.next()) {
                 model.addRow(new String[]{resultado.getString("codigo_embarcacao"), resultado.getString("nome_embarcacao"), resultado.getString("TIE"), ModalidadesDAO.Buscar("nome_modalidade", resultado.getString("codigo_modalidade"))});
             }
-
             resultado.close();
             consultar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+
+    public static String Buscar(String atributo, String codigo) {
+        try {
+            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from embarcacao where codigo_embarcacao = " + codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                String retorno = resultado.getString(atributo);
+                pesquisa.close();
+                resultado.close();
+                return retorno;
+            } else {
+                pesquisa.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
 }

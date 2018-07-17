@@ -1,11 +1,8 @@
 package br.arraial.ICMBIO.telas.cadastros;
 
-import br.arraial.ICMBIO.DAO.*;
-import br.arraial.ICMBIO.model.*;
+import br.arraial.ICMBIO.DAO.SaidaDAO;
+import br.arraial.ICMBIO.DAO.SolicitacaoDAO;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 
 /**
  * @version 6.0 - 11/07
@@ -17,6 +14,9 @@ public class TelaCadSaida extends JInternalFrame {
     /**
      * Creates new form Saída
      */
+    private String codigo = null;
+    private String codAtr = "codigo_saida";
+
     public TelaCadSaida() {
         initComponents();
     }
@@ -30,15 +30,26 @@ public class TelaCadSaida extends JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         TelaSaida = new javax.swing.JTabbedPane();
         pnConsulta = new javax.swing.JPanel();
         cbAtributo = new javax.swing.JComboBox();
-        lbPesquisaSaidas = new javax.swing.JLabel();
-        txtPesquisaMes = new javax.swing.JTextField();
+        txtPesquisa = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSaidas = new javax.swing.JTable();
         pnCadastro = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btLimpar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbSolicitacao = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtPesquisa2 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         txtNumSaida = new javax.swing.JTextField();
         txtNumVisitantes = new javax.swing.JTextField();
@@ -49,21 +60,41 @@ public class TelaCadSaida extends JInternalFrame {
         lbNumVisitantes = new javax.swing.JLabel();
         lbNumSaida = new javax.swing.JLabel();
         lbNumProcesso = new javax.swing.JLabel();
-        lbNumProc = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        btLimpar = new javax.swing.JButton();
-        btSalvar = new javax.swing.JButton();
-        btExcluir = new javax.swing.JButton();
+        lbProcesso = new javax.swing.JLabel();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Saida");
-
-        TelaSaida.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TelaSaidaFocusGained(evt);
-            }
-        });
 
         pnConsulta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -72,23 +103,20 @@ public class TelaCadSaida extends JInternalFrame {
         });
 
         cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cod. Saída", "Cod. Solicitação", "Nº de Saídas", "Nº de Visitantes", "Mês", "Ano" }));
-        cbAtributo.setSelectedIndex(-1);
         cbAtributo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbAtributoItemStateChanged(evt);
             }
         });
-        cbAtributo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAtributoActionPerformed(evt);
+
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPesquisaMousePressed(evt);
             }
         });
-
-        lbPesquisaSaidas.setText("Digite o mês:");
-
-        txtPesquisaMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisaMesActionPerformed(evt);
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyReleased(evt);
             }
         });
 
@@ -108,12 +136,21 @@ public class TelaCadSaida extends JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbSaidas.getTableHeader().setReorderingAllowed(false);
         tbSaidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSaidasMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tbSaidas);
+        if (tbSaidas.getColumnModel().getColumnCount() > 0) {
+            tbSaidas.getColumnModel().getColumn(0).setResizable(false);
+            tbSaidas.getColumnModel().getColumn(1).setResizable(false);
+            tbSaidas.getColumnModel().getColumn(2).setResizable(false);
+            tbSaidas.getColumnModel().getColumn(3).setResizable(false);
+            tbSaidas.getColumnModel().getColumn(4).setResizable(false);
+            tbSaidas.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout pnConsultaLayout = new javax.swing.GroupLayout(pnConsulta);
         pnConsulta.setLayout(pnConsultaLayout);
@@ -124,10 +161,8 @@ public class TelaCadSaida extends JInternalFrame {
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbPesquisaSaidas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisa))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -137,26 +172,126 @@ public class TelaCadSaida extends JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbPesquisaSaidas)
-                    .addComponent(txtPesquisaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TelaSaida.addTab("Consultar", pnConsulta);
 
-        txtNumSaida.addActionListener(new java.awt.event.ActionListener() {
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumSaidaActionPerformed(evt);
+                btLimparActionPerformed(evt);
             }
         });
 
-        txtNumVisitantes.addActionListener(new java.awt.event.ActionListener() {
+        btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumVisitantesActionPerformed(evt);
+                btExcluirActionPerformed(evt);
             }
         });
+
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btLimpar)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btExcluir)
+                    .addComponent(btLimpar)
+                    .addComponent(btSalvar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Solicitação"));
+
+        tbSolicitacao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Numero Processo", "Status", "Solicitante", "Embarcacao"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbSolicitacao.getTableHeader().setReorderingAllowed(false);
+        tbSolicitacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbSolicitacaoMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbSolicitacao);
+        if (tbSolicitacao.getColumnModel().getColumnCount() > 0) {
+            tbSolicitacao.getColumnModel().getColumn(0).setResizable(false);
+            tbSolicitacao.getColumnModel().getColumn(1).setResizable(false);
+            tbSolicitacao.getColumnModel().getColumn(2).setResizable(false);
+            tbSolicitacao.getColumnModel().getColumn(3).setResizable(false);
+            tbSolicitacao.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jLabel1.setText("Digite o numero do processo:");
+
+        txtPesquisa2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisa2KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesquisa2)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         lbAno.setText("Ano:");
 
@@ -168,6 +303,8 @@ public class TelaCadSaida extends JInternalFrame {
 
         lbNumProcesso.setText("Número do processo:");
 
+        lbProcesso.setText("                                    ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -175,28 +312,27 @@ public class TelaCadSaida extends JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbNumVisitantes)
-                        .addComponent(lbNumProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbNumProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNumSaida)
+                    .addComponent(lbNumVisitantes)
                     .addComponent(lbMes)
                     .addComponent(lbAno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumVisitantes)
                     .addComponent(txtMes)
-                    .addComponent(txtAno, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                    .addComponent(lbNumProc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNumSaida))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNumVisitantes)
+                    .addComponent(txtAno)
+                    .addComponent(txtNumSaida, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbProcesso, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbNumProcesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbNumProc, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNumProcesso)
+                    .addComponent(lbProcesso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNumSaida)
@@ -213,51 +349,6 @@ public class TelaCadSaida extends JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbAno))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-
-        btLimpar.setText("Limpar");
-        btLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparActionPerformed(evt);
-            }
-        });
-
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
-            }
-        });
-
-        btExcluir.setText("Excluir");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btSalvar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
-                    .addComponent(btExcluir)
-                    .addComponent(btLimpar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -269,19 +360,22 @@ public class TelaCadSaida extends JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 336, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnCadastroLayout = new javax.swing.GroupLayout(pnCadastro);
@@ -301,7 +395,9 @@ public class TelaCadSaida extends JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(TelaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,72 +407,109 @@ public class TelaCadSaida extends JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumSaidaActionPerformed
-
-    }//GEN-LAST:event_txtNumSaidaActionPerformed
-
-    private void txtNumVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumVisitantesActionPerformed
-
-    }//GEN-LAST:event_txtNumVisitantesActionPerformed
-
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-
+        if (codigo == null) {
+            SaidaDAO.insereSaida(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString());
+        } else {
+            SaidaDAO.alteraSaida(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), Integer.parseInt(codigo));
+        }
+        TelaSaida.setSelectedIndex(0);
+        this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-
+        txtAno.setText("");
+        txtMes.setText("");
+        txtNumSaida.setText("");
+        txtNumVisitantes.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
-    private void txtPesquisaMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaMesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisaMesActionPerformed
-
     private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
-
+        TelaSaida.setSelectedIndex(1);
+        this.codigo = tbSaidas.getValueAt(tbSaidas.getSelectedRow(), 0).toString();
+        SaidaDAO.PegarDados(codigo, txtNumSaida, txtNumVisitantes, txtMes, txtAno);
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
+            case "Cod. Saída":
+                txtPesquisa.setText("Digite o código da saída");
+                codAtr = "codigo_saida";
+                break;
+            case "Cod. Solicitação":
+                txtPesquisa.setText("Digite o código da solicitação");
+                codAtr = "codigo_solicitacao";
+                break;
+            case "Nº de Saídas":
+                txtPesquisa.setText("Digite o número de saídas");
+                codAtr = "numero_saidas";
+                break;
+            case "Nº de Visitantes":
+                txtPesquisa.setText("Digite o número de visitantes");
+                codAtr = "numero_visitantes";
+                break;
+            case "Mês":
+                txtPesquisa.setText("Digite o número de mês");
+                codAtr = "mes";
+                break;
+            case "Ano":
+                txtPesquisa.setText("Digite o número de ano");
+                codAtr = "ano";
+                break;
+        }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbSaidasMouseClicked
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void TelaSaidaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelaSaidaFocusGained
-
-    }//GEN-LAST:event_TelaSaidaFocusGained
-
     private void pnConsultaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnConsultaFocusGained
 
     }//GEN-LAST:event_pnConsultaFocusGained
 
-    private void cbAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAtributoActionPerformed
-
-    }//GEN-LAST:event_cbAtributoActionPerformed
-
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
-        switch (cbAtributo.getSelectedIndex()) {
-            case 0:
-                lbPesquisaSaidas.setText("Digite o código da saída:");
+        switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
+            case "Cod. Saída":
+                txtPesquisa.setText("Digite o código da saída");
+                codAtr = "codigo_saida";
                 break;
-            case 1:
-                lbPesquisaSaidas.setText("Digite o código da solicitação:");
+            case "Cod. Solicitação":
+                txtPesquisa.setText("Digite o código da solicitação");
+                codAtr = "codigo_solicitacao";
                 break;
-            case 2:
-                lbPesquisaSaidas.setText("Digite o número de saídas:");
+            case "Nº de Saídas":
+                txtPesquisa.setText("Digite o número de saídas");
+                codAtr = "numero_saidas";
                 break;
-            case 3:
-                lbPesquisaSaidas.setText("Digite o número de visitantes:");
+            case "Nº de Visitantes":
+                txtPesquisa.setText("Digite o número de visitantes");
+                codAtr = "numero_visitantes";
                 break;
-            case 4:
-                lbPesquisaSaidas.setText("Digite o número de ano:");
+            case "Mês":
+                txtPesquisa.setText("Digite o número de mês");
+                codAtr = "mes";
                 break;
-            case 5:
-                lbPesquisaSaidas.setText("Digite o número de mês:");
+            case "Ano":
+                txtPesquisa.setText("Digite o número de ano");
+                codAtr = "ano";
                 break;
-
-            default:
-                throw new AssertionError();
         }
-
     }//GEN-LAST:event_cbAtributoItemStateChanged
+
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
+        SaidaDAO.Consultar(txtPesquisa.getText(), tbSaidas, codAtr);
+    }//GEN-LAST:event_txtPesquisaKeyReleased
+
+    private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_txtPesquisaMousePressed
+
+    private void txtPesquisa2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisa2KeyReleased
+        SolicitacaoDAO.Consultar(txtPesquisa2.getText(), tbSolicitacao, "numero_processo");
+    }//GEN-LAST:event_txtPesquisa2KeyReleased
+
+    private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
+
+    }//GEN-LAST:event_tbSolicitacaoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaSaida;
@@ -384,24 +517,31 @@ public class TelaCadSaida extends JInternalFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbAtributo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbAno;
     private javax.swing.JLabel lbMes;
-    private javax.swing.JLabel lbNumProc;
     private javax.swing.JLabel lbNumProcesso;
     private javax.swing.JLabel lbNumSaida;
     private javax.swing.JLabel lbNumVisitantes;
-    private javax.swing.JLabel lbPesquisaSaidas;
+    private javax.swing.JLabel lbProcesso;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbSaidas;
+    private javax.swing.JTable tbSolicitacao;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNumSaida;
     private javax.swing.JTextField txtNumVisitantes;
-    private javax.swing.JTextField txtPesquisaMes;
+    private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtPesquisa2;
     // End of variables declaration//GEN-END:variables
 }

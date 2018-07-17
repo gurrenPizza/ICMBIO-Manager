@@ -37,7 +37,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         TelaEmbarcacao = new javax.swing.JTabbedPane();
         pnConsulta = new javax.swing.JPanel();
-        lblAtributo = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         cbAtriuto = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -104,8 +103,24 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         pnConsulta.setBackground(java.awt.Color.white);
 
-        lblAtributo.setText("Digite o nome da embarcação:");
-
+        txtPesquisa.setText("Digite o nome da embarcação");
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPesquisaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPesquisaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtPesquisaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPesquisaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtPesquisaMouseReleased(evt);
+            }
+        });
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
@@ -157,10 +172,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
                         .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblAtributo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPesquisa)))
                 .addContainerGap())
         );
         pnConsultaLayout.setVerticalGroup(
@@ -169,7 +182,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAtributo)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
@@ -190,6 +202,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -498,6 +511,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -514,6 +528,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -521,7 +536,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void tbEmbarcacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEmbarcacaoMouseClicked
-        txtPesquisa.setText("");
         TelaEmbarcacao.setSelectedIndex(1);
         this.codigo = tbEmbarcacao.getValueAt(tbEmbarcacao.getSelectedRow(), 0).toString();
         EmbarcacaoDAO.PegarDados(codigo,
@@ -534,25 +548,43 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 txtLocal,
                 txtObeservacao,
                 cbModalidade);
-        txtPesquisa.setText("");
+        switch (cbAtriuto.getItemAt(cbAtriuto.getSelectedIndex()).toString()) {
+            case "Nome":
+                txtPesquisa.setText("Digite o nome da embarcação");
+                codAtr = "nome_embarcacao";
+                break;
+            case "Codigo":
+                txtPesquisa.setText("Digite o codigo da embarcação");
+                codAtr = "codigo_embarcacao";
+                break;
+            case "TIE":
+                txtPesquisa.setText("Digite o TIE");
+                codAtr = "TIE";
+                break;
+            case "Modalidade":
+                txtPesquisa.setText("Digite a modalidade");
+                codAtr = "codigo_modalidade";
+                break;
+        }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbEmbarcacaoMouseClicked
 
     private void cbAtriutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtriutoItemStateChanged
         switch (cbAtriuto.getItemAt(cbAtriuto.getSelectedIndex()).toString()) {
             case "Nome":
-                lblAtributo.setText("Digite o nome da embarcação:");
+                txtPesquisa.setText("Digite o nome da embarcação");
                 codAtr = "nome_embarcacao";
                 break;
             case "Codigo":
-                lblAtributo.setText("Digite o codigo da embarcação:");
+                txtPesquisa.setText("Digite o codigo da embarcação");
                 codAtr = "codigo_embarcacao";
                 break;
             case "TIE":
-                lblAtributo.setText("Digite o TIE:");
+                txtPesquisa.setText("Digite o TIE");
                 codAtr = "TIE";
                 break;
             case "Modalidade":
-                lblAtributo.setText("Digite a modalidade:");
+                txtPesquisa.setText("Digite a modalidade");
                 codAtr = "codigo_modalidade";
                 break;
         }
@@ -574,10 +606,30 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     private void cbModalidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbModalidadeFocusLost
     }//GEN-LAST:event_cbModalidadeFocusLost
 
+    private void txtPesquisaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseEntered
+
+    }//GEN-LAST:event_txtPesquisaMouseEntered
+
+    private void txtPesquisaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseExited
+
+    }//GEN-LAST:event_txtPesquisaMouseExited
+
+    private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseClicked
+
+    }//GEN-LAST:event_txtPesquisaMouseClicked
+
+    private void txtPesquisaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseReleased
+
+    }//GEN-LAST:event_txtPesquisaMouseReleased
+
+    private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_txtPesquisaMousePressed
+
     public JComboBox getCbModalidade() {
         return cbModalidade;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaEmbarcacao;
     private javax.swing.JButton btExcluir;
@@ -603,7 +655,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbObs;
     private javax.swing.JLabel lbTEmbarcacao;
     private javax.swing.JLabel lbTie;
-    private javax.swing.JLabel lblAtributo;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbEmbarcacao;

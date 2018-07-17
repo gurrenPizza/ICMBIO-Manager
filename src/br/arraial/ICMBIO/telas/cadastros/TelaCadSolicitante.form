@@ -35,7 +35,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="TelaSolicitante" alignment="0" pref="297" max="32767" attributes="0"/>
+          <Component id="TelaSolicitante" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -77,8 +77,6 @@
                           <Group type="102" attributes="0">
                               <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblAtributo" min="-2" pref="168" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtPesquisa" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -93,10 +91,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="221" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="225" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -106,10 +103,12 @@
             <Component class="javax.swing.JTextField" name="txtPesquisa">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="Digite o nome"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseEntered"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMousePressed"/>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMouseReleased"/>
                 <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtPesquisaInputMethodTextChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisaActionPerformed"/>
@@ -200,12 +199,6 @@
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtributoItemStateChanged"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblAtributo">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Digite o nome:"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -636,6 +629,7 @@
                     <Component class="javax.swing.JButton" name="btnExcluir">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Excluir"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>

@@ -38,7 +38,6 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         lbModalidade1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbModalidade = new javax.swing.JTable();
-        lblAtributo = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
 
         setClosable(true);
@@ -58,6 +57,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -134,8 +134,12 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbModalidade);
 
-        lblAtributo.setText("Digite a modalidade:");
-
+        txtPesquisa.setText("Digite a modalidade");
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPesquisaMousePressed(evt);
+            }
+        });
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
@@ -158,12 +162,10 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
                         .addComponent(lbModalidade1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtModalidade))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbAtributo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAtributo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPesquisa))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -173,8 +175,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAtributo))
+                    .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -244,6 +245,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -252,6 +254,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo=null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -265,11 +268,11 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         if(cbAtributo.getSelectedItem().toString().equals("Modalidade")){
-            lblAtributo.setText("Digite a modalidade:");
+            txtPesquisa.setText("Digite a modalidade");
             codAtr = "nome_modalidade";
         }
         else{
-            lblAtributo.setText("Digite a modalidade:");
+            txtPesquisa.setText("Digite a modalidade");
             codAtr = "codigo_modalidade";
         }
     }//GEN-LAST:event_cbAtributoItemStateChanged
@@ -279,11 +282,22 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void tbModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbModalidadeMouseClicked
-        txtPesquisa.setText("");
         this.codigo = tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 0).toString();
         ModalidadesDAO.PegarDados1(codigo, txtModalidade);
-        txtPesquisa.setText("");
+        if(cbAtributo.getSelectedItem().toString().equals("Modalidade")){
+            txtPesquisa.setText("Digite a modalidade");
+            codAtr = "nome_modalidade";
+        }
+        else{
+            txtPesquisa.setText("Digite a modalidade");
+            codAtr = "codigo_modalidade";
+        }
+        btExcluir.setEnabled(true);
     }//GEN-LAST:event_tbModalidadeMouseClicked
+
+    private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_txtPesquisaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,7 +310,6 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbModalidade1;
-    private javax.swing.JLabel lblAtributo;
     private javax.swing.JTable tbModalidade;
     private javax.swing.JTextField txtModalidade;
     private javax.swing.JTextField txtPesquisa;

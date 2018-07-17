@@ -1,6 +1,7 @@
 package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +11,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
 
+    static Connection conexao = retornarConexao();;
+
     public static void PegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
-            PreparedStatement pesquisa = retornarConexao().prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
+            PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
             ResultSet resultado = pesquisa.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtBeneficiario.setText(resultado.getString("beneficiario"));
@@ -30,6 +33,7 @@ public class SolicitanteDAO {
                 fmTelefone.setText(resultado.getString("telefone"));
             }
             pesquisa.close();
+            resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -38,7 +42,7 @@ public class SolicitanteDAO {
 
     public static void Cadastrar(String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
-            PreparedStatement inserir = retornarConexao().prepareStatement("insert into solicitante(nome,beneficiario,CPF_CNPJ,telefone,endereco,bairro,cidade,cep,email,razao_social,nome_fantasia,responsavel,operadora) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement inserir = conexao.prepareStatement("insert into solicitante(nome,beneficiario,CPF_CNPJ,telefone,endereco,bairro,cidade,cep,email,razao_social,nome_fantasia,responsavel,operadora) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             inserir.setString(1, Nome);
             inserir.setString(2, Beneficiario);
             inserir.setString(3, CPF_CNPJ);
@@ -62,7 +66,7 @@ public class SolicitanteDAO {
 
     public static void Alterar(String codigo, String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
-            PreparedStatement alterar = retornarConexao().prepareStatement("UPDATE solicitante SET nome = ?, beneficiario = ?, CPF_CNPJ = ?, telefone = ?, endereco = ?, bairro = ?, cidade = ?, cep = ?, email = ?, razao_social = ?, nome_fantasia = ?, responsavel = ?, operadora = ? WHERE codigo_solicitante = " + codigo);
+            PreparedStatement alterar = conexao.prepareStatement("UPDATE solicitante SET nome = ?, beneficiario = ?, CPF_CNPJ = ?, telefone = ?, endereco = ?, bairro = ?, cidade = ?, cep = ?, email = ?, razao_social = ?, nome_fantasia = ?, responsavel = ?, operadora = ? WHERE codigo_solicitante = " + codigo);
             alterar.setString(1, Nome);
             alterar.setString(2, Beneficiario);
             alterar.setString(3, CPF_CNPJ);
@@ -86,7 +90,7 @@ public class SolicitanteDAO {
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            PreparedStatement pesquisa = retornarConexao().prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
+            PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
             pesquisa.setString(1, a + "%");
             ResultSet resultado = pesquisa.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -103,10 +107,28 @@ public class SolicitanteDAO {
 
     public static void Excluir(String codigo) {
         try {
-            PreparedStatement deletar = retornarConexao().prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
+            PreparedStatement deletar = conexao.prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
             deletar.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    public static String Buscar(String atributo, String codigo) {
+        try {
+            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitante where codigo_solicitante = " + codigo);
+            ResultSet resultado = pesquisa.executeQuery();
+            if (resultado != null && resultado.next()) {
+                String retorno = resultado.getString(atributo);
+                pesquisa.close();
+                resultado.close();
+                return retorno;
+            } else {
+                pesquisa.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
         }
     }
 }

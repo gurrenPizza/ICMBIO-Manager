@@ -93,7 +93,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
-        setResizable(false);
 
         pnCentral.setBackground(new java.awt.Color(255, 255, 255));
         pnCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,9 +103,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtDate.setText("    ");
         txtDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtDate.setOpaque(true);
-
-        pnCentral.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnCentral.setLayer(txtDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout pnCentralLayout = new javax.swing.GroupLayout(pnCentral);
         pnCentral.setLayout(pnCentralLayout);
@@ -126,6 +122,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDate))
         );
+        pnCentral.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnCentral.setLayer(txtDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
