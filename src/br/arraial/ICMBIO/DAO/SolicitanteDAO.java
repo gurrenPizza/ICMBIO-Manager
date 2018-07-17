@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
 
     public static void PegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
@@ -113,6 +113,7 @@ public class SolicitanteDAO {
             System.out.println(ex);
         }
     }
+
     public static String Buscar(String atributo, String codigo) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitante where codigo_solicitante = " + codigo);

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class UsuarioDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
 
     public static void Consultar(String a, JTable b, String atributo) {
 

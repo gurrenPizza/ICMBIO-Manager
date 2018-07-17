@@ -47,7 +47,6 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(java.awt.Color.white);
 
-        btSalvar.setBackground(java.awt.Color.white);
         btSalvar.setText("Salvar");
         btSalvar.setOpaque(false);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {

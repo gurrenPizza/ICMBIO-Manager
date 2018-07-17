@@ -18,5 +18,4 @@ public class BancoDeDados {
             return null;
         }
     }
-
 }

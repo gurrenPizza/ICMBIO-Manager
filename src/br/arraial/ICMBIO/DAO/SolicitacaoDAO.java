@@ -24,7 +24,7 @@ public class SolicitacaoDAO {
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_solicitacao"), resultado.getString("numero_processo"),
-                    resultado.getString("status"), SolicitanteDAO.Buscar("nome", resultado.getString("codigo_solicitante")),EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")),});
+                    resultado.getString("status"), SolicitanteDAO.Buscar("nome", resultado.getString("codigo_solicitante")), EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")),});
             }
             consulta.close();
             resultado.close();
