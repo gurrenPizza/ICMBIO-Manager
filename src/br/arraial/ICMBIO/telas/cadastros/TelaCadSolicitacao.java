@@ -419,7 +419,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
     private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
         TelaSolicitacao.setSelectedIndex(1);
         this.codigo = tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString();
-        SolicitacaoDAO.PegarDados(codigo, txtNumeroProc, txtSequencia, txtStatus, txtMotivo);
+        SolicitacaoDAO.PegarDados(codigo, txtNumeroProc, txtSequencia, txtStatus, txtMotivo, txtNomeSolicitante, txtNomeEmbarcacao);
         switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Numero do Processo":
                 txtPesquisa.setText("Digite o nome");
