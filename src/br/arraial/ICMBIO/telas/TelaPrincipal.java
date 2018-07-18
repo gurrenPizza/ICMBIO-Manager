@@ -13,19 +13,26 @@ import javax.swing.SwingUtilities;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private final TelaCadUsuario telausuario = new TelaCadUsuario();
-    private final TelaCadSaida telasaida = new TelaCadSaida();
-    private final TelaCadModalidade telamodalidade = new TelaCadModalidade();
-    private final TelaCadEmbarcacao telaembarcacao = new TelaCadEmbarcacao();
-    private final TelaCadSolicitacao telacadsol = new TelaCadSolicitacao();
-    private final TelaConSolicitacao telaconsol = new TelaConSolicitacao();
+    private final TelaCadUsuario telacadusu = new TelaCadUsuario();
+    private final TelaCadSaida telacadsai = new TelaCadSaida();
+    private final TelaCadModalidade telacadmod = new TelaCadModalidade();
+    private final TelaCadEmbarcacao telacademb = new TelaCadEmbarcacao();
+    private final TelaCadSolicitacao telacadsola = new TelaCadSolicitacao();
+    private final TelaCadSolicitante telacadsole = new TelaCadSolicitante();
+    
+    private final TelaConUsuario telaconusu = new TelaConUsuario();
+    private final TelaConSaida telaconsai = new TelaConSaida();
+    private final TelaConModalidade telaconmod = new TelaConModalidade();
+    private final TelaConEmbarcacao telaconemb = new TelaConEmbarcacao();
+    private final TelaConSolicitacao telaconsola = new TelaConSolicitacao();
+    private final TelaConSolicitante telaconsole = new TelaConSolicitante();
+    
     private final TelaRestaurar telarestaurar = new TelaRestaurar();
-    private final TelaCadSolicitante telasolicitante = new TelaCadSolicitante();
     private final TelaAjuda telajuda = new TelaAjuda();
     private final TelaSobre telasobre = new TelaSobre();
 
-    public TelaCadEmbarcacao getTelaembarcacao() {
-        return telaembarcacao;
+    public TelaCadEmbarcacao getTelacademb() {
+        return telacademb;
     }
 
     public TelaPrincipal() {
@@ -95,7 +102,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
 
         pnCentral.setBackground(new java.awt.Color(255, 255, 255));
+        pnCentral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnCentral.setForeground(new java.awt.Color(255, 255, 255));
+        pnCentral.setFocusable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/arraial/ICMBIO/img/icmbio.jpg"))); // NOI18N
 
@@ -103,6 +112,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtDate.setText("    ");
         txtDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtDate.setOpaque(true);
+
+        pnCentral.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnCentral.setLayer(txtDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout pnCentralLayout = new javax.swing.GroupLayout(pnCentral);
         pnCentral.setLayout(pnCentralLayout);
@@ -122,8 +134,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDate))
         );
-        pnCentral.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnCentral.setLayer(txtDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,6 +177,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnConsulta.setText("Consulta");
 
         imConModalidade.setText("Modalidade");
+        imConModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConModalidadeActionPerformed(evt);
+            }
+        });
         mnConsulta.add(imConModalidade);
 
         imConEmbarcacao.setText("Embarcação");
@@ -178,9 +193,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnConsulta.add(imConEmbarcacao);
 
         imConSolicitante.setText("Solicitante");
+        imConSolicitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConSolicitanteActionPerformed(evt);
+            }
+        });
         mnConsulta.add(imConSolicitante);
 
         imConUsuario.setText("Usuário");
+        imConUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConUsuarioActionPerformed(evt);
+            }
+        });
         mnConsulta.add(imConUsuario);
 
         jMenuBar1.add(mnConsulta);
@@ -216,6 +241,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnSaida.add(imSaiCadastro);
 
         imSaiConsulta.setText("Consulta");
+        imSaiConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSaiConsultaActionPerformed(evt);
+            }
+        });
         mnSaida.add(imSaiConsulta);
 
         jMenuBar1.add(mnSaida);
@@ -287,42 +317,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imConEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConEmbarcacaoActionPerformed
-        // TODO add your handling code here:
+        pnCentral.add(telaconemb);
+        telaconemb.show();
     }//GEN-LAST:event_imConEmbarcacaoActionPerformed
 
     private void imCadSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSolicitanteActionPerformed
-        pnCentral.add(telasolicitante);
-        telasolicitante.show();
+        pnCentral.add(telacadsole);
+        telacadsole.show();
     }//GEN-LAST:event_imCadSolicitanteActionPerformed
 
     private void imCadModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadModalidadeActionPerformed
-        pnCentral.add(telamodalidade);
-        telamodalidade.show();
+        pnCentral.add(telacadmod);
+        telacadmod.show();
     }//GEN-LAST:event_imCadModalidadeActionPerformed
 
     private void imCadEmbarcacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadEmbarcacaoActionPerformed
-        pnCentral.add(telaembarcacao);
-        telaembarcacao.show();
+        pnCentral.add(telacademb);
+        telacademb.show();
     }//GEN-LAST:event_imCadEmbarcacaoActionPerformed
 
     private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
-        pnCentral.add(telausuario);
-        telausuario.show();
+        pnCentral.add(telacadusu);
+        telacadusu.show();
     }//GEN-LAST:event_imCadUsuarioActionPerformed
 
     private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
-        pnCentral.add(telasaida);
-        telasaida.show();
+        pnCentral.add(telacadsai);
+        telacadsai.show();
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
     private void imSoliCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliCadastroActionPerformed
-        pnCentral.add(telacadsol);
-        telacadsol.show();
+        pnCentral.add(telacadsola);
+        telacadsola.show();
     }//GEN-LAST:event_imSoliCadastroActionPerformed
 
     private void imSoliConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSoliConsultaActionPerformed
-        pnCentral.add(telaconsol);
-        telaconsol.show();
+        pnCentral.add(telaconsole);
+        telaconsole.show();
     }//GEN-LAST:event_imSoliConsultaActionPerformed
 
     private void imAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAjudaActionPerformed
@@ -348,6 +379,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnCentral.add(telarestaurar);
         telarestaurar.show();
     }//GEN-LAST:event_imRestaurarActionPerformed
+
+    private void imConModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConModalidadeActionPerformed
+        pnCentral.add(telaconmod);
+        telaconmod.show();
+    }//GEN-LAST:event_imConModalidadeActionPerformed
+
+    private void imConSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConSolicitanteActionPerformed
+        pnCentral.add(telaconsole);
+        telaconsole.show();
+    }//GEN-LAST:event_imConSolicitanteActionPerformed
+
+    private void imConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConUsuarioActionPerformed
+        pnCentral.add(telaconusu);
+        telaconusu.show();
+    }//GEN-LAST:event_imConUsuarioActionPerformed
+
+    private void imSaiConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiConsultaActionPerformed
+        pnCentral.add(telaconsai);
+        telaconsai.show();
+    }//GEN-LAST:event_imSaiConsultaActionPerformed
 
     /**
      * @param args the command line arguments

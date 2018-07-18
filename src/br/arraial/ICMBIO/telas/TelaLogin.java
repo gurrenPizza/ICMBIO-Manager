@@ -172,12 +172,12 @@ public class TelaLogin extends javax.swing.JFrame {
             ResultSet resultado = consulta.executeQuery();
             Boolean existe = resultado.next();
             if (existe) {
-                telaprincipal.setIconImage(new ImageIcon("icone.jpg").getImage());
+                this.dispose();
+                telaprincipal.setIconImage(new ImageIcon("icmbio.jpg").getImage());
                 telaprincipal.setVisible(true);
                 telaprincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "usuario ou senha incorreto!");
+                JOptionPane.showMessageDialog(null, "usuario ou senha incorretos.", "Erro!!!", 2);
             }
             consulta.close();
             resultado.close();

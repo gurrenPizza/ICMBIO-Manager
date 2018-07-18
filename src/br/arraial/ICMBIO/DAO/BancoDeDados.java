@@ -3,6 +3,7 @@ package br.arraial.ICMBIO.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class BancoDeDados {
 
@@ -15,6 +16,7 @@ public class BancoDeDados {
             return DriverManager.getConnection(BANCO, USUARIO, SENHA);
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "O banco de dados pode estar desligado.", "Erro!!!", 2);
             return null;
         }
     }

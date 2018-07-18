@@ -240,7 +240,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelaembarcacao().getCbModalidade());
+        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelacademb().getCbModalidade());
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo = null;
@@ -249,7 +249,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         ModalidadesDAO.Excluir(codigo);
-        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelaembarcacao().getCbModalidade());
+        ModalidadesDAO.PegarDados2(new ICMBio().getTelalogin().getTelaprincipal().getTelacademb().getCbModalidade());
         txtModalidade.setText("");
         ModalidadesDAO.Consultar(txtModalidade.getText(), tbModalidade, codAtr);
         this.codigo=null;

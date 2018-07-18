@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,6 +31,7 @@ public class SolicitacaoDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -47,6 +49,7 @@ public class SolicitacaoDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -63,6 +66,7 @@ public class SolicitacaoDAO {
             alterar.close();
         } catch (Exception ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -73,6 +77,7 @@ public class SolicitacaoDAO {
             deletar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -92,6 +97,7 @@ public class SolicitacaoDAO {
             pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -110,6 +116,7 @@ public class SolicitacaoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
             return null;
         }
     }
