@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.telas;
 
 import java.util.Properties;
@@ -81,7 +76,7 @@ public class DialogoRelatarProblema extends javax.swing.JDialog {
                 .addGroup(pnDialogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnDialogoLayout.createSequentialGroup()
                         .addComponent(lblDigite)
-                        .addGap(0, 175, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDialogoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)

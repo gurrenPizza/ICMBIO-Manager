@@ -1,20 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.telas.consultas;
-
-import br.arraial.ICMBIO.telas.cadastros.TelaCadSolicitacao;
-import br.arraial.ICMBIO.DAO.BancoDeDados;
-import br.arraial.ICMBIO.model.Solicitante;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,9 +6,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaConSolicitacao extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form TelaConsulta
-     */
     public TelaConSolicitacao() {
         initComponents();
     }
@@ -38,227 +19,32 @@ public class TelaConSolicitacao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtCodSoliConsulta = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtMotivoConsul = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        lblNumProcConsulta = new javax.swing.JLabel();
-        lblSequeAnualConsul = new javax.swing.JLabel();
-        lblStatusConsul = new javax.swing.JLabel();
-        lblCodSolConsul = new javax.swing.JLabel();
-        lblCodEmbConsul = new javax.swing.JLabel();
-        btConsultar = new javax.swing.JButton();
-        btLimparConsul = new javax.swing.JButton();
-        btVoltarConsul = new javax.swing.JButton();
 
-        jLabel1.setText("Código da solicitação:");
-
-        jLabel2.setText("Número do processo:");
-
-        jLabel3.setText("Sequência anual:");
-
-        jLabel4.setText("Status:");
-
-        jLabel5.setText("Código do solicitante");
-
-        jLabel6.setText("Código da embarcação:");
-
-        jLabel7.setText("Motivo:");
-
-        txtMotivoConsul.setText("jTextField1");
-
-        lblNumProcConsulta.setText("jLabel9");
-
-        lblSequeAnualConsul.setText("jLabel9");
-
-        lblStatusConsul.setText("jLabel9");
-
-        lblCodSolConsul.setText("jLabel9");
-
-        lblCodEmbConsul.setText("jLabel9");
-
-        btConsultar.setText("Consultar");
-        btConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btConsultarActionPerformed(evt);
-            }
-        });
-
-        btLimparConsul.setText("Limpar");
-        btLimparConsul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparConsulActionPerformed(evt);
-            }
-        });
-
-        btVoltarConsul.setText("Menu Principal");
-        btVoltarConsul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVoltarConsulActionPerformed(evt);
-            }
-        });
+        setClosable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSequeAnualConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblCodSolConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(jLabel6)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblStatusConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lblCodEmbConsul)))
-                        .addGap(106, 106, 106))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMotivoConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCodSoliConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btConsultar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumProcConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(btLimparConsul)
-                                .addGap(166, 166, 166)
-                                .addComponent(btVoltarConsul)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(235, 235, 235)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCodSoliConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btConsultar))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8)
-                    .addComponent(lblNumProcConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(lblSequeAnualConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatusConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(lblCodSolConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCodEmbConsul))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMotivoConsul, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel7)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btLimparConsul)
-                    .addComponent(btVoltarConsul))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addComponent(jLabel8)
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
-      try {
-            Solicitante sol = new Solicitante(); // TODO add your handling code here:
-            Connection conexao = BancoDeDados.retornarConexao();
-            PreparedStatement consulta1 = conexao.prepareStatement("Select * from solicitacao where codigo_solicitacao like ? ");
-            consulta1.setString(1,"%" +txtCodSoliConsulta.getText() +"%");
-            
-            //consulta1.setString(1,"%" + txtNomeDoSolicitante.getText() + "%");
-            ResultSet resultado = consulta1.executeQuery();
-            System.out.println(resultado.getRow());
-             while(resultado.next()){
-             lblNumProcConsulta.setText(resultado.getString("numero_processo"));
-             lblSequeAnualConsul.setText(resultado.getString("sequencia_anual"));
-             lblStatusConsul.setText(resultado.getString("status"));
-             lblCodSolConsul.setText(resultado.getString("codigo_solicitacao"));
-             lblCodEmbConsul.setText(resultado.getString("codigo_embarcacao"));
-             txtMotivoConsul.setText(resultado.getString("motivo"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaCadSolicitacao.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_btConsultarActionPerformed
-
-    private void btLimparConsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparConsulActionPerformed
-       txtCodSoliConsulta.setText("");
-       lblNumProcConsulta.setText("");
-       lblSequeAnualConsul.setText("");
-       lblStatusConsul.setText("");
-       lblCodSolConsul.setText("");
-       lblCodEmbConsul.setText("");
-       txtMotivoConsul.setText("");
-       
-    }//GEN-LAST:event_btLimparConsulActionPerformed
-
-    private void btVoltarConsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarConsulActionPerformed
-      this.dispose();
-
-    }//GEN-LAST:event_btVoltarConsulActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btLimparConsul;
-    private javax.swing.JButton btVoltarConsul;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblCodEmbConsul;
-    private javax.swing.JLabel lblCodSolConsul;
-    private javax.swing.JLabel lblNumProcConsulta;
-    private javax.swing.JLabel lblSequeAnualConsul;
-    private javax.swing.JLabel lblStatusConsul;
-    private javax.swing.JTextField txtCodSoliConsulta;
-    private javax.swing.JTextField txtMotivoConsul;
     // End of variables declaration//GEN-END:variables
 }

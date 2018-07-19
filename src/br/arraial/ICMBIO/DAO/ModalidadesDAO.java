@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class ModalidadesDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
 
     public static void Consultar(String a, JTable b, String atributo) {
 
@@ -32,6 +33,7 @@ public class ModalidadesDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -44,6 +46,7 @@ public class ModalidadesDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -55,6 +58,7 @@ public class ModalidadesDAO {
             alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -65,6 +69,7 @@ public class ModalidadesDAO {
             deletar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -79,6 +84,7 @@ public class ModalidadesDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -97,6 +103,7 @@ public class ModalidadesDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
             return null;
         }
     }
@@ -122,6 +129,7 @@ public class ModalidadesDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 }

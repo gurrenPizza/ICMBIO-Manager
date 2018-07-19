@@ -10,11 +10,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * @version 5.0 - 08/07
- * @author Turma INF161 Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe
- * Viana, Laura Fidalgo e Phillipe Loriot de Rouvray
- */
 public class SaidaDAO {
 
     static Connection conexao = retornarConexao();
@@ -31,6 +26,7 @@ public class SaidaDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -46,6 +42,7 @@ public class SaidaDAO {
             alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -56,6 +53,7 @@ public class SaidaDAO {
             excluir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -73,6 +71,7 @@ public class SaidaDAO {
             pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -85,13 +84,12 @@ public class SaidaDAO {
                 txtNumVisitantes.setText(resultado.getString("sequencia_anual"));
                 txtMes.setText(resultado.getString("status"));
                 txtAno.setText(resultado.getString("motivo"));
-                //txtNome.setText(resultado.getString(""));
-                //txtNome2.setText(resultado.getString(""));
             }
             resultado.close();
             pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 }

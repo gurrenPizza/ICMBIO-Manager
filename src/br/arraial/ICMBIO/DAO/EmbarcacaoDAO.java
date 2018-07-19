@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.arraial.ICMBIO.DAO;
 
 import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
@@ -12,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -21,8 +17,6 @@ import javax.swing.table.DefaultTableModel;
 public class EmbarcacaoDAO {
 
     static Connection conexao = retornarConexao();
-
-    ;
 
     public static void PegarDados(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade) {
         try {
@@ -43,6 +37,7 @@ public class EmbarcacaoDAO {
             consultar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -62,6 +57,7 @@ public class EmbarcacaoDAO {
             alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -81,6 +77,7 @@ public class EmbarcacaoDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -91,6 +88,7 @@ public class EmbarcacaoDAO {
             deletar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -108,6 +106,7 @@ public class EmbarcacaoDAO {
             consultar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -126,6 +125,7 @@ public class EmbarcacaoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
             return null;
         }
     }

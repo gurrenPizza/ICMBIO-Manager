@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -12,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class UsuarioDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
 
     public static void Consultar(String a, JTable b, String atributo) {
 
@@ -29,6 +30,7 @@ public class UsuarioDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -42,6 +44,7 @@ public class UsuarioDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -54,6 +57,7 @@ public class UsuarioDAO {
             alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -64,6 +68,7 @@ public class UsuarioDAO {
             deletar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -80,6 +85,7 @@ public class UsuarioDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 }

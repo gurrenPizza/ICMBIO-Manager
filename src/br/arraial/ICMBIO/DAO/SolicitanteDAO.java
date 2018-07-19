@@ -5,13 +5,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class SolicitanteDAO {
 
-    static Connection conexao = retornarConexao();;
+    static Connection conexao = retornarConexao();
 
     public static void PegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
@@ -36,6 +37,7 @@ public class SolicitanteDAO {
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -60,6 +62,7 @@ public class SolicitanteDAO {
             inserir.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -84,6 +87,7 @@ public class SolicitanteDAO {
             alterar.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
 
     }
@@ -102,6 +106,7 @@ public class SolicitanteDAO {
             pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
 
@@ -111,8 +116,10 @@ public class SolicitanteDAO {
             deletar.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
         }
     }
+
     public static String Buscar(String atributo, String codigo) {
         try {
             PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitante where codigo_solicitante = " + codigo);
@@ -128,6 +135,7 @@ public class SolicitanteDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
             return null;
         }
     }

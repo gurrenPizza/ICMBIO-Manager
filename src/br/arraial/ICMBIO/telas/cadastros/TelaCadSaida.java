@@ -96,6 +96,7 @@ public class TelaCadSaida extends JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Saida");
 
+        pnConsulta.setBackground(java.awt.Color.white);
         pnConsulta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pnConsultaFocusGained(evt);
@@ -180,6 +181,10 @@ public class TelaCadSaida extends JInternalFrame {
 
         TelaSaida.addTab("Consultar", pnConsulta);
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +231,7 @@ public class TelaCadSaida extends JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(java.awt.Color.white);
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Solicitação"));
 
         tbSolicitacao.setModel(new javax.swing.table.DefaultTableModel(
@@ -292,6 +298,8 @@ public class TelaCadSaida extends JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel3.setBackground(java.awt.Color.white);
 
         lbAno.setText("Ano:");
 
