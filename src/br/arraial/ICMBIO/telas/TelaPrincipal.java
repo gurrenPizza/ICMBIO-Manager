@@ -19,9 +19,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private final TelaCadSolicitacao telacadsola = new TelaCadSolicitacao();
     private final TelaCadSolicitante telacadsole = new TelaCadSolicitante();
 
-    private final TelaConUsuario telaconusu = new TelaConUsuario();
     private final TelaConSaida telaconsai = new TelaConSaida();
-    private final TelaConModalidade telaconmod = new TelaConModalidade();
     private final TelaConEmbarcacao telaconemb = new TelaConEmbarcacao();
     private final TelaConSolicitacao telaconsola = new TelaConSolicitacao();
     private final TelaConSolicitante telaconsole = new TelaConSolicitante();
@@ -75,10 +73,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         imCadSolicitante = new javax.swing.JMenuItem();
         imCadUsuario = new javax.swing.JMenuItem();
         mnConsulta = new javax.swing.JMenu();
-        imConModalidade = new javax.swing.JMenuItem();
         imConEmbarcacao = new javax.swing.JMenuItem();
         imConSolicitante = new javax.swing.JMenuItem();
-        imConUsuario = new javax.swing.JMenuItem();
         mnSolicitacao = new javax.swing.JMenu();
         imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
@@ -93,7 +89,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ICMBio - Instituto Chico Mendes de Conservação da Biodiversidade");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         pnCentral.setBackground(new java.awt.Color(255, 255, 255));
         pnCentral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -167,14 +162,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mnConsulta.setText("Consulta");
 
-        imConModalidade.setText("Modalidade");
-        imConModalidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConModalidadeActionPerformed(evt);
-            }
-        });
-        mnConsulta.add(imConModalidade);
-
         imConEmbarcacao.setText("Embarcação");
         imConEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,14 +177,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnConsulta.add(imConSolicitante);
-
-        imConUsuario.setText("Usuário");
-        imConUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConUsuarioActionPerformed(evt);
-            }
-        });
-        mnConsulta.add(imConUsuario);
 
         jMenuBar1.add(mnConsulta);
 
@@ -346,20 +325,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         a.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_imRelatarActionPerformed
 
-    private void imConModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConModalidadeActionPerformed
-        pnCentral.add(telaconmod);
-        telaconmod.show();
-    }//GEN-LAST:event_imConModalidadeActionPerformed
-
     private void imConSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConSolicitanteActionPerformed
         pnCentral.add(telaconsole);
         telaconsole.show();
     }//GEN-LAST:event_imConSolicitanteActionPerformed
-
-    private void imConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConUsuarioActionPerformed
-        pnCentral.add(telaconusu);
-        telaconusu.show();
-    }//GEN-LAST:event_imConUsuarioActionPerformed
 
     private void imSaiConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiConsultaActionPerformed
         pnCentral.add(telaconsai);
@@ -408,9 +377,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imCadSolicitante;
     private javax.swing.JMenuItem imCadUsuario;
     private javax.swing.JMenuItem imConEmbarcacao;
-    private javax.swing.JMenuItem imConModalidade;
     private javax.swing.JMenuItem imConSolicitante;
-    private javax.swing.JMenuItem imConUsuario;
     private javax.swing.JMenuItem imRelatar;
     private javax.swing.JMenuItem imSaiCadastro;
     private javax.swing.JMenuItem imSaiConsulta;

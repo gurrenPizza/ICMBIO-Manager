@@ -17,19 +17,20 @@ import javax.swing.table.DefaultTableModel;
 public class ModalidadesDAO {
 
     static Connection conexao = retornarConexao();
+    static PreparedStatement comando;
+    static ResultSet resultado;
 
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            PreparedStatement consulta = conexao.prepareStatement("Select * from modalidade where " + atributo + " like ? order by " + atributo);
-            consulta.setString(1, a + "%");
-            ResultSet resultado = consulta.executeQuery();
+            comando = conexao.prepareStatement("Select * from modalidade where " + atributo + " like ? order by " + atributo);
+            comando.setString(1, a + "%");
+            resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_modalidade"), resultado.getString("nome_modalidade"),});
             }
-            consulta.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -40,10 +41,9 @@ public class ModalidadesDAO {
 
     public static void Cadastrar(String nome) {
         try {
-            PreparedStatement inserir = conexao.prepareStatement("insert into modalidade values(?,null)");
-            inserir.setString(1, nome);
-            inserir.executeUpdate();
-            inserir.close();
+            comando = conexao.prepareStatement("insert into modalidade values(?,null)");
+            comando.setString(1, nome);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -52,10 +52,9 @@ public class ModalidadesDAO {
 
     public static void Alterar(String nome, String codigo) {
         try {
-            PreparedStatement alterar = conexao.prepareStatement("update modalidade set nome_modalidade=? where codigo_modalidade=" + codigo);
-            alterar.setString(1, nome);
-            alterar.executeUpdate();
-            alterar.close();
+            comando = conexao.prepareStatement("update modalidade set nome_modalidade=? where codigo_modalidade=" + codigo);
+            comando.setString(1, nome);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -64,9 +63,8 @@ public class ModalidadesDAO {
 
     public static void Excluir(String codigo) {
         try {
-            PreparedStatement deletar = conexao.prepareStatement("delete from modalidade where codigo_modalidade = " + codigo);
-            deletar.executeUpdate();
-            deletar.close();
+            comando = conexao.prepareStatement("delete from modalidade where codigo_modalidade = " + codigo);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -75,12 +73,11 @@ public class ModalidadesDAO {
 
     public static void PegarDados1(String codigo, JTextField txtNome) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select * from modalidade where codigo_modalidade = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select * from modalidade where codigo_modalidade = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNome.setText(resultado.getString("nome_modalidade"));
             }
-            pesquisa.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -90,15 +87,13 @@ public class ModalidadesDAO {
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from modalidade where codigo_modalidade = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select " + atributo + " from modalidade where codigo_modalidade = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
-                pesquisa.close();
                 resultado.close();
                 return retorno;
             } else {
-                pesquisa.close();
                 return null;
             }
         } catch (SQLException ex) {
@@ -111,21 +106,20 @@ public class ModalidadesDAO {
     public static void PegarDados2(JComboBox cbModalidade) {
         int cont = 0;
         try {
-            PreparedStatement consulta = conexao.prepareStatement("Select * from modalidade");
-            ResultSet resultado = consulta.executeQuery();
+            comando = conexao.prepareStatement("Select * from modalidade");
+            resultado = comando.executeQuery();
             while (resultado.next()) {
                 cont++;
             }
             List<String> lista = new ArrayList<>();
-            consulta = retornarConexao().prepareStatement("Select * from modalidade");
-            resultado = consulta.executeQuery();
+            comando = retornarConexao().prepareStatement("Select * from modalidade");
+            resultado = comando.executeQuery();
             while (resultado.next()) {
                 lista.add(resultado.getString("nome_modalidade"));
             }
             DefaultComboBoxModel model = new DefaultComboBoxModel(lista.toArray());
             cbModalidade.setMaximumRowCount(cont);
             cbModalidade.setModel(model);
-            consulta.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);

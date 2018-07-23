@@ -13,17 +13,18 @@ import javax.swing.table.DefaultTableModel;
 public class SaidaDAO {
 
     static Connection conexao = retornarConexao();
+    static PreparedStatement comando;
+    static ResultSet resultado;
 
     public static void insereSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
         try {
-            PreparedStatement inserir = retornarConexao().prepareStatement("insert into saida(numero_saidas,numero_visitantes,mes,ano,codigo_solicitacao) values(?,?,?,?,?)");
-            inserir.setInt(1, numSaida);
-            inserir.setInt(2, numVisitantes);
-            inserir.setString(3, mes);
-            inserir.setString(4, ano);
-            inserir.setInt(5, Integer.parseInt(codigosolicitacao));
-            inserir.execute();
-            inserir.close();
+            comando = retornarConexao().prepareStatement("insert into saida(numero_saidas,numero_visitantes,mes,ano,codigo_solicitacao) values(?,?,?,?,?)");
+            comando.setInt(1, numSaida);
+            comando.setInt(2, numVisitantes);
+            comando.setString(3, mes);
+            comando.setString(4, ano);
+            comando.setInt(5, Integer.parseInt(codigosolicitacao));
+            comando.execute();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -33,13 +34,12 @@ public class SaidaDAO {
 
     public static void alteraSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida) {
         try {
-            PreparedStatement alterar = BancoDeDados.retornarConexao().prepareStatement("update saida set numero_saidas=?, numero_visitantes=?, mes=?, ano=? where codigo_saida=" + cod_saida);
-            alterar.setInt(1, numSaida);
-            alterar.setInt(2, numVisitantes);
-            alterar.setString(3, mes);
-            alterar.setString(4, ano);
-            alterar.execute();
-            alterar.close();
+            comando = BancoDeDados.retornarConexao().prepareStatement("update saida set numero_saidas=?, numero_visitantes=?, mes=?, ano=? where codigo_saida=" + cod_saida);
+            comando.setInt(1, numSaida);
+            comando.setInt(2, numVisitantes);
+            comando.setString(3, mes);
+            comando.setString(4, ano);
+            comando.execute();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -48,9 +48,8 @@ public class SaidaDAO {
 
     public static void excluiSaida(Integer cod_saida) {
         try {
-            PreparedStatement excluir = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
-            excluir.execute();
-            excluir.close();
+            comando = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
+            comando.execute();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -59,16 +58,15 @@ public class SaidaDAO {
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
-            pesquisa.setString(1, a + "%");
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
+            comando.setString(1, a + "%");
+            resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getInt("codigo_saida"), SolicitacaoDAO.Buscar("codigo_solicitacao", resultado.getString("codigo_solicitacao")), resultado.getInt("numero_saidas"), resultado.getInt("numero_visitantes"), resultado.getString("mes"), resultado.getString("ano"),});
             }
             resultado.close();
-            pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
@@ -77,8 +75,8 @@ public class SaidaDAO {
 
     public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select * from saida where codigo_saida = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select * from saida where codigo_saida = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNumSaida.setText(resultado.getString("numero_saidas"));
                 txtNumVisitantes.setText(resultado.getString("sequencia_anual"));
@@ -86,7 +84,6 @@ public class SaidaDAO {
                 txtAno.setText(resultado.getString("motivo"));
             }
             resultado.close();
-            pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
