@@ -282,7 +282,7 @@
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <EmptySpace pref="13" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -369,7 +369,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" pref="533" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="535" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -484,13 +484,13 @@
                                   <Component id="lbMes" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbAno" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtMes" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtMes" alignment="0" pref="415" max="32767" attributes="0"/>
                                   <Component id="txtNumVisitantes" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtAno" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtNumSaida" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="lbProcesso" alignment="0" pref="415" max="32767" attributes="0"/>
+                                  <Component id="lblNumProcesso" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
@@ -502,7 +502,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lbNumProcesso" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbProcesso" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNumProcesso" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -563,10 +563,7 @@
                         <Property name="text" type="java.lang.String" value="N&#xfa;mero do processo:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lbProcesso">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="                                    "/>
-                      </Properties>
+                    <Component class="javax.swing.JTextField" name="lblNumProcesso">
                     </Component>
                   </SubComponents>
                 </Container>

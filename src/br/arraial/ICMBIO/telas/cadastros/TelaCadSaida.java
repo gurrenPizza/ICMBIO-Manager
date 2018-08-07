@@ -60,7 +60,7 @@ public class TelaCadSaida extends JInternalFrame {
         lbNumVisitantes = new javax.swing.JLabel();
         lbNumSaida = new javax.swing.JLabel();
         lbNumProcesso = new javax.swing.JLabel();
-        lbProcesso = new javax.swing.JLabel();
+        lblNumProcesso = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -280,7 +280,7 @@ public class TelaCadSaida extends JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -311,8 +311,6 @@ public class TelaCadSaida extends JInternalFrame {
 
         lbNumProcesso.setText("Número do processo:");
 
-        lbProcesso.setText("                                    ");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -325,13 +323,13 @@ public class TelaCadSaida extends JInternalFrame {
                     .addComponent(lbNumVisitantes)
                     .addComponent(lbMes)
                     .addComponent(lbAno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMes)
+                    .addComponent(txtMes, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                     .addComponent(txtNumVisitantes)
                     .addComponent(txtAno)
                     .addComponent(txtNumSaida, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbProcesso, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                    .addComponent(lblNumProcesso))
                 .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
@@ -340,7 +338,7 @@ public class TelaCadSaida extends JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNumProcesso)
-                    .addComponent(lbProcesso))
+                    .addComponent(lblNumProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNumSaida)
@@ -383,7 +381,7 @@ public class TelaCadSaida extends JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnCadastroLayout = new javax.swing.GroupLayout(pnCadastro);
@@ -540,7 +538,7 @@ public class TelaCadSaida extends JInternalFrame {
     private javax.swing.JLabel lbNumProcesso;
     private javax.swing.JLabel lbNumSaida;
     private javax.swing.JLabel lbNumVisitantes;
-    private javax.swing.JLabel lbProcesso;
+    private javax.swing.JTextField lblNumProcesso;
     private javax.swing.JPanel pnCadastro;
     private javax.swing.JPanel pnConsulta;
     private javax.swing.JTable tbSaidas;

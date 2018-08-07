@@ -68,19 +68,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtDate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnCadastro = new javax.swing.JMenu();
-        imCadModalidade = new javax.swing.JMenuItem();
-        imCadEmbarcacao = new javax.swing.JMenuItem();
         imCadSolicitante = new javax.swing.JMenuItem();
+        imCadEmbarcacao = new javax.swing.JMenuItem();
+        imCadModalidade = new javax.swing.JMenuItem();
         imCadUsuario = new javax.swing.JMenuItem();
         mnConsulta = new javax.swing.JMenu();
-        imConEmbarcacao = new javax.swing.JMenuItem();
         imConSolicitante = new javax.swing.JMenuItem();
+        imConEmbarcacao = new javax.swing.JMenuItem();
         mnSolicitacao = new javax.swing.JMenu();
-        imSoliCadastro = new javax.swing.JMenuItem();
         imSoliConsulta = new javax.swing.JMenuItem();
+        imSoliCadastro = new javax.swing.JMenuItem();
         mnSaida = new javax.swing.JMenu();
-        imSaiCadastro = new javax.swing.JMenuItem();
         imSaiConsulta = new javax.swing.JMenuItem();
+        imSaiCadastro = new javax.swing.JMenuItem();
         mnAjuda = new javax.swing.JMenu();
         imAjuda = new javax.swing.JMenuItem();
         imRelatar = new javax.swing.JMenuItem();
@@ -126,13 +126,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mnCadastro.setText("Cadastro");
 
-        imCadModalidade.setText("Modalidade");
-        imCadModalidade.addActionListener(new java.awt.event.ActionListener() {
+        imCadSolicitante.setText("Solicitante");
+        imCadSolicitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadModalidadeActionPerformed(evt);
+                imCadSolicitanteActionPerformed(evt);
             }
         });
-        mnCadastro.add(imCadModalidade);
+        mnCadastro.add(imCadSolicitante);
 
         imCadEmbarcacao.setText("Embarcação");
         imCadEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
@@ -142,13 +142,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnCadastro.add(imCadEmbarcacao);
 
-        imCadSolicitante.setText("Solicitante");
-        imCadSolicitante.addActionListener(new java.awt.event.ActionListener() {
+        imCadModalidade.setText("Modalidade");
+        imCadModalidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadSolicitanteActionPerformed(evt);
+                imCadModalidadeActionPerformed(evt);
             }
         });
-        mnCadastro.add(imCadSolicitante);
+        mnCadastro.add(imCadModalidade);
 
         imCadUsuario.setText("Usuário");
         imCadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -162,14 +162,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mnConsulta.setText("Consulta");
 
-        imConEmbarcacao.setText("Embarcação");
-        imConEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConEmbarcacaoActionPerformed(evt);
-            }
-        });
-        mnConsulta.add(imConEmbarcacao);
-
         imConSolicitante.setText("Solicitante");
         imConSolicitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,17 +170,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnConsulta.add(imConSolicitante);
 
+        imConEmbarcacao.setText("Embarcação");
+        imConEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConEmbarcacaoActionPerformed(evt);
+            }
+        });
+        mnConsulta.add(imConEmbarcacao);
+
         jMenuBar1.add(mnConsulta);
 
         mnSolicitacao.setText("Solicitação");
-
-        imSoliCadastro.setText("Cadastro");
-        imSoliCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imSoliCadastroActionPerformed(evt);
-            }
-        });
-        mnSolicitacao.add(imSoliCadastro);
 
         imSoliConsulta.setText("Consulta");
         imSoliConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -198,17 +190,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnSolicitacao.add(imSoliConsulta);
 
+        imSoliCadastro.setText("Cadastro");
+        imSoliCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSoliCadastroActionPerformed(evt);
+            }
+        });
+        mnSolicitacao.add(imSoliCadastro);
+
         jMenuBar1.add(mnSolicitacao);
 
         mnSaida.setText("Saida");
-
-        imSaiCadastro.setText("Cadastro");
-        imSaiCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imSaiCadastroActionPerformed(evt);
-            }
-        });
-        mnSaida.add(imSaiCadastro);
 
         imSaiConsulta.setText("Consulta");
         imSaiConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -218,10 +210,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnSaida.add(imSaiConsulta);
 
+        imSaiCadastro.setText("Cadastro");
+        imSaiCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSaiCadastroActionPerformed(evt);
+            }
+        });
+        mnSaida.add(imSaiCadastro);
+
         jMenuBar1.add(mnSaida);
 
         mnAjuda.setText("Ajuda");
 
+        imAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
         imAjuda.setText("Conteudo da ajuda");
         imAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +231,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnAjuda.add(imAjuda);
 
+        imRelatar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
         imRelatar.setText("Relatar erro");
         imRelatar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
