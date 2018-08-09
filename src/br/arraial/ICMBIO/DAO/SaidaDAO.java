@@ -58,6 +58,15 @@ public class SaidaDAO {
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
+            Integer r;
+            if(atributo.equals("numero_processo")){
+                comando = conexao.prepareStatement("select codigo_solicitacao from solicitacao where " + atributo + " = ?");
+                comando.setString(1, a);
+                resultado = comando.executeQuery();
+                r = resultado.getInt(1);
+                atributo = "codigo_solicitacao";
+            }
+            
             comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
             comando.setString(1, a + "%");
             resultado = comando.executeQuery();
