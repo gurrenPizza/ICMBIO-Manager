@@ -478,9 +478,9 @@ public class TelaCadSaida extends JInternalFrame {
                 txtPesquisa.setText("Digite o código da saída");
                 codAtr = "codigo_saida";
                 break;
-            case "Cod. Solicitação":
-                txtPesquisa.setText("Digite o código da solicitação");
-                codAtr = "codigo_solicitacao";
+            case /*"Cod. Solicitação"*/ "Número do processo":
+                txtPesquisa.setText(/*"Digite o código da solicitação"*/"Digite o número do processo");
+                codAtr = "numero_processo";
                 break;
             case "Nº de Saídas":
                 txtPesquisa.setText("Digite o número de saídas");
