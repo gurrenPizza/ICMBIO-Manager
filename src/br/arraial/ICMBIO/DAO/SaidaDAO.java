@@ -59,16 +59,28 @@ public class SaidaDAO {
     public static void Consultar(String a, JTable b, String atributo) {
         try {
             Integer r;
+            String plshelp="";
+            
             if(atributo.equals("numero_processo")){
                 comando = conexao.prepareStatement("select codigo_solicitacao from solicitacao where " + atributo + " = ?");
                 comando.setString(1, a);
                 resultado = comando.executeQuery();
-                r = resultado.getInt(1);
+                if(resultado.next()){
+                    r = resultado.getInt("codigo_solicitacao");
+                    plshelp = r.toString();
+                }
                 atributo = "codigo_solicitacao";
             }
             
-            comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
-            comando.setString(1, a + "%");
+            if(!atributo.equals("codigo_solicitacao")){
+                comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
+                comando.setString(1, a + "%");
+            }
+            else{
+                comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
+                comando.setString(1, plshelp + "%");
+            }
+            
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
