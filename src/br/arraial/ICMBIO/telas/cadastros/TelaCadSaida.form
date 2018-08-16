@@ -144,7 +144,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="6">
                     <StringItem index="0" value="Cod. Sa&#xed;da"/>
-                    <StringItem index="1" value="Cod. Solicita&#xe7;&#xe3;o"/>
+                    <StringItem index="1" value="N&#xfa;mero do processo"/>
                     <StringItem index="2" value="N&#xba; de Sa&#xed;das"/>
                     <StringItem index="3" value="N&#xba; de Visitantes"/>
                     <StringItem index="4" value="M&#xea;s"/>
@@ -154,11 +154,13 @@
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtributoItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAtributoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPesquisa">
               <Events>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPesquisaMousePressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPesquisaActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisaKeyReleased"/>
               </Events>
             </Component>

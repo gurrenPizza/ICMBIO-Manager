@@ -3,9 +3,10 @@ package br.arraial.ICMBIO.telas.cadastros;
 import br.arraial.ICMBIO.DAO.SaidaDAO;
 import br.arraial.ICMBIO.DAO.SolicitacaoDAO;
 import javax.swing.JInternalFrame;
+import javax.swing.JTabbedPane;
 
 /**
- * @version 6.0 - 11/07
+ * @version 6.5 - 13/08/2018
  * @author Turma INF161 Grupo Saída - Alberto Figuerêdo, Ariane Sales, Felipe
  * Viana, Laura Fidalgo e Phillipe Loriot de Rouvray
  */
@@ -19,6 +20,10 @@ public class TelaCadSaida extends JInternalFrame {
 
     public TelaCadSaida() {
         initComponents();
+    }
+    
+    public JTabbedPane getPainelSaida(){
+        return TelaSaida;
     }
 
     /**
@@ -103,16 +108,26 @@ public class TelaCadSaida extends JInternalFrame {
             }
         });
 
-        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cod. Saída", "Cod. Solicitação", "Nº de Saídas", "Nº de Visitantes", "Mês", "Ano" }));
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cod. Saída", "Número do processo", "Nº de Saídas", "Nº de Visitantes", "Mês", "Ano" }));
         cbAtributo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbAtributoItemStateChanged(evt);
+            }
+        });
+        cbAtributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAtributoActionPerformed(evt);
             }
         });
 
         txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtPesquisaMousePressed(evt);
+            }
+        });
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
             }
         });
         txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -516,6 +531,14 @@ public class TelaCadSaida extends JInternalFrame {
     private void tbSolicitacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSolicitacaoMouseClicked
 
     }//GEN-LAST:event_tbSolicitacaoMouseClicked
+
+    private void cbAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAtributoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAtributoActionPerformed
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TelaSaida;
