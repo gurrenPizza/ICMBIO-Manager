@@ -299,6 +299,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void imSaiCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSaiCadastroActionPerformed
         pnCentral.add(telacadsai);
+        telacadsai.getPainelSaida().setSelectedIndex(1);
         telacadsai.show();
     }//GEN-LAST:event_imSaiCadastroActionPerformed
 
