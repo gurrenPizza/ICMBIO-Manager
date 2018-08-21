@@ -16,7 +16,7 @@ public class SaidaDAO {
     static PreparedStatement comando;
     static ResultSet resultado;
 
-    public static void insereSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
+    public static void Inserir(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
         try {
             comando = retornarConexao().prepareStatement("insert into saida(numero_saidas,numero_visitantes,mes,ano,codigo_solicitacao) values(?,?,?,?,?)");
             comando.setInt(1, numSaida);
@@ -32,7 +32,7 @@ public class SaidaDAO {
 
     }
 
-    public static void alteraSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida) {
+    public static void Alterar(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida) {
         try {
             comando = BancoDeDados.retornarConexao().prepareStatement("update saida set numero_saidas=?, numero_visitantes=?, mes=?, ano=? where codigo_saida=" + cod_saida);
             comando.setInt(1, numSaida);
@@ -46,7 +46,7 @@ public class SaidaDAO {
         }
     }
 
-    public static void excluiSaida(Integer cod_saida) {
+    public static void Excluir(String cod_saida) {
         try {
             comando = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
             comando.execute();
@@ -94,15 +94,16 @@ public class SaidaDAO {
         }
     }
 
-    public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno) {
+    public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno, JTextField txtNumProc) {
         try {
             comando = conexao.prepareStatement("select * from saida where codigo_saida = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
+                txtNumProc.setText(SolicitacaoDAO.Buscar("numero_processo", resultado.getString("codigo_solicitacao")));
                 txtNumSaida.setText(resultado.getString("numero_saidas"));
-                txtNumVisitantes.setText(resultado.getString("sequencia_anual"));
-                txtMes.setText(resultado.getString("status"));
-                txtAno.setText(resultado.getString("motivo"));
+                txtNumVisitantes.setText(resultado.getString("numero_visitantes"));
+                txtMes.setText(resultado.getString("mes"));
+                txtAno.setText(resultado.getString("ano"));
             }
             resultado.close();
         } catch (SQLException ex) {

@@ -430,9 +430,9 @@ public class TelaCadSaida extends JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (codigo == null) {
-            SaidaDAO.insereSaida(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString());
+            SaidaDAO.Inserir(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), tbSolicitacao.getValueAt(tbSolicitacao.getSelectedRow(), 0).toString());
         } else {
-            SaidaDAO.alteraSaida(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), Integer.parseInt(codigo));
+            SaidaDAO.Alterar(Integer.parseInt(txtNumSaida.getText()), Integer.parseInt(txtNumVisitantes.getText()), txtMes.getText(), txtAno.getText(), Integer.parseInt(codigo));
         }
         TelaSaida.setSelectedIndex(0);
         this.codigo = null;
@@ -449,7 +449,7 @@ public class TelaCadSaida extends JInternalFrame {
     private void tbSaidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSaidasMouseClicked
         TelaSaida.setSelectedIndex(1);
         this.codigo = tbSaidas.getValueAt(tbSaidas.getSelectedRow(), 0).toString();
-        SaidaDAO.PegarDados(codigo, txtNumSaida, txtNumVisitantes, txtMes, txtAno);
+        SaidaDAO.PegarDados(codigo, txtNumSaida, txtNumVisitantes, txtMes, txtAno, lblNumProcesso);
         switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
             case "Cod. Saída":
                 txtPesquisa.setText("Digite o código da saída");
@@ -480,7 +480,19 @@ public class TelaCadSaida extends JInternalFrame {
     }//GEN-LAST:event_tbSaidasMouseClicked
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-
+        SaidaDAO.Excluir(codigo);
+        txtAno.setText("");
+        txtMes.setText("");
+        txtNumSaida.setText("");
+        txtNumVisitantes.setText("");
+        txtPesquisa.setText("");
+        tbSaidas.clearSelection();
+        txtPesquisa2.setText("");
+        tbSolicitacao.clearSelection();
+        SaidaDAO.Consultar(txtPesquisa.getText(), tbSolicitacao, codAtr);
+        TelaSaida.setSelectedIndex(0);
+        this.codigo = null;
+        btExcluir.setEnabled(false);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void pnConsultaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnConsultaFocusGained
