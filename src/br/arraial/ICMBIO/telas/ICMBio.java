@@ -1,6 +1,9 @@
 package br.arraial.ICMBIO.telas;
 
+import br.arraial.ICMBIO.DAO.BancoDeDados;
 import static java.lang.Thread.sleep;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ICMBio {
     private static final TelaLogin telalogin = new TelaLogin();
@@ -8,6 +11,8 @@ public class ICMBio {
     public TelaLogin getTelalogin() {
         return telalogin;
     }
+
+    public static BancoDeDados banco;
     
     public static void main(String[] args){
         Inicio janela = new Inicio();
@@ -18,7 +23,12 @@ public class ICMBio {
                 janela.barra.setValue(i);
                 janela.porcentagem.setText(i+ "%");
             }
+            
             janela.dispose();
+            if (new SimpleDateFormat("dd").format(new Date()).equals("01")) {
+                banco.criarBackup();
+            }
+            
             telalogin.setVisible(true);
         } catch (InterruptedException ex) {
             System.out.println(ex);

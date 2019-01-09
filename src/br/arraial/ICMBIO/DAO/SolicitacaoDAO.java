@@ -20,7 +20,7 @@ public class SolicitacaoDAO {
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            comando = conexao.prepareStatement("Select * from solicitacao where " + atributo + " like ? order by " + atributo);
+            comando = conexao.prepareStatement("Select * from solicitacao, embarcacao, solicitante where est=0 and solicitacao.codigo_solicitante=solicitante.codigo_solicitante and solicitacao.codigo_embarcacao=embarcacao.codigo_embarcacao and " + atributo + " like ? order by " + atributo);
             comando.setString(1, a + "%");
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -33,6 +33,7 @@ public class SolicitacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
@@ -50,6 +51,7 @@ public class SolicitacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
@@ -66,22 +68,24 @@ public class SolicitacaoDAO {
         } catch (Exception ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigo) {
         try {
-            comando = conexao.prepareStatement("delete from solicitacao where codigo_solicitacao = " + codigo);
+            comando = conexao.prepareStatement("update solicitacao set est=1 where codigo_solicitacao = " + codigo);
             comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo, JTextField txtNome, JTextField txtNome2) {
         try {
-            comando = conexao.prepareStatement("select * from solicitacao where codigo_solicitacao = " + codigo);
+            comando = conexao.prepareStatement("select * from solicitacao where est=0 and codigo_solicitacao = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNumero.setText(resultado.getString("numero_processo"));
@@ -95,12 +99,13 @@ public class SolicitacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            comando = conexao.prepareStatement("select " + atributo + " from solicitacao where codigo_solicitacao = " + codigo);
+            comando = conexao.prepareStatement("select " + atributo + " from solicitacao where est=0 and codigo_solicitacao = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
@@ -112,6 +117,7 @@ public class SolicitacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
             return null;
         }
     }

@@ -36,10 +36,12 @@ public class TelaSobre extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Este é um programa de gerenciamento que foi desenvolvido em Java para o \nICMBIO, uma instituição do governo brasileiro que gere e preserva a biodiversidade da \nfauna e flora brasileira, e em especial, controla o tráfego de embarcações na costa da \nRegião dos Lagos, principalmente em Arraial do Cabo, Rio de Janeiro, Brasil, para onde \niremos desenvolver o programa.\n\nO objetivo do programa é controlar o banco de dados de tráfego de embarcações do \nICMBIO com suporte a inserção, alteração e remoção de informações. Além disso, o \nprograma possui uma interface gráfica amigável desenvolvida com alguns recursos \nda linguagem Java por conta do nosso público alvo, que são pessoas não necessaria-\nmente ligadas à computação e tecnologia.\n\nEsse programa será desenvolvido em colaboração por uma turma do 6º período do \nEnsino Médio Técnico em informática do IFRJ como forma de avaliação final do período \npara a disciplina Linguagens de Programação III. Apesar de parte dessa descrição ter \nsido escrita em inglês, todos os commits e outros comentários serão escritos em \nportuguês de modo a facilitar nossa comunicação, já que é nossa língua materna e \nnem todos nós falamos inglês.\n\nProfessor: Carlos Augusto Fernandes, Mestre em Computação.\n\nIntegrantes da turma: \n\nAlberto Dinis Lira Figuerêdo, Gabriel Ribeiro, Philippe Loriot de Rouvray, Felipe Viana \nFalcão, Ariane Sales, Laura Fidalgo, Gabriel Carvalho da Silva Boalento, Anna \nCarolina Nicoli, Patrick Carmona, Gabrielli Ribeiro, Matheus Hiroshi Azuma Chavez , \nEmilly Rodrigues, Marcelo Coelho, Louise Lisboa, Abner Guedes, Maria Eduarda \nSoares, Bheatriz Syria, Euller Felipe Costa, Gabriella Caetano, Arthur Moreira, Raquel \nMoraes.");
+        jTextArea1.setText("Este é um programa de gerenciamento que foi desenvolvido em Java para o ICMBIO, \numa instituição do governo brasileiro que gere e preserva a biodiversidade da fauna \ne flora brasileira, e em especial, controla o tráfego de embarcações na costa da Região \ndos Lagos, principalmente na cidade de Arraial do Cabo, Rio de Janeiro, Brasil.\n\nO objetivo do sistema é controlar o banco de dados de tráfego de embarcações do \nICMBIO com suporte a inserção, alteração, remoção e consulta de informações. Além \ndisso, o programa possui uma interface gráfica amigável desenvolvida com alguns \nrecursos da linguagem Java por conta do nosso público alvo, que são pessoas não \nnecessariamente ligadas à computação e tecnologia. O Sistema foi desenvolvido em \n3 camadas MVC (Model View Controler) e (OO) Orientado a Objetos.\n\nEsse projeto foi desenvolvido exclusivamente por alunos do IFRJ (Instituto Federal de \nEducação, Ciência e Tecnologia do Rio de Janeiro). Foi fruto da orientação do trabalho \nde conclusão do Curso Técnico em Meio Ambiente da aluna Emanuelle Ramos da Silva \nem parceria com a turma do 6º período do Ensino Médio Técnico em Informática, como \nforma de avaliação final da disciplina de Linguagens e Técnicas de Programação III.\n\nProfessor e Coordenador: Carlos Augusto Fernandes Filho, Mestre em Computação.\n\nIntegrantes da turma:\nAlberto Dinis Lira Figuerêdo, Gabriel Ribeiro, Philippe Loriot de Rouvray, Felipe Viana \nFalcão, Ariane Sales, Laura Fidalgo, Gabriel Carvalho da Silva Boalento, Anna \nCarolina Nicoli, Patrick Carmona, Gabrielli Ribeiro, Matheus Hiroshi Azuma Chavez , \nEmilly Rodrigues, Marcelo Coelho, Louise Lisboa, Abner Guedes, Maria Eduarda \nSoares, Bheatriz Syria, Euller Felipe Costa, Gabriella Caetano, Arthur Moreira, Raquel \nMoraes.");
+        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/arraial/ICMBIO/img/ifrj.png"))); // NOI18N
@@ -51,11 +53,9 @@ public class TelaSobre extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 25, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +63,7 @@ public class TelaSobre extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -71,13 +71,11 @@ public class TelaSobre extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

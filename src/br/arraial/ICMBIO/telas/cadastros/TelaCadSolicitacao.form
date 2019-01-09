@@ -105,11 +105,10 @@
             <Component class="javax.swing.JComboBox" name="cbAtributo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Numero do Processo"/>
-                    <StringItem index="1" value="Codigo"/>
-                    <StringItem index="2" value="Solicitante"/>
-                    <StringItem index="3" value="Embarca&#xe7;&#xe3;o"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="N&#xfa;mero do Processo"/>
+                    <StringItem index="1" value="Solicitante"/>
+                    <StringItem index="2" value="Embarca&#xe7;&#xe3;o"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -258,7 +257,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Numero do processo:"/>
+                    <Property name="text" type="java.lang.String" value="N&#xfa;mero do processo:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtNumeroProc">
@@ -269,12 +268,12 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Sequencia:"/>
+                    <Property name="text" type="java.lang.String" value="Sequ&#xea;ncia:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Status"/>
+                    <Property name="text" type="java.lang.String" value="Status:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
@@ -310,6 +309,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Solicitante"/>
+              </AccessibilityProperties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -508,7 +510,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btLimpar">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Limpar"/>
+                    <Property name="text" type="java.lang.String" value="Novo"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimparActionPerformed"/>

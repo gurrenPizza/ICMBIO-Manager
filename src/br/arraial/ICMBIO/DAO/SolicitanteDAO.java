@@ -18,7 +18,7 @@ public class SolicitanteDAO {
 
     public static void PegarDados(String codigo, JTextField txtBeneficiario, JTextField txtBairro, JTextField txtCidade, JTextField txtCpfCnpj, JTextField txtEmail, JTextField txtEndereco, JTextField txtNome, JTextField txtNomeFantasia, JTextField txtOperadora, JTextField txtRazaoSocial, JTextField txtResponsavel, JTextField fmCep, JTextField fmTelefone) {
         try {
-            comando = conexao.prepareStatement("select * from solicitante where codigo_solicitante=" + codigo);
+            comando = conexao.prepareStatement("select * from solicitante where est=0 and codigo_solicitante=" + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtBeneficiario.setText(resultado.getString("beneficiario"));
@@ -39,6 +39,7 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
@@ -63,13 +64,14 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
 
     public static void Alterar(String codigo, String Nome, String Beneficiario, String CPF_CNPJ, String Telefone, String Endereco, String Bairro, String Cidade, String Cep, String Email, String Razao_Social, String Nome_Fantasia, String Responsavel, String Operadora) {
         try {
-            comando = conexao.prepareStatement("UPDATE solicitante SET nome = ?, beneficiario = ?, CPF_CNPJ = ?, telefone = ?, endereco = ?, bairro = ?, cidade = ?, cep = ?, email = ?, razao_social = ?, nome_fantasia = ?, responsavel = ?, operadora = ? WHERE codigo_solicitante = " + codigo);
+            comando = conexao.prepareStatement("uptdate solicitante SET nome = ?, beneficiario = ?, CPF_CNPJ = ?, telefone = ?, endereco = ?, bairro = ?, cidade = ?, cep = ?, email = ?, razao_social = ?, nome_fantasia = ?, responsavel = ?, operadora = ? WHERE codigo_solicitante = " + codigo);
             comando.setString(1, Nome);
             comando.setString(2, Beneficiario);
             comando.setString(3, CPF_CNPJ);
@@ -87,13 +89,14 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            comando = conexao.prepareStatement("select * from solicitante where " + atributo + " like ? order by " + atributo);
+            comando = conexao.prepareStatement("select * from solicitante where est=0 and " + atributo + " like ? order by " + atributo);
             comando.setString(1, a + "%");
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -105,22 +108,24 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigo) {
         try {
-            comando = conexao.prepareStatement("DELETE FROM solicitante WHERE codigo_solicitante=" + codigo);
+            comando = conexao.prepareStatement("update solicitante set est=1 WHERE codigo_solicitante=" + codigo);
             comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            comando = conexao.prepareStatement("select " + atributo + " from solicitante where codigo_solicitante = " + codigo);
+            comando = conexao.prepareStatement("select " + atributo + " from solicitante where est=0 and codigo_solicitante = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
@@ -132,6 +137,7 @@ public class SolicitanteDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
             return null;
         }
     }

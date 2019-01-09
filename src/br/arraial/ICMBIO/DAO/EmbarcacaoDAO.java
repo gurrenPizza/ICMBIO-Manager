@@ -1,7 +1,6 @@
 package br.arraial.ICMBIO.DAO;
 
-import static br.arraial.ICMBIO.DAO.BancoDeDados.retornarConexao;
-import java.sql.Connection;
+import static br.arraial.ICMBIO.telas.ICMBio.banco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,14 +14,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class EmbarcacaoDAO {
-
-    static Connection conexao = retornarConexao();
     static PreparedStatement comando;
     static ResultSet resultado;
 
     public static void PegarDados(String codigoembarcacao, JTextField txtNomeEmbarcacao, JTextField fmTie, JTextField txtNomeProprietario, JSpinner cgNumeroPassageiros, JFormattedTextField fmTamanhoEmbarcacao, JSpinner cgCapacidadePassageiros, JTextField txtLocal, JTextArea atObs, JComboBox cbModalidade) {
         try {
-            comando = conexao.prepareStatement("select * from embarcacao where codigo_embarcacao = " + codigoembarcacao);
+            comando = banco.conexao.prepareStatement("select * from embarcacao, modalidade where est=0 and modalidade.codigo_modalidade = embarcacao.codigo_modalidade and embarcacao.codigo_embarcacao = " + codigoembarcacao);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNomeEmbarcacao.setText(resultado.getString("nome_embarcacao"));
@@ -33,18 +30,41 @@ public class EmbarcacaoDAO {
                 cgCapacidadePassageiros.setValue(Integer.parseInt(resultado.getString("capacidade_passageiros")));
                 txtLocal.setText(resultado.getString("local"));
                 atObs.setText(resultado.getString("obs"));
-                cbModalidade.setSelectedIndex(resultado.getInt("codigo_modalidade"));
+                //cbModalidade.setSelectedIndex(resultado.getInt("codigo_modalidade"));
+                //System.out.println("");
+                cbModalidade.setSelectedItem(resultado.getString("nome_modalidade"));
             }
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
+    public static Integer PegarCodigoModalidade(String modalidade) {
+        try {
+            comando = banco.conexao.prepareStatement("select * from modalidade where est=0 and nome_modalidade = '" + modalidade+"'");
+            resultado = comando.executeQuery();
+            resultado.next();
+            //if (resultado != null && resultado.next()) {
+                //cbModalidade.setSelectedIndex(resultado.getInt("codigo_modalidade"));
+                //cbModalidade.setSelectedItem(resultado.getString("nome_modalidade"));
+                return resultado.getInt("codigo_modalidade");
+            //}
+           // resultado.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
+            return null;
+        }
+    }
+
+    
     public static void Alterar(String codigoembarcacao, String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
         try {
-            comando = conexao.prepareStatement("update embarcacao set nome_embarcacao=?, tie=?, nome_proprietario=?, numero_passageiros=?, tamanho_embarcacao=?, capacidade_passageiros=?, local=?, obs=?, codigo_modalidade=? where codigo_embarcacao = " + codigoembarcacao);
+            comando = banco.conexao.prepareStatement("update embarcacao set nome_embarcacao=?, tie=?, nome_proprietario=?, numero_passageiros=?, tamanho_embarcacao=?, capacidade_passageiros=?, local=?, obs=?, codigo_modalidade=? where codigo_embarcacao = " + codigoembarcacao);
             comando.setString(1, nome);
             comando.setString(2, tie);
             comando.setString(3, nomeproprietario);
@@ -58,12 +78,13 @@ public class EmbarcacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Cadastrar(String nome, String tie, String nomeproprietario, String numeropassageiros, String tamanhoembarcacao, String capacidadepassageiros, String local, String obs, Integer modalidade) {
         try {
-            comando = conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
+            comando = banco.conexao.prepareStatement("insert into embarcacao(nome_embarcacao, tie, nome_proprietario, numero_passageiros, tamanho_embarcacao, capacidade_passageiros, local, obs, codigo_modalidade) values(?,?,?,?,?,?,?,?,?)");
             comando.setString(1, nome);
             comando.setString(2, tie);
             comando.setString(3, nomeproprietario);
@@ -77,22 +98,24 @@ public class EmbarcacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigoembarcacao) {
         try {
-            comando = conexao.prepareStatement("delete from embarcacao where codigo_embarcacao = " + codigoembarcacao);
+            comando = banco.conexao.prepareStatement("update embarcacao set est=1 where codigo_embarcacao = " + codigoembarcacao);
             comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
-            comando = conexao.prepareStatement("select * from embarcacao where " + atributo + " like ? order by " + atributo);
+            comando = banco.conexao.prepareStatement("select * from embarcacao, modalidade where est=0 and embarcacao.codigo_modalidade=modalidade.codigo_modalidade and " + atributo + " like ? order by " + atributo);
             comando.setString(1, a + "%");
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -104,12 +127,13 @@ public class EmbarcacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            comando = conexao.prepareStatement("select " + atributo + " from embarcacao where codigo_embarcacao = " + codigo);
+            comando = banco.conexao.prepareStatement("select " + atributo + " from embarcacao where est=0 and codigo_embarcacao = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
@@ -121,6 +145,7 @@ public class EmbarcacaoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
             return null;
         }
     }

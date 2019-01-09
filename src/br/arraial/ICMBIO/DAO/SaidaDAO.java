@@ -16,7 +16,7 @@ public class SaidaDAO {
     static PreparedStatement comando;
     static ResultSet resultado;
 
-    public static void Inserir(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
+    public static void insereSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, String codigosolicitacao) {
         try {
             comando = retornarConexao().prepareStatement("insert into saida(numero_saidas,numero_visitantes,mes,ano,codigo_solicitacao) values(?,?,?,?,?)");
             comando.setInt(1, numSaida);
@@ -28,11 +28,12 @@ public class SaidaDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
 
-    public static void Alterar(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida) {
+    public static void alteraSaida(Integer numSaida, Integer numVisitantes, String mes, String ano, Integer cod_saida) {
         try {
             comando = BancoDeDados.retornarConexao().prepareStatement("update saida set numero_saidas=?, numero_visitantes=?, mes=?, ano=? where codigo_saida=" + cod_saida);
             comando.setInt(1, numSaida);
@@ -43,44 +44,34 @@ public class SaidaDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
-    public static void Excluir(String cod_saida) {
+    public static void excluiSaida(Integer cod_saida) {
         try {
-            comando = BancoDeDados.retornarConexao().prepareStatement("delete from saida where codigo_saida=" + cod_saida);
+            comando = BancoDeDados.retornarConexao().prepareStatement("update saida set est=1 where codigo_saida=" + cod_saida);
             comando.execute();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Consultar(String a, JTable b, String atributo) {
         try {
             Integer r;
-            String plshelp="";
-            
             if(atributo.equals("numero_processo")){
-                comando = conexao.prepareStatement("select codigo_solicitacao from solicitacao where " + atributo + " = ?");
+                comando = conexao.prepareStatement("select codigo_solicitacao from solicitacao where est=0 and " + atributo + " = ?");
                 comando.setString(1, a);
                 resultado = comando.executeQuery();
-                if(resultado.next()){
-                    r = resultado.getInt("codigo_solicitacao");
-                    plshelp = r.toString();
-                }
+                r = resultado.getInt(1);
                 atributo = "codigo_solicitacao";
             }
             
-            if(!atributo.equals("codigo_solicitacao")){
-                comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
-                comando.setString(1, a + "%");
-            }
-            else{
-                comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
-                comando.setString(1, plshelp + "%");
-            }
-            
+            comando = conexao.prepareStatement("select * from saida where " + atributo + " like ? order by " + atributo);
+            comando.setString(1, a + "%");
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
@@ -91,24 +82,25 @@ public class SaidaDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
-    public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno, JTextField txtNumProc) {
+    public static void PegarDados(String codigo, JTextField txtNumSaida, JTextField txtNumVisitantes, JTextField txtMes, JTextField txtAno) {
         try {
-            comando = conexao.prepareStatement("select * from saida where codigo_saida = " + codigo);
+            comando = conexao.prepareStatement("select * from saida where est=0 and codigo_saida = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
-                txtNumProc.setText(SolicitacaoDAO.Buscar("numero_processo", resultado.getString("codigo_solicitacao")));
                 txtNumSaida.setText(resultado.getString("numero_saidas"));
-                txtNumVisitantes.setText(resultado.getString("numero_visitantes"));
-                txtMes.setText(resultado.getString("mes"));
-                txtAno.setText(resultado.getString("ano"));
+                txtNumVisitantes.setText(resultado.getString("sequencia_anual"));
+                txtMes.setText(resultado.getString("status"));
+                txtAno.setText(resultado.getString("motivo"));
             }
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 }

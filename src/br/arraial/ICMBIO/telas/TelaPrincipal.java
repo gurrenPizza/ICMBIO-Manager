@@ -163,6 +163,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnConsulta.setText("Consulta");
 
         imConSolicitante.setText("Solicitante");
+        imConSolicitante.setEnabled(false);
         imConSolicitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imConSolicitanteActionPerformed(evt);
@@ -171,6 +172,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnConsulta.add(imConSolicitante);
 
         imConEmbarcacao.setText("Embarcação");
+        imConEmbarcacao.setEnabled(false);
         imConEmbarcacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imConEmbarcacaoActionPerformed(evt);
@@ -183,6 +185,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnSolicitacao.setText("Solicitação");
 
         imSoliConsulta.setText("Consulta");
+        imSoliConsulta.setEnabled(false);
         imSoliConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imSoliConsultaActionPerformed(evt);
@@ -203,6 +206,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnSaida.setText("Saida");
 
         imSaiConsulta.setText("Consulta");
+        imSaiConsulta.setEnabled(false);
         imSaiConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imSaiConsultaActionPerformed(evt);
@@ -224,6 +228,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         imAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
         imAjuda.setText("Conteudo da ajuda");
+        imAjuda.setEnabled(false);
         imAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imAjudaActionPerformed(evt);
@@ -233,6 +238,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         imRelatar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
         imRelatar.setText("Relatar erro");
+        imRelatar.setEnabled(false);
         imRelatar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imRelatarActionPerformed(evt);
@@ -323,8 +329,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imSobreActionPerformed
 
     private void imRelatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatarActionPerformed
-        DialogoRelatarProblema a = new DialogoRelatarProblema(this, rootPaneCheckingEnabled);
-        a.setVisible(rootPaneCheckingEnabled);
+/*        DialogoRelatarProblema a = new DialogoRelatarProblema(this, rootPaneCheckingEnabled);
+        a.setVisible(rootPaneCheckingEnabled);*/
     }//GEN-LAST:event_imRelatarActionPerformed
 
     private void imConSolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConSolicitanteActionPerformed
@@ -336,6 +342,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnCentral.add(telaconsai);
         telaconsai.show();
     }//GEN-LAST:event_imSaiConsultaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaPrincipal().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem imAjuda;

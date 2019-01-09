@@ -90,14 +90,14 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         TelaEmbarcacao.setBackground(new java.awt.Color(255, 255, 255));
         TelaEmbarcacao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TelaEmbarcacao.setOpaque(true);
-        TelaEmbarcacao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TelaEmbarcacaoFocusGained(evt);
-            }
-        });
         TelaEmbarcacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 TelaEmbarcacaoMouseEntered(evt);
+            }
+        });
+        TelaEmbarcacao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TelaEmbarcacaoFocusGained(evt);
             }
         });
 
@@ -169,7 +169,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             .addGroup(pnConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
                     .addGroup(pnConsultaLayout.createSequentialGroup()
                         .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -184,7 +184,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     .addComponent(cbAtriuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -194,7 +194,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        btLimpar.setText("Limpar");
+        btLimpar.setText("Novo");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);
@@ -233,12 +233,14 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btExcluir)
-                        .addComponent(btSalvar))
-                    .addComponent(btLimpar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btExcluir)
+                            .addComponent(btSalvar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -263,13 +265,13 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         lbNPassageiros.setText("Número de passageiros:");
 
-        cgNumeroPassageiros.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        cgNumeroPassageiros.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         lbTEmbarcacao.setText("Tamanho da embarcação: ");
 
         lbCPassageiros.setText("Capacidade de passageiros:");
 
-        cgCapacidadePassageiros.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        cgCapacidadePassageiros.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         lbLocal.setText("Local de atuação:");
 
@@ -301,11 +303,6 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
         lbModalidade.setText("Modalidade:");
 
-        cbModalidade.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cbModalidadeFocusLost(evt);
-            }
-        });
         cbModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbModalidadeMouseClicked(evt);
@@ -319,45 +316,42 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 cbModalidadeActionPerformed(evt);
             }
         });
+        cbModalidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbModalidadeFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(cgNumeroPassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbCPassageiros)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cgCapacidadePassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fmTamanhoEmbarcacao)
-                        .addComponent(txtLocal))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbObs)
+                    .addComponent(lbModalidade)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lbLocal)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbTie)
-                                .addComponent(lbNomeEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbNomeProprietario)
-                                .addComponent(lbTEmbarcacao))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fmTie, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNomeEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(lbNPassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbTie)
+                        .addComponent(lbTEmbarcacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbNomeEmbarcacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbNomeProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbNPassageiros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbObs)
-                            .addComponent(lbModalidade))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addComponent(cbModalidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(cgNumeroPassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addComponent(lbCPassageiros)
+                        .addGap(61, 61, 61)
+                        .addComponent(cgCapacidadePassageiros, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLocal, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNomeProprietario)
+                    .addComponent(jScrollPane1)
+                    .addComponent(txtNomeEmbarcacao)
+                    .addComponent(fmTie, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fmTamanhoEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -371,10 +365,10 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fmTie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTie))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNPassageiros)
@@ -394,7 +388,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     .addComponent(lbObs)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbModalidade)
                     .addComponent(cbModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -405,10 +399,13 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         pnCadastroLayout.setHorizontalGroup(
             pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCadastroLayout.createSequentialGroup()
-                .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(284, 284, 284)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCadastroLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
         pnCadastroLayout.setVerticalGroup(
             pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,8 +429,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(TelaEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(TelaEmbarcacao, javax.swing.GroupLayout.PREFERRED_SIZE, 542, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -452,7 +449,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         cgCapacidadePassageiros.setValue(0);
         txtLocal.setText("");
         txtObeservacao.setText("");
-        cbModalidade.setSelectedIndex(0);
+        cbModalidade.setSelectedIndex(-1);
         this.codigo = null;
     }//GEN-LAST:event_btLimparActionPerformed
 
@@ -478,6 +475,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (codigo == null) {
+            
             EmbarcacaoDAO.Cadastrar(txtNomeEmbarcacao.getText(),
                     fmTie.getText(),
                     txtNomeProprietario.getText(),
@@ -486,7 +484,8 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     cgCapacidadePassageiros.getValue().toString(),
                     txtLocal.getText(),
                     txtObeservacao.getText(),
-                    cbModalidade.getSelectedIndex());
+                    EmbarcacaoDAO.PegarCodigoModalidade(cbModalidade.getSelectedItem().toString()));
+            //System.out.println(String.valueOf(EmbarcacaoDAO.PegarCodigoModalidade(cbModalidade.getSelectedItem().toString())));
         } else {
             EmbarcacaoDAO.Alterar(codigo,
                     txtNomeEmbarcacao.getText(),
@@ -497,7 +496,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                     cgCapacidadePassageiros.getValue().toString(),
                     txtLocal.getText(),
                     txtObeservacao.getText(),
-                    cbModalidade.getSelectedIndex());
+                    EmbarcacaoDAO.PegarCodigoModalidade(cbModalidade.getSelectedItem().toString()));
         }
         txtNomeEmbarcacao.setText("");
         fmTie.setText("");
@@ -507,7 +506,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         cgCapacidadePassageiros.setValue(0);
         txtLocal.setText("");
         txtObeservacao.setText("");
-        cbModalidade.setSelectedIndex(0);
+        cbModalidade.setSelectedIndex(-1);
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
@@ -524,7 +523,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
         cgCapacidadePassageiros.setValue(0);
         txtLocal.setText("");
         txtObeservacao.setText("");
-        cbModalidade.setSelectedIndex(0);
+        cbModalidade.setSelectedIndex(-1);
         EmbarcacaoDAO.Consultar(txtPesquisa.getText(), tbEmbarcacao, codAtr);
         TelaEmbarcacao.setSelectedIndex(0);
         this.codigo = null;
@@ -585,7 +584,7 @@ public class TelaCadEmbarcacao extends javax.swing.JInternalFrame {
                 break;
             case "Modalidade":
                 txtPesquisa.setText("Digite a modalidade");
-                codAtr = "codigo_modalidade";
+                codAtr = "nome_modalidade";
                 break;
         }
     }//GEN-LAST:event_cbAtriutoItemStateChanged

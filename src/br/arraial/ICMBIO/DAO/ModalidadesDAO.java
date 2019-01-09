@@ -23,7 +23,7 @@ public class ModalidadesDAO {
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            comando = conexao.prepareStatement("Select * from modalidade where " + atributo + " like ? order by " + atributo);
+            comando = conexao.prepareStatement("Select * from modalidade where est=0 and " + atributo + " like ? order by " + atributo);
             comando.setString(1, a + "%");
             resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
@@ -35,6 +35,7 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
@@ -47,6 +48,7 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
@@ -58,22 +60,24 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigo) {
         try {
-            comando = conexao.prepareStatement("delete from modalidade where codigo_modalidade = " + codigo);
+            comando = conexao.prepareStatement("update modalidade set est=1 where codigo_modalidade = " + codigo);
             comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void PegarDados1(String codigo, JTextField txtNome) {
         try {
-            comando = conexao.prepareStatement("select * from modalidade where codigo_modalidade = " + codigo);
+            comando = conexao.prepareStatement("select * from modalidade where est=0 and codigo_modalidade = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNome.setText(resultado.getString("nome_modalidade"));
@@ -82,12 +86,13 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            comando = conexao.prepareStatement("select " + atributo + " from modalidade where codigo_modalidade = " + codigo);
+            comando = conexao.prepareStatement("select " + atributo + " from modalidade where est=0 and codigo_modalidade = " + codigo);
             resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
@@ -99,6 +104,7 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
             return null;
         }
     }
@@ -106,13 +112,13 @@ public class ModalidadesDAO {
     public static void PegarDados2(JComboBox cbModalidade) {
         int cont = 0;
         try {
-            comando = conexao.prepareStatement("Select * from modalidade");
+            comando = conexao.prepareStatement("Select * from modalidade where est=0");
             resultado = comando.executeQuery();
             while (resultado.next()) {
                 cont++;
             }
             List<String> lista = new ArrayList<>();
-            comando = retornarConexao().prepareStatement("Select * from modalidade");
+            comando = retornarConexao().prepareStatement("Select * from modalidade where est=0");
             resultado = comando.executeQuery();
             while (resultado.next()) {
                 lista.add(resultado.getString("nome_modalidade"));
@@ -124,6 +130,7 @@ public class ModalidadesDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 }

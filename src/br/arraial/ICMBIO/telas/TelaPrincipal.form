@@ -63,6 +63,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="imConSolicitante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Solicitante"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imConSolicitanteActionPerformed"/>
@@ -71,6 +72,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="imConEmbarcacao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Embarca&#xe7;&#xe3;o"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imConEmbarcacaoActionPerformed"/>
@@ -86,6 +88,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="imSoliConsulta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imSoliConsultaActionPerformed"/>
@@ -109,6 +112,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="imSaiConsulta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imSaiConsultaActionPerformed"/>
@@ -135,6 +139,7 @@
                   <KeyStroke key="F12"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Conteudo da ajuda"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imAjudaActionPerformed"/>
@@ -146,6 +151,7 @@
                   <KeyStroke key="F11"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Relatar erro"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imRelatarActionPerformed"/>
