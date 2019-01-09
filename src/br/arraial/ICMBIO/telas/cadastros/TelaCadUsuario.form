@@ -14,7 +14,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Cadastro de Usuario"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de Usu&#xe1;rio"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -80,7 +80,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="376" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="454" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="cbAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -273,25 +273,16 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblLogin">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Login:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblSenha">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Senha:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblConfirmacao">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Confirmar:"/>
                   </Properties>
                 </Component>
@@ -339,7 +330,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btLimpar">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Limpar"/>
+                    <Property name="text" type="java.lang.String" value="Novo"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimparActionPerformed"/>

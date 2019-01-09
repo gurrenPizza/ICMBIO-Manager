@@ -63,7 +63,7 @@ public class TelaCadModalidade extends javax.swing.JInternalFrame {
             }
         });
 
-        btLimpar.setText("Limpar");
+        btLimpar.setText("Novo");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);

@@ -78,7 +78,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
             }
         });
 
-        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Numero do Processo", "Codigo", "Solicitante", "Embarcação" }));
+        cbAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Número do Processo", "Solicitante", "Embarcação" }));
         cbAtributo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbAtributoItemStateChanged(evt);
@@ -132,11 +132,11 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Numero do processo:");
+        jLabel1.setText("Número do processo:");
 
-        jLabel2.setText("Sequencia:");
+        jLabel2.setText("Sequência:");
 
-        jLabel3.setText("Status");
+        jLabel3.setText("Status:");
 
         jLabel4.setText("Motivo:");
 
@@ -296,7 +296,7 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
             }
         });
 
-        btLimpar.setText("Limpar");
+        btLimpar.setText("Novo");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);
@@ -359,6 +359,8 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.getAccessibleContext().setAccessibleName("Solicitante");
+
         TelaSolicitacao.addTab("Cadastro", pnCadastro);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -387,21 +389,17 @@ public class TelaCadSolicitacao extends javax.swing.JInternalFrame {
 
     private void cbAtributoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtributoItemStateChanged
         switch (cbAtributo.getItemAt(cbAtributo.getSelectedIndex()).toString()) {
-            case "Numero do Processo":
+            case "Número do Processo":
                 txtPesquisa.setText("Digite o nome");
                 codAtr = "numero_processo";
                 break;
-            case "Codigo":
-                txtPesquisa.setText("Digite o Codigo da solicitação");
-                codAtr = "codigo_solicitacao";
-                break;
             case "Solicitante":
                 txtPesquisa.setText("Digite o nome do solicitante");
-                codAtr = "codigo_solicitante";
+                codAtr = "nome";
                 break;
             case "Embarcação":
                 txtPesquisa.setText("Digite o nome da embarcação");
-                codAtr = "codigo_embarcacao";
+                codAtr = "nome_embarcacao";
                 break;
         }
     }//GEN-LAST:event_cbAtributoItemStateChanged

@@ -14,78 +14,80 @@ import javax.swing.table.DefaultTableModel;
 public class UsuarioDAO {
 
     static Connection conexao = retornarConexao();
-
+    static PreparedStatement comando;
+    static ResultSet resultado;
+    
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            PreparedStatement consulta = conexao.prepareStatement("Select * from usuario where " + atributo + " like ? order by " + atributo);
-            consulta.setString(1, a + "%");
-            ResultSet resultado = consulta.executeQuery();
+            comando = conexao.prepareStatement("Select * from usuario where est=0 and " + atributo + " like ? order by " + atributo);
+            comando.setString(1, a + "%");
+            resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_usuario"), resultado.getString("login"),});
             }
-            consulta.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
 
     public static void Cadastrar(String login, String senha) {
         try {
-            PreparedStatement inserir = conexao.prepareStatement("insert into usuario(login, senha) values(?,?)");
-            inserir.setString(1, login);
-            inserir.setString(2, senha);
-            inserir.executeUpdate();
-            inserir.close();
+            comando = conexao.prepareStatement("insert into usuario(login, senha) values(?,?)");
+            comando.setString(1, login);
+            comando.setString(2, senha);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Alterar(String login, String senha, String codigo) {
         try {
-            PreparedStatement alterar = conexao.prepareStatement("update usuario set login=?, senha=? where codigo_usuario=" + codigo);
-            alterar.setString(1, login);
-            alterar.setString(2, senha);
-            alterar.executeUpdate();
-            alterar.close();
+            comando = conexao.prepareStatement("update usuario set login=?, senha=? where codigo_usuario=" + codigo);
+            comando.setString(1, login);
+            comando.setString(2, senha);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigo) {
         try {
-            PreparedStatement deletar = conexao.prepareStatement("delete from usuario where codigo_usuario = " + codigo);
-            deletar.executeUpdate();
-            deletar.close();
+            comando = conexao.prepareStatement("update usuario set est=1 where codigo_usuario = " + codigo);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void PegarDados(String codigo, JTextField txtLogin, JPasswordField txtSenha, JPasswordField txtConfirma) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select * from usuario where codigo_usuario = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select * from usuario where est=0 and codigo_usuario = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtLogin.setText(resultado.getString("Login"));
                 txtSenha.setText(resultado.getString("Senha"));
                 txtConfirma.setText(resultado.getString("Senha"));
             }
-            pesquisa.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 }

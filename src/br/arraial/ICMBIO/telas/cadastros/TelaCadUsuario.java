@@ -40,7 +40,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setClosable(true);
-        setTitle("Cadastro de Usuario");
+        setTitle("Cadastro de Usuário");
 
         TelaUsuario.setBackground(new java.awt.Color(255, 255, 255));
         TelaUsuario.setOpaque(true);
@@ -105,7 +105,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             .addGroup(pnConsultarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                     .addGroup(pnConsultarLayout.createSequentialGroup()
                         .addComponent(cbAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -136,13 +136,10 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        lblLogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblLogin.setText("Login:");
 
-        lblSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblSenha.setText("Senha:");
 
-        lblConfirmacao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblConfirmacao.setText("Confirmar:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -182,7 +179,7 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btLimpar.setText("Limpar");
+        btLimpar.setText("Novo");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimparActionPerformed(evt);
@@ -272,54 +269,9 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        UsuarioDAO.Excluir(codigo);
-        txtLogin.setText("");
-        txtConfirma.setText("");
-        txtSenha.setText("");
-        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
-        this.codigo = null;
-        TelaUsuario.setSelectedIndex(0);
-        btExcluir.setEnabled(false);
-    }//GEN-LAST:event_btExcluirActionPerformed
-
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
 
     }//GEN-LAST:event_txtPesquisaActionPerformed
-
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if(codigo==null){
-            if(txtConfirma.getText().equals(txtSenha.getText())){
-                UsuarioDAO.Cadastrar(txtLogin.getText(), txtSenha.getText());
-            }
-            else{
-                JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
-            }
-        }
-        else{
-            if(txtConfirma.getText().equals(txtSenha.getText())){
-                UsuarioDAO.Alterar(txtLogin.getText(), txtSenha.getText(), codigo);
-            }
-            else{
-                JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
-            }
-        }
-        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
-        TelaUsuario.setSelectedIndex(0);
-        this.codigo = null;
-        btExcluir.setEnabled(false);
-    }//GEN-LAST:event_btSalvarActionPerformed
-
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        txtLogin.setText("");
-        txtConfirma.setText("");
-        txtSenha.setText("");
-        this.codigo = null;
-    }//GEN-LAST:event_btLimparActionPerformed
-
-    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
-
-    }//GEN-LAST:event_txtLoginActionPerformed
 
     private void tbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioMouseClicked
         TelaUsuario.setSelectedIndex(1);
@@ -352,6 +304,51 @@ public class TelaCadUsuario extends javax.swing.JInternalFrame {
     private void txtPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMousePressed
         txtPesquisa.setText("");
     }//GEN-LAST:event_txtPesquisaMousePressed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if(codigo==null){
+            if(txtConfirma.getText().equals(txtSenha.getText())){
+                UsuarioDAO.Cadastrar(txtLogin.getText(), txtSenha.getText());
+            }
+            else{
+                JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
+            }
+        }
+        else{
+            if(txtConfirma.getText().equals(txtSenha.getText())){
+                UsuarioDAO.Alterar(txtLogin.getText(), txtSenha.getText(), codigo);
+            }
+            else{
+                JOptionPane.showConfirmDialog(rootPane, "Senhas incopativeis");
+            }
+        }
+        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
+        TelaUsuario.setSelectedIndex(0);
+        this.codigo = null;
+        btExcluir.setEnabled(false);
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        UsuarioDAO.Excluir(codigo);
+        txtLogin.setText("");
+        txtConfirma.setText("");
+        txtSenha.setText("");
+        UsuarioDAO.Consultar(txtPesquisa.getText(), tbUsuario, codAtr);
+        this.codigo = null;
+        TelaUsuario.setSelectedIndex(0);
+        btExcluir.setEnabled(false);
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        txtLogin.setText("");
+        txtConfirma.setText("");
+        txtSenha.setText("");
+        this.codigo = null;
+    }//GEN-LAST:event_btLimparActionPerformed
+
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+
+    }//GEN-LAST:event_txtLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

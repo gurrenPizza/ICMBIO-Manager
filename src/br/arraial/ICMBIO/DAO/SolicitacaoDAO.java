@@ -14,77 +14,79 @@ import javax.swing.table.DefaultTableModel;
 public class SolicitacaoDAO {
 
     static Connection conexao = retornarConexao();
+    static PreparedStatement comando;
+    static ResultSet resultado;
 
     public static void Consultar(String a, JTable b, String atributo) {
 
         try {
-            PreparedStatement consulta = conexao.prepareStatement("Select * from solicitacao where " + atributo + " like ? order by " + atributo);
-            consulta.setString(1, a + "%");
-            ResultSet resultado = consulta.executeQuery();
+            comando = conexao.prepareStatement("Select * from solicitacao, embarcacao, solicitante where est=0 and solicitacao.codigo_solicitante=solicitante.codigo_solicitante and solicitacao.codigo_embarcacao=embarcacao.codigo_embarcacao and " + atributo + " like ? order by " + atributo);
+            comando.setString(1, a + "%");
+            resultado = comando.executeQuery();
             DefaultTableModel model = (DefaultTableModel) b.getModel();
             model.setNumRows(0);
             while (resultado.next()) {
                 model.addRow(new Object[]{resultado.getString("codigo_solicitacao"), resultado.getString("numero_processo"),
                     resultado.getString("status"), SolicitanteDAO.Buscar("nome", resultado.getString("codigo_solicitante")), EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")),});
             }
-            consulta.close();
             resultado.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
 
     }
 
     public static void Cadastrar(String numeroprocesso, String sequenciaanual, String status, String motivo, String codigosolicitante, String codigoembarcacao) {
         try {
-            PreparedStatement inserir = conexao.prepareStatement("insert into solicitacao(numero_processo, sequencia_anual,status, motivo, codigo_solicitante, codigo_embarcacao) values(?,?,?,?,?,?)");
-            inserir.setString(1, numeroprocesso);
-            inserir.setString(2, sequenciaanual);
-            inserir.setString(3, status);
-            inserir.setString(4, motivo);
-            inserir.setString(5, codigosolicitante);
-            inserir.setString(6, codigoembarcacao);
-            inserir.executeUpdate();
-            inserir.close();
+            comando = conexao.prepareStatement("insert into solicitacao(numero_processo, sequencia_anual,status, motivo, codigo_solicitante, codigo_embarcacao) values(?,?,?,?,?,?)");
+            comando.setString(1, numeroprocesso);
+            comando.setString(2, sequenciaanual);
+            comando.setString(3, status);
+            comando.setString(4, motivo);
+            comando.setString(5, codigosolicitante);
+            comando.setString(6, codigoembarcacao);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Alterar(String numeroprocesso, String sequenciaanual, String status, String motivo, String codigosolicitante, String codigoembarcacao) {
         try {
-            PreparedStatement alterar = conexao.prepareStatement("update solicitacao set numero_processo=?, sequencia_anual=?, status=?, motivo=?");
-            alterar.setString(1, numeroprocesso);
-            alterar.setString(2, sequenciaanual);
-            alterar.setString(3, status);
-            alterar.setString(4, motivo);
-            alterar.setString(5, codigosolicitante);
-            alterar.setString(6, codigoembarcacao);
-            alterar.executeUpdate();
-            alterar.close();
+            comando = conexao.prepareStatement("update solicitacao set numero_processo=?, sequencia_anual=?, status=?, motivo=?");
+            comando.setString(1, numeroprocesso);
+            comando.setString(2, sequenciaanual);
+            comando.setString(3, status);
+            comando.setString(4, motivo);
+            comando.setString(5, codigosolicitante);
+            comando.setString(6, codigoembarcacao);
+            comando.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void Excluir(String codigo) {
         try {
-            PreparedStatement deletar = conexao.prepareStatement("delete from solicitacao where codigo_solicitacao = " + codigo);
-            deletar.executeUpdate();
-            deletar.close();
+            comando = conexao.prepareStatement("update solicitacao set est=1 where codigo_solicitacao = " + codigo);
+            comando.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static void PegarDados(String codigo, JTextField txtNumero, JTextField txtSequencia, JTextField txtStatus, JTextArea txtmotivo, JTextField txtNome, JTextField txtNome2) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select * from solicitacao where codigo_solicitacao = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select * from solicitacao where est=0 and codigo_solicitacao = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 txtNumero.setText(resultado.getString("numero_processo"));
                 txtSequencia.setText(resultado.getString("sequencia_anual"));
@@ -94,29 +96,28 @@ public class SolicitacaoDAO {
                 txtNome2.setText(EmbarcacaoDAO.Buscar("nome_embarcacao", resultado.getString("codigo_embarcacao")));
             }
             resultado.close();
-            pesquisa.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
         }
     }
 
     public static String Buscar(String atributo, String codigo) {
         try {
-            PreparedStatement pesquisa = conexao.prepareStatement("select " + atributo + " from solicitacao where codigo_solicitacao = " + codigo);
-            ResultSet resultado = pesquisa.executeQuery();
+            comando = conexao.prepareStatement("select " + atributo + " from solicitacao where est=0 and codigo_solicitacao = " + codigo);
+            resultado = comando.executeQuery();
             if (resultado != null && resultado.next()) {
                 String retorno = resultado.getString(atributo);
-                pesquisa.close();
                 resultado.close();
                 return retorno;
             } else {
-                pesquisa.close();
                 return null;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Verifique a conexão com o banco de dados.", "Erro!!!", 2);
+            System.exit(0);
             return null;
         }
     }
